@@ -1,1 +1,1 @@
-# iat312-chalice
+# IAT 312 - Argon Chalice Redesign
