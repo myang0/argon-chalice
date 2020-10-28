@@ -10,6 +10,12 @@ TagManager:
   - EventText
   - ActionButton
   - ActionPanel
+  - PlayerIgnoreCollision
+  - GateExit
+  - PlayerCharacter
+  - CameraBoundry
+  - Camera
+  - MovableRock
   layers:
   - Default
   - TransparentFX
@@ -19,7 +25,7 @@ TagManager:
   - UI
   - 
   - 
-  - Floor
+  - 
   - 
   - 
   - 
