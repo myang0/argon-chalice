@@ -3,16 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 
 public class BaseChamber : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] private Tilemap gateTileMap;
-    [SerializeField] private RedButton redButton;
-    [SerializeField] private GateArea gate;
-    [SerializeField] protected Transform nextSpawnPoint;
+    [SerializeField] protected List<Button> buttons = new List<Button>();
+    [SerializeField] protected List<GateArea> gates = new List<GateArea>();
+    [SerializeField] protected List<Transform> nextSpawnPoint = new List<Transform>();
+    [SerializeField] protected Tilemap gateTileMap;
     [SerializeField] protected ChamberBoundary chamberBoundary;
     [SerializeField] protected BoxCollider cameraBoundary;
     void Start()
@@ -24,6 +25,12 @@ public class BaseChamber : MonoBehaviour
     void Update() {
         if (Time.timeScale != 0) {
             PlayerEnterGate();
+            if (Input.GetKeyDown(KeyCode.O) && chamberBoundary.GetChamberIsActive()) {
+                Scene currentScene = SceneManager.GetActiveScene();
+                SceneManager.LoadScene(gameObject.scene.name, LoadSceneMode.Additive);
+                SceneManager.UnloadSceneAsync(currentScene);
+                GameObject.FindWithTag("PlayerCharacter").GetComponent<CharacterBehavior>().ResetSpawn();
+            }
         }
     }
 
@@ -32,7 +39,7 @@ public class BaseChamber : MonoBehaviour
         SetGate();
     }
 
-    private void SetCamera() {
+    protected virtual void SetCamera() {
         if (chamberBoundary.GetChamberIsActive()) {
             GameObject.FindGameObjectWithTag("Camera")
                 .GetComponent<CinemachineConfiner>()
@@ -40,21 +47,30 @@ public class BaseChamber : MonoBehaviour
         }
     }
 
-    private void PlayerEnterGate() {
-        if (gate.GetIsPlayerNearby() && Input.GetKeyDown(KeyCode.E) && GetChamberComplete()) {
-            ProceedChamber();
+    protected virtual void PlayerEnterGate() {
+        foreach (GateArea gate in gates) {
+            if (gate.GetIsPlayerNearby() && Input.GetKeyDown(KeyCode.E) && GetChamberComplete()) {
+                ProceedChamber();
+            }
         }
     }
 
-    public bool GetChamberComplete() {
-        return redButton.GetIsPushed();
+    public virtual bool GetChamberComplete() {
+        foreach (Button button in buttons) {
+            if (!button.GetIsPushed()) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    private void ProceedChamber() {
-        GameObject.FindWithTag("PlayerCharacter").transform.position = nextSpawnPoint.position;
+    protected virtual void ProceedChamber() {
+        GameObject player = GameObject.FindWithTag("PlayerCharacter");
+        player.transform.position = nextSpawnPoint[0].position;
+        player.GetComponent<CharacterBehavior>().spawnPoint = nextSpawnPoint[0].position;
     }
 
-    private void SetGate() {
+    protected virtual void SetGate() {
         gateTileMap.gameObject.SetActive(!GetChamberComplete());
     }
 }

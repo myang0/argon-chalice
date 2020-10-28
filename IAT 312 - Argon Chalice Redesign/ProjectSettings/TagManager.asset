@@ -9,6 +9,7 @@ TagManager:
   - PlayerCharacter
   - CameraBoundry
   - Camera
+  - MovableRock
   layers:
   - Default
   - TransparentFX

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ChamberBoundary : MonoBehaviour {
     private bool chamberIsActive = false;
@@ -20,12 +21,14 @@ public class ChamberBoundary : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("PlayerCharacter")) {
             chamberIsActive = true;
+            SceneManager.SetActiveScene(gameObject.scene);
         }
     }
 
     private void OnTriggerStay2D(Collider2D other) {
         if (other.CompareTag("PlayerCharacter")) {
             chamberIsActive = true;
+            SceneManager.SetActiveScene(gameObject.scene);
         }
     }
 

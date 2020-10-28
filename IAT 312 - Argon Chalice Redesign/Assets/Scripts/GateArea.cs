@@ -34,6 +34,7 @@ public class GateArea : MonoBehaviour {
     }
 
     public bool GetIsEnabled() {
+        Debug.Log("Gate: " + baseChamber.GetChamberComplete());
         return baseChamber.GetChamberComplete();
     }
 }

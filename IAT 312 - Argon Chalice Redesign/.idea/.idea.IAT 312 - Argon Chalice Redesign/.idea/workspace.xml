@@ -20,10 +20,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8aa440eb-f641-4be8-a1a2-7bf46b6264cd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Argon Chalice Redesign/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Argon Chalice Redesign/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Argon Chalice Redesign/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Argon Chalice Redesign/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Movable Rock.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Movable Rock.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/RedButton.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/RedButton.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BaseChamber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BaseChamber.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Chamber2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Chamber2.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ChamberBoundary.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ChamberBoundary.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CharacterBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CharacterBehavior.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GateArea.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GateArea.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GreenButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GreenButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RedButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Button.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RedButton.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Button.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/sampleScene.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/sampleScene.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,8 +46,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/RedButton.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../iat312-antlion-redesign/iat312-antlion-redesign-master/IAT 312 - Antlion Redesign/Assets/Scripts/PlayerMovement.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../iat312-antlion-redesign/iat312-antlion-redesign-master/IAT 312 - Antlion Redesign/Assets/Scripts/Inventory.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/MovableRock.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BaseChamber.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -47,7 +60,6 @@
         <option value="$PROJECT_DIR$/Assets/CameraBoundryBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/ChamberBoundryBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/ChamberBoundaryBehavior.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/CharacterBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/TestChamberBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/GateBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Chamber2Behavior.cs" />
@@ -58,10 +70,13 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/RedButtonBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GreenButton.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/RedButton.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/BaseChamber.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ChamberBoundary.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GateArea.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Button.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Chamber2.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GateArea.cs" />
+        <option value="$PROJECT_DIR$/Assets/MovableRock.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ChamberBoundary.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/CharacterBehavior.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/BaseChamber.cs" />
       </list>
     </option>
   </component>
@@ -106,7 +121,7 @@
       <option name="presentableId" value="Default" />
       <updated>1603760259992</updated>
       <workItem from="1603760284476" duration="13319000" />
-      <workItem from="1603836990648" duration="7447000" />
+      <workItem from="1603836990648" duration="14351000" />
     </task>
     <servers />
   </component>

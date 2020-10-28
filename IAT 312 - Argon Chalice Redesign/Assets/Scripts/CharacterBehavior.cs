@@ -6,6 +6,7 @@ using UnityEngine;
 public class CharacterBehavior : MonoBehaviour {
     private Vector2 movementDirection;
     private float movementSpeed = 5f;
+    public Vector3 spawnPoint = new Vector3(-6, 2, -5);
     [SerializeField] private Animator anim;
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private Rigidbody2D rigidBody;
@@ -94,5 +95,9 @@ public class CharacterBehavior : MonoBehaviour {
     private void GetPlayerMovement() {
         movementDirection.x = Input.GetAxisRaw("Horizontal");
         movementDirection.y = Input.GetAxisRaw("Vertical");
+    }
+
+    public void ResetSpawn() {
+        transform.position = spawnPoint;
     }
 }
