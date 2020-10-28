@@ -326,7 +326,7 @@ MonoBehaviour:
   gates:
   - {fileID: 748581736}
   nextSpawnPoint:
-  - {fileID: 0}
+  - {fileID: 1935363361}
   gateTileMap: {fileID: 1303552337}
   chamberBoundary: {fileID: 49411251}
   cameraBoundary: {fileID: 286822526}

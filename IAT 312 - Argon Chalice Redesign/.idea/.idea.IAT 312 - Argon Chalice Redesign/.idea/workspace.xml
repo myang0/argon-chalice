@@ -16,26 +16,24 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:overworld" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8aa440eb-f641-4be8-a1a2-7bf46b6264cd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Argon Chalice Redesign/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Argon Chalice Redesign/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Argon Chalice Redesign/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Argon Chalice Redesign/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Movable Rock.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Movable Rock.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/RedButton.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/RedButton.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BaseChamber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BaseChamber.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Chamber2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Chamber2.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ChamberBoundary.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ChamberBoundary.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CharacterBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CharacterBehavior.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GateArea.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GateArea.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GreenButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GreenButton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RedButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Button.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RedButton.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Button.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/sampleScene.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/sampleScene.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/Player.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Chamber2.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Chamber2.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/StartingChamber.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/StartingChamber.unity.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,11 +44,16 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-chalice/IAT 312 - Argon Chalice Redesign/Assets/Scripts.meta" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../iat312-antlion-redesign/iat312-antlion-redesign-master/IAT 312 - Antlion Redesign/Assets/Scripts/Inventory.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-chalice/IAT 312 - Argon Chalice Redesign/ProjectSettings/TagManager.asset" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-chalice/IAT 312 - Argon Chalice Redesign/ProjectSettings/TagManager.asset" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-chalice/IAT 312 - Argon Chalice Redesign/Assets/Scripts.meta" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RedButton.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../iat312-antlion-redesign/iat312-antlion-redesign-master/IAT 312 - Antlion Redesign/Assets/Scripts/PlayerMovement.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../iat312-antlion-redesign/iat312-antlion-redesign-master/IAT 312 - Antlion Redesign/Assets/Scripts/Inventory.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/MovableRock.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BaseChamber.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-chalice/IAT 312 - Argon Chalice Redesign/Assets/Prefabs.meta" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-chalice/IAT 312 - Argon Chalice Redesign/Assets/Prefabs.meta" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
