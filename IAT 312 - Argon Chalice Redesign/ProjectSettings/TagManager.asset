@@ -16,6 +16,9 @@ TagManager:
   - CameraBoundry
   - Camera
   - MovableRock
+  - Wall
+  - PushTile
+  - Puddle
   layers:
   - Default
   - TransparentFX

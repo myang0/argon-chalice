@@ -3,44 +3,64 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterBehavior : MonoBehaviour {
-    private Vector2 movementDirection;
-    private float movementSpeed = 5f;
-    public Vector3 spawnPoint = new Vector3(-6, 2, -5);
+public class CharacterBehavior : ResettableObject {
+    public enum State {Controllable, Pulled, Pushed}
+    public State state;
+    public Vector2 movementDirection;
+    public Vector3 spawnPoint;
+    
+    private float _movementSpeed = 5f;
+    private float _pushSpeed = 10f;
+    private float _pushAnimationAngle = 0f;
+    
     [SerializeField] private Animator anim;
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private Rigidbody2D rigidBody;
     [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private GameObject interactionButton;
-    // Start is called before the first frame update
-    void Start()
+    void Start() {
+        spawnPoint = transform.position;
+    }
+
+    void Update()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Time.timeScale != 0) {
-            GetPlayerMovement();
-        }
-    }
-
     private void FixedUpdate() {
-        MovePlayer();
-        MoveInteractionButton();
-        AnimatePlayer();
+        if (state == State.Controllable) {
+            GetPlayerMovement();
+            MovePlayer();
+        } else if (state == State.Pushed) {
+            PushPlayer();
+            AnimatePush();
+        }
+        Animate();
         FlipPlayer();
     }
 
-    private void MoveInteractionButton() {
-        // interactionButton.transform.position = new Vector3(1, 15, -3);
+    private void AnimatePush() {
+        _pushAnimationAngle += 15;
+        transform.RotateAround(transform.position, transform.up, Time.deltaTime*360f);
+    }
+
+    private void PushPlayer() {
+        rigidBody.MovePosition(rigidBody.position +
+                               movementDirection * (_pushSpeed * Time.fixedDeltaTime));
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("PlayerIgnoreCollision")) {
             Physics2D.IgnoreCollision(this.boxCollider, other.collider);
+        } else {
+            ResetState();
         }
+    }
+
+    private void ResetState() {
+        state = State.Controllable;
+        _pushAnimationAngle = 0;
+        transform.rotation = new Quaternion(0, 0, 0, 1);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -65,7 +85,7 @@ public class CharacterBehavior : MonoBehaviour {
         }
     }
 
-    private void AnimatePlayer() {
+    private void Animate() {
         if (IsPlayerMoving()) {
             anim.speed = 1;
         } else {
@@ -74,7 +94,7 @@ public class CharacterBehavior : MonoBehaviour {
         }
     }
 
-    private bool IsPlayerMoving() {
+    public bool IsPlayerMoving() {
         return movementDirection.x != 0 || movementDirection.y != 0;
     }
 
@@ -89,7 +109,7 @@ public class CharacterBehavior : MonoBehaviour {
 
     private void MovePlayer() {
         rigidBody.MovePosition(rigidBody.position +
-                               movementDirection * (movementSpeed * Time.fixedDeltaTime));
+                               movementDirection * (_movementSpeed * Time.fixedDeltaTime));
     }
 
     private void GetPlayerMovement() {
@@ -97,7 +117,9 @@ public class CharacterBehavior : MonoBehaviour {
         movementDirection.y = Input.GetAxisRaw("Vertical");
     }
 
-    public void ResetSpawn() {
+    public override void ResetObject() {
         transform.position = spawnPoint;
+        interactionButton.SetActive(false);
+        ResetState();
     }
 }

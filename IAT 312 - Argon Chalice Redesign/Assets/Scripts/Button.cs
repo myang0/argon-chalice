@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Button : MonoBehaviour {
+public class Button : ResettableObject {
     [SerializeField] protected Sprite unpushedSprite;
     [SerializeField] protected Sprite pushedSprite;
     [SerializeField] protected SpriteRenderer spriteRenderer;
@@ -25,5 +25,9 @@ public class Button : MonoBehaviour {
 
     public bool GetIsPushed() {
         return isPushed;
+    }
+
+    public override void ResetObject() {
+        isPushed = false;
     }
 }
