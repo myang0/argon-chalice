@@ -12,7 +12,7 @@ public class BaseChamber : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] protected List<Button> buttons = new List<Button>();
     [SerializeField] protected List<GateArea> gates = new List<GateArea>();
-    [SerializeField] protected List<Transform> nextSpawnPoint = new List<Transform>();
+    // [SerializeField] protected List<Transform> nextSpawnPoint = new List<Transform>();
     [SerializeField] protected Tilemap gateTileMap;
     [SerializeField] protected ChamberBoundary chamberBoundary;
     [SerializeField] protected BoxCollider cameraBoundary;
@@ -26,10 +26,13 @@ public class BaseChamber : MonoBehaviour
         if (Time.timeScale != 0) {
             PlayerEnterGate();
             if (Input.GetKeyDown(KeyCode.O) && chamberBoundary.GetChamberIsActive()) {
-                Scene currentScene = SceneManager.GetActiveScene();
-                SceneManager.LoadScene(gameObject.scene.name, LoadSceneMode.Additive);
-                SceneManager.UnloadSceneAsync(currentScene);
-                GameObject.FindWithTag("PlayerCharacter").GetComponent<CharacterBehavior>().ResetSpawn();
+                foreach (Transform child in transform) {
+                    ResettableObject resettable = child.gameObject.GetComponent<ResettableObject>();
+                    if (resettable) {
+                        resettable.ResetObject();
+                    }
+                }
+                GameObject.FindWithTag("PlayerCharacter").GetComponent<CharacterBehavior>().ResetObject();
             }
         }
     }
@@ -56,6 +59,7 @@ public class BaseChamber : MonoBehaviour
     }
 
     public virtual bool GetChamberComplete() {
+        if (buttons.Count == 0) return true;
         foreach (Button button in buttons) {
             if (!button.GetIsPushed()) {
                 return false;
@@ -66,8 +70,9 @@ public class BaseChamber : MonoBehaviour
 
     protected virtual void ProceedChamber() {
         GameObject player = GameObject.FindWithTag("PlayerCharacter");
-        player.transform.position = nextSpawnPoint[0].position;
-        player.GetComponent<CharacterBehavior>().spawnPoint = nextSpawnPoint[0].position;
+        Transform nextSpawnPoint = player.GetComponent<OverWorldManager>().GetNextSpawn();
+        player.transform.position = nextSpawnPoint.position;
+        player.GetComponent<CharacterBehavior>().spawnPoint = nextSpawnPoint.position;
     }
 
     protected virtual void SetGate() {

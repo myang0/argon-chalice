@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1569861836535410607}
   - component: {fileID: 44567506044443257}
   - component: {fileID: 4716207621221172622}
+  - component: {fileID: -1301065985883427529}
   m_Layer: 0
   m_Name: Movable Rock
   m_TagString: MovableRock
@@ -96,7 +97,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.040291548, y: -1.1354343}
+  m_Offset: {x: -0.00058197975, y: -1.1378344}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -107,7 +108,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.201349, y: 2.2466676}
+  m_Size: {x: 4.253842, y: 2.2739933}
   m_EdgeRadius: 0
 --- !u!50 &4716207621221172622
 Rigidbody2D:
@@ -130,3 +131,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-1301065985883427529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6440442426793213772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0605262b9609df34f98830ac58f3c85c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1569861836535410607}
+  boxCollider2D: {fileID: 44567506044443257}
+  touchedPuddle: 0

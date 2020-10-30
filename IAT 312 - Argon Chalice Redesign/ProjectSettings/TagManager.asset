@@ -19,6 +19,9 @@ TagManager:
   - MinigameStar
   - MinigameManager
   - MinigameBar
+  - Wall
+  - PushTile
+  - Puddle
   layers:
   - Default
   - TransparentFX

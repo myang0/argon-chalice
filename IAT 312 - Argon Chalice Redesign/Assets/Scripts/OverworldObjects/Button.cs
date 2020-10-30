@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Button : MonoBehaviour {
+public class Button : ResettableObject {
     [SerializeField] protected Sprite unpushedSprite;
     [SerializeField] protected Sprite pushedSprite;
     [SerializeField] protected SpriteRenderer spriteRenderer;
@@ -15,15 +15,19 @@ public class Button : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
+    void FixedUpdate() {
         SetSprite();
     }
 
-    private void SetSprite() {
+    protected virtual void SetSprite() {
         spriteRenderer.sprite = isPushed ? pushedSprite : unpushedSprite;
     }
 
-    public bool GetIsPushed() {
+    public virtual bool GetIsPushed() {
         return isPushed;
+    }
+
+    public override void ResetObject() {
+        isPushed = false;
     }
 }
