@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Button : ResettableObject {
+public class BasicButton : ResettableObject {
     [SerializeField] protected Sprite unpushedSprite;
     [SerializeField] protected Sprite pushedSprite;
     [SerializeField] protected SpriteRenderer spriteRenderer;

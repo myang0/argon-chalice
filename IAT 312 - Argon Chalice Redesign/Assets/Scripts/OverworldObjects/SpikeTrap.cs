@@ -11,7 +11,7 @@ public class SpikeTrap : ResettableObject {
     [SerializeField] private float intervalDelay;
     [SerializeField] private bool buttonToggleable;
     [SerializeField] private bool allButtonsMustBeActive;
-    [SerializeField] private List<Button> buttons = new List<Button>();
+    [SerializeField] private List<BasicButton> buttons = new List<BasicButton>();
     private bool _isActive = false;
     private Coroutine _currentCoroutine = null;
     // Start is called before the first frame update
@@ -60,7 +60,7 @@ public class SpikeTrap : ResettableObject {
 
     private bool ButtonToggle() {
         if (allButtonsMustBeActive) {
-            foreach (Button button in buttons) {
+            foreach (BasicButton button in buttons) {
                 if (!button.GetIsPushed()) {
                     return false;
                 }
@@ -68,7 +68,7 @@ public class SpikeTrap : ResettableObject {
 
             return true;
         } else {
-            foreach (Button button in buttons) {
+            foreach (BasicButton button in buttons) {
                 if (button.GetIsPushed()) {
                     return true;
                 }

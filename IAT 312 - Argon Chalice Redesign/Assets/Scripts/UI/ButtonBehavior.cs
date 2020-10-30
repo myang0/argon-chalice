@@ -5,19 +5,19 @@ using UnityEngine.UI;
 
 public class ButtonBehavior : MonoBehaviour
 {
-    private Button button;
+    // private Button button;
 
-    private BattlePlayer player;
-    private BattleSystem battleSys;
+    // private BattlePlayer player;
+    // private BattleSystem battleSys;
 
-    void Start() {
-        button = GetComponent<Button>();
+    // void Start() {
+    //     button = GetComponent<Button>();
 
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<BattlePlayer>();
-        battleSys = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();
-    }
+    //     player = GameObject.FindGameObjectWithTag("Player").GetComponent<BattlePlayer>();
+    //     battleSys = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();
+    // }
 
-    void Update() {
+    // void Update() {
 
-    }
+    // }
 }

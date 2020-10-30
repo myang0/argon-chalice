@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RedButton : Button
+public class RedButton : BasicButton
 {
     private void OnTriggerEnter2D(Collider2D other) {
         if (isPushed) return;
