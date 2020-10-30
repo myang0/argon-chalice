@@ -11,22 +11,24 @@ public class BattleSystem : MonoBehaviour
     private EventText eText;
     private Boss boss;
 
+    private UIManager uiManager;
+
     private GameObject actionPanel;
 
     void Start()
     {   
         boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
         // eText = GameObject.FindGameObjectWithTag("EventText").GetComponent<EventText>();
-        actionPanel = GameObject.FindGameObjectWithTag("ActionPanel");
+        uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
 
-        StartEnemyPhase();
+        StartPlayerPhase();
     }
 
     public void StartPlayerPhase() {
         if (state != BattleState.PLAYER_WIN && state != BattleState.PLAYER_LOSE) {
             state = BattleState.PLAYER_PHASE;
-            // eText.SetText("What will the hero do?");
-            actionPanel.SetActive(true);
+            uiManager.ActivateButtons();
+            // eText.SetText("What will the Hero do?");
         }
     }
 
@@ -34,7 +36,6 @@ public class BattleSystem : MonoBehaviour
         if (state != BattleState.PLAYER_WIN && state != BattleState.PLAYER_LOSE) {
             state = BattleState.ENEMY_PHASE;
             // eText.SetText("The enemy attacks!");
-            actionPanel.SetActive(false);
             boss.EnemyPhaseAction();
         }
     }

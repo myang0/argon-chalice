@@ -22,6 +22,7 @@ TagManager:
   - Wall
   - PushTile
   - Puddle
+  - UIManager
   layers:
   - Default
   - TransparentFX

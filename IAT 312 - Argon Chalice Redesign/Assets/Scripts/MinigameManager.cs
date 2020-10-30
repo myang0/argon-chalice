@@ -23,6 +23,8 @@ public class MinigameManager : MonoBehaviour
     [SerializeField] private float maxBarDamage;
     private bool isBarMinigameActive = false;
 
+    private BattleSystem battleSys;
+
     void Start() {
         pos = transform.position;
 
@@ -33,8 +35,7 @@ public class MinigameManager : MonoBehaviour
         xBounds = (pos.x - halfSize.x, pos.x + halfSize.x);
         yBounds = (pos.y - halfSize.y, pos.y + halfSize.y);
 
-        // StartStarMinigame();
-        // StartBarMinigame();
+        battleSys = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();
     }
 
     void Update() {
@@ -81,6 +82,8 @@ public class MinigameManager : MonoBehaviour
         DestroyAllStars();
         boss.InflictDamage(Mathf.Floor((numHitStars / numSpawnedStars) * maxStarDamage));
         numHitStars = 0;
+
+        StartCoroutine(EnemyPhaseTransition());
     }
 
     public void StartBarMinigame() {
@@ -107,6 +110,8 @@ public class MinigameManager : MonoBehaviour
 
         barMinigameBg.SetActive(false);
         isBarMinigameActive = false;
+
+        StartCoroutine(EnemyPhaseTransition());
     }
 
     IEnumerator StarWave() {
@@ -115,7 +120,13 @@ public class MinigameManager : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(2f);
         EndStarMinigame();
+    }
+
+    IEnumerator EnemyPhaseTransition() {
+        yield return new WaitForSeconds(2);
+
+        battleSys.StartEnemyPhase();
     }
 }
