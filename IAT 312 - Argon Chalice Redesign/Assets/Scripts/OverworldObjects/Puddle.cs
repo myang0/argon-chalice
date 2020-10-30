@@ -8,9 +8,10 @@ public class Puddle : ResettableObject {
     [SerializeField] private Sprite puddleWithRock;
     [SerializeField] private Sprite puddleWithout;
     [SerializeField] private BoxCollider2D boxCollider2D;
+    [SerializeField] private BoxCollider2D triggerBoxCollider2D;
     public bool hasRock = false;
 
-    private void OnCollisionEnter2D(Collision2D other) {
+    private void OnTriggerEnter2D(Collider2D other) {
         if (!other.gameObject.CompareTag("MovableRock") || hasRock
             || other.gameObject.GetComponent<MovableRock>().touchedPuddle) return;
 
@@ -18,11 +19,19 @@ public class Puddle : ResettableObject {
         spriteRenderer.sprite = puddleWithRock;
         hasRock = true;
         boxCollider2D.enabled = false;
+        triggerBoxCollider2D.enabled = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.CompareTag("MovableRock")) {
+            Physics2D.IgnoreCollision(other.collider, other.otherCollider);
+        }
     }
 
     public override void ResetObject() {
         spriteRenderer.sprite = puddleWithout;
         hasRock = false;
         boxCollider2D.enabled = true;
+        triggerBoxCollider2D.enabled = true;
     }
 }

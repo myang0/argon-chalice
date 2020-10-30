@@ -49,6 +49,10 @@ public class CharacterBehavior : ResettableObject {
                                movementDirection * (_pushSpeed * Time.fixedDeltaTime));
     }
 
+    public void OnTrapCollision() {
+        Debug.Log("Player: OWWWWW!! SPIKES?!?!?!?");
+    }
+
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("PlayerIgnoreCollision")) {
             Physics2D.IgnoreCollision(this.boxCollider, other.collider);

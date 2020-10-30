@@ -17,10 +17,12 @@ public class MovableRock : ResettableObject {
         transform.position = _spawnLocation;
         spriteRenderer.enabled = true;
         boxCollider2D.enabled = true;
+        touchedPuddle = false;
     }
 
     public void Hide() {
         spriteRenderer.enabled = false;
         boxCollider2D.enabled = false;
+        touchedPuddle = true;
     }
 }

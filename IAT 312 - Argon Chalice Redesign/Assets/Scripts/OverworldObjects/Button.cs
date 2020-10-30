@@ -15,15 +15,15 @@ public class Button : ResettableObject {
     }
 
     // Update is called once per frame
-    void Update() {
+    void FixedUpdate() {
         SetSprite();
     }
 
-    private void SetSprite() {
+    protected virtual void SetSprite() {
         spriteRenderer.sprite = isPushed ? pushedSprite : unpushedSprite;
     }
 
-    public bool GetIsPushed() {
+    public virtual bool GetIsPushed() {
         return isPushed;
     }
 
