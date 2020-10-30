@@ -29430,18 +29430,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2040698317074742053}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &867821797 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2040698316777575360, guid: 00464e0b8d361564694e73a49c3b068c,
-    type: 3}
-  m_PrefabInstance: {fileID: 2040698317074742053}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daa6c4ba361c95e4bab0025271dae134, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &878923546 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6655729860464775803, guid: 824ec18c9d3400847bb765ac6acfc2ed,
@@ -29852,7 +29840,7 @@ MonoBehaviour:
   gateTileMap: {fileID: 215601999}
   chamberBoundary: {fileID: 1997545976}
   cameraBoundary: {fileID: 699564590}
-  darknessController: {fileID: 867821797}
+  darknessController: {fileID: 0}
 --- !u!156049354 &938474194
 Grid:
   m_ObjectHideFlags: 0

@@ -20,22 +20,34 @@
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:overworld" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:overworld-mk2" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8aa440eb-f641-4be8-a1a2-7bf46b6264cd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Darkness.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Darkness.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DarknessController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DarknessController.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Darkness.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Darkness.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Materials/Darkness.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Images/Materials/Darkness.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Blank Chamber.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Blank Chamber.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/DarknessController.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/DarknessController.prefab.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Argon Chalice Redesign/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Argon Chalice Redesign/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Argon Chalice Redesign/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Argon Chalice Redesign/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/Player.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Movable Rock.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Movable Rock.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Wall.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Wall.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Overworld.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Overworld.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/BaseChamber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/BaseChamber.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/BlueButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/BlueBasicButton.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/BlueButton.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/BlueBasicButton.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/Button.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/BasicButton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/Button.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/BasicButton.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/Button.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/Button.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/GreenButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/GreenBasicButton.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/GreenButton.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/GreenBasicButton.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/PurpleButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/PurpleBasicButton.cs" afterDir="false" />
@@ -45,6 +57,7 @@
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/SpikeTrap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/SpikeTrap.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/ToggleableWall.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/ToggleableWall.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/ButtonBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/ButtonBehavior.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,10 +69,31 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/OverworldObjects/BlueBasicButton.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../iat312-antlion-redesign/iat312-antlion-redesign-master/IAT 312 - Antlion Redesign/Assets/Scripts/PlayerMovement.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-chalice/IAT 312 - Argon Chalice Redesign/Assets/Scripts/OverworldObjects/BasicButton.cs.meta" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-chalice/IAT 312 - Argon Chalice Redesign/Assets/Scripts/Minigame/MinigameBar.cs.meta" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-chalice/IAT 312 - Argon Chalice Redesign/Assets/Scripts/OverworldObjects/PurpleBasicButton.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../iat312-antlion-redesign/iat312-antlion-redesign-master/IAT 312 - Antlion Redesign/Assets/Scripts/Inventory.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-chalice/IAT 312 - Argon Chalice Redesign/Assets/Scripts/OverworldObjects/BlueBasicButton.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/OverworldObjects/RedBasicButton.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/OverworldObjects/BlueBasicButton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-chalice/IAT 312 - Argon Chalice Redesign/Assets/Scripts/UI/ButtonBehavior.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-chalice/IAT 312 - Argon Chalice Redesign/Assets/Scripts/OverworldObjects/GreenBasicButton.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/OverworldObjects/GreenBasicButton.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-chalice/IAT 312 - Argon Chalice Redesign/Assets/Scripts/OverworldObjects/SpikeTrap.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-chalice/IAT 312 - Argon Chalice Redesign/ProjectSettings/TagManager.asset" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/OverworldObjects/PurpleBasicButton.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-chalice/IAT 312 - Argon Chalice Redesign/Assets/Scripts/UI/ButtonBehavior.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-chalice/IAT 312 - Argon Chalice Redesign/Assets/Scripts/OverworldObjects/BasicButton.cs.meta" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/OverworldObjects/BasicButton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-chalice/IAT 312 - Argon Chalice Redesign/Assets/Scripts/OverworldObjects/BlueBasicButton.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-chalice/IAT 312 - Argon Chalice Redesign/Assets/Scripts/OverworldObjects/GreenBasicButton.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-chalice/IAT 312 - Argon Chalice Redesign/Assets/Scripts/OverworldObjects/PurpleBasicButton.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-chalice/IAT 312 - Argon Chalice Redesign/ProjectSettings/TagManager.asset" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-chalice/IAT 312 - Argon Chalice Redesign/Assets/Scripts/OverworldObjects/RedBasicButton.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-chalice/IAT 312 - Argon Chalice Redesign/Assets/Scripts/OverworldObjects/SpikeTrap.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../iat312-antlion-redesign/iat312-antlion-redesign-master/IAT 312 - Antlion Redesign/Assets/Scripts/PlayerMovement.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-chalice/IAT 312 - Argon Chalice Redesign/Assets/Scripts/OverworldObjects/RedBasicButton.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/The Memebase/Desktop/iat312-chalice/IAT 312 - Argon Chalice Redesign/Assets/Scripts/Minigame/MinigameBar.cs.meta" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -177,7 +211,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="overworld" />
+                        <option value="overworld-mk2" />
                       </list>
                     </value>
                   </entry>
@@ -198,6 +232,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="730" y="301" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603772945633" />
+    <state x="169" y="79" width="1552" height="898" key="MergeDialog" timestamp="1604043635455">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="169" y="79" width="1552" height="898" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604043635455" />
+    <state x="598" y="281" key="MultipleFileMergeDialog" timestamp="1604043635459">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="598" y="281" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604043635459" />
     <state x="727" y="244" key="RiderGenerateDialog" timestamp="1603842474081">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
