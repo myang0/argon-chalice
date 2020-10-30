@@ -11,10 +11,15 @@ public class ToggleableWall : ResettableObject
     [SerializeField] private Sprite inActiveWall;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private bool allButtonsMustBeActive;
+    [SerializeField] private bool inverted;
     private bool isActive = false;
 
     private void FixedUpdate() {
-        isActive = SetActive();
+        if (inverted) {
+            isActive = !SetActive();
+        } else {
+            isActive = SetActive();
+        }
         SetSprite();
         SetCollider();
     }

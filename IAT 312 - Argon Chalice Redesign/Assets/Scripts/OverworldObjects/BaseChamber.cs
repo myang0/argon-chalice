@@ -16,6 +16,7 @@ public class BaseChamber : MonoBehaviour
     [SerializeField] protected Tilemap gateTileMap;
     [SerializeField] protected ChamberBoundary chamberBoundary;
     [SerializeField] protected BoxCollider cameraBoundary;
+    [SerializeField] protected DarknessController darknessController;
     void Start()
     {
         
@@ -47,6 +48,12 @@ public class BaseChamber : MonoBehaviour
             GameObject.FindGameObjectWithTag("Camera")
                 .GetComponent<CinemachineConfiner>()
                 .m_BoundingVolume = cameraBoundary;
+            if (darknessController) {
+                GameObject.FindWithTag("Darkness").GetComponent<SpriteRenderer>().enabled =
+                    darknessController.GetIsActive();
+            } else {
+                GameObject.FindWithTag("Darkness").GetComponent<SpriteRenderer>().enabled = false;
+            }
         }
     }
 

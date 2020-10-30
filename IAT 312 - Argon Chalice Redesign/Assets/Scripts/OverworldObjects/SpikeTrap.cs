@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class SpikeTrap : ResettableObject {
@@ -9,15 +10,30 @@ public class SpikeTrap : ResettableObject {
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private BoxCollider2D boxCollider2D;
     [SerializeField] private float intervalDelay;
+    [SerializeField] private float startDelay;
     [SerializeField] private bool buttonToggleable;
     [SerializeField] private bool allButtonsMustBeActive;
     [SerializeField] private List<BasicButton> buttons = new List<BasicButton>();
-    private bool _isActive = false;
+    public bool _started = false;
+    public bool _isActive = false;
     private Coroutine _currentCoroutine = null;
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start() {
+        Initialize();
+    }
+
+    private void Initialize() {
+        if (startDelay == 0) {
+            _started = true;
+        } else {
+            _currentCoroutine = StartCoroutine(ActivateTrap());
+        }
+    }
+
+    private IEnumerator ActivateTrap() {
+        yield return new WaitForSeconds(startDelay);
+        _started = true;
+        _currentCoroutine = null;
     }
 
     // Update is called once per frame
@@ -29,10 +45,12 @@ public class SpikeTrap : ResettableObject {
     private void FixedUpdate() {
         SetSprite();
         SetCollider();
-        if (buttonToggleable) {
-            _isActive = ButtonToggle();
-        } else {
-            IntervalActivation();
+        if (_started) {
+            if (buttonToggleable) {
+                _isActive = ButtonToggle();
+            } else {
+                IntervalActivation();
+            }
         }
     }
 
@@ -83,7 +101,11 @@ public class SpikeTrap : ResettableObject {
 
     public override void ResetObject() {
         _isActive = false;
-        StopCoroutine(_currentCoroutine);
+        if (_currentCoroutine != null) {
+            StopCoroutine(_currentCoroutine);
+        }
         _currentCoroutine = null;
+        _started = false;
+        Initialize();
     }
 }

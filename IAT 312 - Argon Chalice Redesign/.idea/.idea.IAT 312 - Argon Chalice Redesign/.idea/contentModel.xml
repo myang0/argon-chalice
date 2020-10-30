@@ -6,6 +6,8 @@
     <e p="C:\Users\The Memebase\Desktop\iat312-chalice\IAT 312 - Argon Chalice Redesign" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Darkness.cs" t="Include" />
+        <e p="DarknessController.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="BattleSystem.cs" t="Include" />
           <e p="DestroyOnAnimEnd.cs" t="Include" />
@@ -15,21 +17,21 @@
           </e>
           <e p="OverworldObjects" t="Include">
             <e p="BaseChamber.cs" t="Include" />
-            <e p="BlueButton.cs" t="Include" />
-            <e p="Button.cs" t="Include" />
+            <e p="BasicButton.cs" t="Include" />
+            <e p="BlueBasicButton.cs" t="Include" />
             <e p="ChamberBoundary.cs" t="Include" />
             <e p="CharacterBehavior.cs" t="Include" />
             <e p="GateArea.cs" t="Include" />
-            <e p="GreenButton.cs" t="Include" />
+            <e p="GreenBasicButton.cs" t="Include" />
             <e p="MovableRock.cs" t="Include" />
             <e p="ObjectPortal.cs" t="Include" />
             <e p="OverworldManager.cs" t="Include" />
             <e p="PlayerPortal.cs" t="Include" />
             <e p="Portal.cs" t="Include" />
             <e p="Puddle.cs" t="Include" />
-            <e p="PurpleButton.cs" t="Include" />
+            <e p="PurpleBasicButton.cs" t="Include" />
             <e p="PushTile.cs" t="Include" />
-            <e p="RedButton.cs" t="Include" />
+            <e p="RedBasicButton.cs" t="Include" />
             <e p="ResettableObject.cs" t="Include" />
             <e p="SpikeTrap.cs" t="Include" />
             <e p="ToggleableWall.cs" t="Include" />

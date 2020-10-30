@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PurpleButton : BasicButton {
+public class PurpleBasicButton : BasicButton {
     [SerializeField] private float delay;
     private Coroutine _resetCoroutine = null;
 

@@ -28,56 +28,24 @@
     <list default="true" id="8aa440eb-f641-4be8-a1a2-7bf46b6264cd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Argon Chalice Redesign/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Argon Chalice Redesign/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Argon Chalice Redesign/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.IAT 312 - Argon Chalice Redesign/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Images/ButtonNormal.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Images/ButtonNormal.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Images/ButtonPress.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Images/ButtonPress.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Images/GreenButtonNormal.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Images/GreenButtonNormal.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Images/GreenButtonPress.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Images/GreenButtonPress.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Images/Portal.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Images/Portal.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Images/Puddle.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Images/Puddle.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Images/PuddleRock.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Images/PuddleRock.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Images/PushTile.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Images/PushTile.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Images/Rock.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Images/Rock.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Images/TestRoomTiles/New Palette.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Images/TestRoomTiles/New Palette.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Images/Wall.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Images/Wall.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MovableRock.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MovableRock.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/OverWorldManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/OverWorldManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Portal.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Portal.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/GreenButton.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/GreenButton.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Movable Rock.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Movable Rock.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/ObjectPortal.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/ObjectPortal.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PlayerPortal.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PlayerPortal.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Puddle.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Puddle.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PushTile.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PushTile.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/RedButton.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/RedButton.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Wall.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Wall.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Puddle.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Puddle.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PushTile.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PushTile.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ResettableObject.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ResettableObject.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Overworld.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Overworld.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BaseChamber.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BaseChamber.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Button.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Button.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ChamberBoundary.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ChamberBoundary.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CharacterBehavior.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CharacterBehavior.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GateArea.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GateArea.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GreenButton.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GreenButton.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ObjectPortal.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ObjectPortal.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerPortal.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerPortal.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RedButton.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RedButton.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/BaseChamber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/BaseChamber.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/BlueButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/BlueBasicButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/BlueButton.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/BlueBasicButton.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/Button.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/BasicButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/Button.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/BasicButton.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/GreenButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/GreenBasicButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/GreenButton.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/GreenBasicButton.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/PurpleButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/PurpleBasicButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/PurpleButton.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/PurpleBasicButton.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/RedButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/RedBasicButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/RedButton.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/RedBasicButton.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/SpikeTrap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/SpikeTrap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/ToggleableWall.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/ToggleableWall.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/ButtonBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/ButtonBehavior.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,10 +56,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/OverworldObjects/BlueButton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/OverworldObjects/BlueBasicButton.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../iat312-antlion-redesign/iat312-antlion-redesign-master/IAT 312 - Antlion Redesign/Assets/Scripts/PlayerMovement.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../iat312-antlion-redesign/iat312-antlion-redesign-master/IAT 312 - Antlion Redesign/Assets/Scripts/Inventory.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/OverworldObjects/Button.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/OverworldObjects/BasicButton.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -133,9 +101,12 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/Button.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/BlueButton.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/PurpleButton.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/ToggleableWall.cs" />
         <option value="$PROJECT_DIR$/Assets/SpikeTrap.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/CharacterBehavior.cs" />
+        <option value="$PROJECT_DIR$/Assets/DarknessController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/BaseChamber.cs" />
+        <option value="$PROJECT_DIR$/Assets/Darkness.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/ToggleableWall.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/OverworldObjects/SpikeTrap.cs" />
       </list>
     </option>
@@ -185,6 +156,8 @@
       <workItem from="1603936809115" duration="1835000" />
       <workItem from="1603938680694" duration="16060000" />
       <workItem from="1604011628402" duration="8828000" />
+      <workItem from="1604025534450" duration="2308000" />
+      <workItem from="1604032582687" duration="4849000" />
     </task>
     <servers />
   </component>

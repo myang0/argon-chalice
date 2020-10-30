@@ -23,6 +23,8 @@ TagManager:
   - PushTile
   - Puddle
   - UIManager
+  - DarknessController
+  - Darkness
   layers:
   - Default
   - TransparentFX
