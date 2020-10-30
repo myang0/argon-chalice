@@ -19,6 +19,8 @@ TagManager:
   - Wall
   - PushTile
   - Puddle
+  - DarknessController
+  - Darkness
   layers:
   - Default
   - TransparentFX

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlueButton : Button {
+public class BlueBasicButton : BasicButton {
     [SerializeField] private Sprite activeUnpushedSprite;
     [SerializeField] private Sprite activePushedSprite;
     private bool _isActive = false;

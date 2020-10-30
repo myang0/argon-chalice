@@ -10,12 +10,13 @@ using UnityEngine.UIElements;
 public class BaseChamber : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] protected List<Button> buttons = new List<Button>();
+    [SerializeField] protected List<BasicButton> buttons = new List<BasicButton>();
     [SerializeField] protected List<GateArea> gates = new List<GateArea>();
     // [SerializeField] protected List<Transform> nextSpawnPoint = new List<Transform>();
     [SerializeField] protected Tilemap gateTileMap;
     [SerializeField] protected ChamberBoundary chamberBoundary;
     [SerializeField] protected BoxCollider cameraBoundary;
+    [SerializeField] protected DarknessController darknessController;
     void Start()
     {
         
@@ -47,6 +48,12 @@ public class BaseChamber : MonoBehaviour
             GameObject.FindGameObjectWithTag("Camera")
                 .GetComponent<CinemachineConfiner>()
                 .m_BoundingVolume = cameraBoundary;
+            if (darknessController) {
+                GameObject.FindWithTag("Darkness").GetComponent<SpriteRenderer>().enabled =
+                    darknessController.GetIsActive();
+            } else {
+                GameObject.FindWithTag("Darkness").GetComponent<SpriteRenderer>().enabled = false;
+            }
         }
     }
 
@@ -60,7 +67,7 @@ public class BaseChamber : MonoBehaviour
 
     public virtual bool GetChamberComplete() {
         if (buttons.Count == 0) return true;
-        foreach (Button button in buttons) {
+        foreach (BasicButton button in buttons) {
             if (!button.GetIsPushed()) {
                 return false;
             }
