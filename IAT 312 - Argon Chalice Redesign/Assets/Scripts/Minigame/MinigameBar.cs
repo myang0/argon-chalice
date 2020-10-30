@@ -13,7 +13,7 @@ public class MinigameBar : MonoBehaviour
     void Start() {
         rb = GetComponent<Rigidbody2D>();
 
-        rb.velocity = new Vector3(10f, 0, 0);
+        rb.velocity = new Vector3(25, 0, 0);
     }
 
     void Update() {

@@ -5,19 +5,26 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    // [SerializeField] private GameObject[] actButtons;
+    [SerializeField] private GameObject[] actButtons;
 
-    // public void EnableAllButtons() {
-    //     foreach (GameObject ab in actButtons) {
-    //         Button b = ab.GetComponent<Button>();
-    //         b.interactable = true;
-    //     }
-    // }
+    public void ActivateButtons() {
+        foreach (GameObject ab in actButtons) {
+            Button b = ab.GetComponent<Button>();
+            b.interactable = true;
+        }
+    }
 
-    // public void DisableAllButtons() {
-    //     foreach (GameObject ab in actButtons) {
-    //         Button b = ab.GetComponent<Button>();
-    //         b.interactable = false;
-    //     }
-    // }
+    public void DisableButtons() {
+        foreach (GameObject ab in actButtons) {
+            Button b = ab.GetComponent<Button>();
+            b.interactable = false;
+        }
+    }
+
+    public void ToggleButtonInteractability() {
+        foreach (GameObject ab in actButtons) {
+            Button b = ab.GetComponent<Button>();
+            b.interactable = !b.interactable;
+        }
+    }
 }

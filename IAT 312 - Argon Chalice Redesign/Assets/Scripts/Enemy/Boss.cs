@@ -19,7 +19,7 @@ public class Boss : MonoBehaviour
 
     void Update()
     {
-        transform.position += new Vector3(0, 0.00025f * Mathf.Sin(Time.time), 0);
+        transform.position += new Vector3(0, 0.0001f * Mathf.Sin(Time.time), 0);
     }
 
     void FixedUpdate() {
