@@ -14,7 +14,7 @@ public class Boss : MonoBehaviour
     void Start()
     {
         battleSys = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();
-        eText = GameObject.FindGameObjectWithTag("EventText").GetComponent<EventText>();
+        // eText = GameObject.FindGameObjectWithTag("EventText").GetComponent<EventText>();
     }
 
     void Update()
@@ -27,8 +27,13 @@ public class Boss : MonoBehaviour
     }
 
     public void InflictDamage(float damage) {
-        eText.SetText(string.Format("Enemy took {0} damage!", damage));
+        // eText.SetText(string.Format("Enemy took {0} damage!", damage));
+        Debug.Log(string.Format("Enemy took {0} damage!", damage));
         health -= damage;
+
+        if (health <= 0) {
+            battleSys.PlayerWin();
+        }
     }
 
     public void EnemyPhaseAction() {
@@ -37,8 +42,8 @@ public class Boss : MonoBehaviour
     }
 
     IEnumerator ProjectileWave() {
-        for (int i = 0; i < 3; i++) {
-            yield return new WaitForSeconds(1.5f);
+        for (int i = 0; i < 1; i++) {
+            yield return new WaitForSeconds(1.25f);
 
             Instantiate(ballProjectile, transform.position, Quaternion.identity);
         }

@@ -11,25 +11,15 @@ public class BattlePlayer : MonoBehaviour
 
     [SerializeField] private LayerMask floorLayerMask;
 
-    [SerializeField] private ChargeBar cb;
-
     private Boss boss;
 
-    public bool isCharging = false;
-    private float chargeDuration = 0;
-    private float maxChargeTime = 300;
-
-    private float jumpForce = 25f;
+    [SerializeField] private float jumpForce = 25f;
 
     [SerializeField] private float baseAttack;
 
     [SerializeField] private float maxHealth;
     [SerializeField] private GenericBar hpBar;
     private float health;
-
-    [SerializeField] private float maxMana;
-    [SerializeField] private GenericBar mpBar;
-    private float mana;
 
     void Start()
     {
@@ -38,11 +28,6 @@ public class BattlePlayer : MonoBehaviour
 
         health = maxHealth;
         hpBar.SetMax(maxHealth);
-
-        mana = maxMana;
-        mpBar.SetMax(maxMana);
-
-        cb.SetMax(maxChargeTime);
     }
 
     void Update()
@@ -50,40 +35,15 @@ public class BattlePlayer : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && CanJump()) {
             Jump();
         }
-
-        HandleAttackCharge();        
-    }
-
-    private void HandleAttackCharge() {
-        if (isCharging) {
-            chargeDuration++;
-            cb.SetVal(chargeDuration);
-
-            if (Input.GetMouseButtonDown(0)) EndAttack(chargeDuration / maxChargeTime);
-
-            if (chargeDuration >= maxChargeTime) EndAttack(0.1f);
-        }
-    }
-
-    public void StartAttack() {
-        isCharging = true;
-        cb.Activate();
-    }
-
-    private void EndAttack(float dmgMultiplier) {
-        isCharging = false;
-        boss.InflictDamage(Mathf.Floor(dmgMultiplier * baseAttack));
-        chargeDuration = 0;
-
-        cb.SetVal(chargeDuration);
-        cb.Deactivate();
-
-        StartCoroutine(EndPlayerPhase());
     }
 
     public void InflictDamage(float dmg) {
         health -= dmg;
         hpBar.SetVal(health);
+
+        if (health <= 0) {
+            battleSys.PlayerLose();
+        }
     }
 
     private void Jump() {
