@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ObjectPortal : Portal
 {
+    public List<GameObject> warpedObjects = new List<GameObject>();
+
     private void OnTriggerEnter2D(Collider2D other) {
         if (!linkedPortal) return;
         if (other.CompareTag("MovableRock") && !IsAlreadyWarped(other.gameObject)) {
@@ -11,8 +13,7 @@ public class ObjectPortal : Portal
             otherObj.transform.position = new Vector3(linkedPosition.x, linkedPosition.y,
                 otherObj.transform.position.z);
             warpedObjects.Add(otherObj);
-            linkedPortal.GetComponent<Portal>().warpedObjects.Add(otherObj);
-            Debug.Log(warpedObjects.Count);
+            linkedPortal.GetComponent<ObjectPortal>().warpedObjects.Add(otherObj);
         }
     }
 
@@ -21,5 +22,14 @@ public class ObjectPortal : Portal
         if (other.CompareTag("MovableRock") && IsAlreadyWarped(other.gameObject)) {
             StartCoroutine(AllowWarpingAgain(other.gameObject));
         }
+    }
+    
+    private IEnumerator AllowWarpingAgain(GameObject other) {
+        yield return new WaitForSeconds(0.5f);
+        warpedObjects.Remove(other.gameObject);
+    }
+
+    private bool IsAlreadyWarped(GameObject target) {
+        return warpedObjects.Contains(target);
     }
 }

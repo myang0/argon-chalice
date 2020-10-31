@@ -76,15 +76,19 @@ public class CharacterBehavior : ResettableObject {
     }
 
     private void RemoveInteractButton(Collider2D other) {
-        GateArea gate = other.gameObject.GetComponent<GateArea>();
-        if (other.gameObject.CompareTag("GateExit") && gate.GetIsEnabled()) {
+        if (other.gameObject.CompareTag("GateExit")) {
+            GateArea gate = other.gameObject.GetComponent<GateArea>();
+            interactionButton.SetActive(false);
+        } else if (other.gameObject.CompareTag("PlayerPortal")) {
             interactionButton.SetActive(false);
         }
     }
 
     private void ShowInteractButton(Collider2D other) {
-        GateArea gate = other.gameObject.GetComponent<GateArea>();
-        if (other.gameObject.CompareTag("GateExit") && gate.GetIsEnabled()) {
+        if (other.gameObject.CompareTag("GateExit")) {
+            GateArea gate = other.gameObject.GetComponent<GateArea>();
+            interactionButton.SetActive(gate.GetIsEnabled());
+        } else if (other.gameObject.CompareTag("PlayerPortal")) {
             interactionButton.SetActive(true);
         }
     }
@@ -122,8 +126,8 @@ public class CharacterBehavior : ResettableObject {
     }
 
     public override void ResetObject() {
+        ResetState();
         transform.position = spawnPoint;
         interactionButton.SetActive(false);
-        ResetState();
     }
 }

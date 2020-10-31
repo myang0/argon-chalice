@@ -21,6 +21,7 @@ TagManager:
   - Puddle
   - DarknessController
   - Darkness
+  - PlayerPortal
   layers:
   - Default
   - TransparentFX
