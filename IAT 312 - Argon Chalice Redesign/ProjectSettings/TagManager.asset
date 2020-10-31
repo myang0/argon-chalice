@@ -25,6 +25,7 @@ TagManager:
   - UIManager
   - DarknessController
   - Darkness
+  - PlayerPortal
   layers:
   - Default
   - TransparentFX

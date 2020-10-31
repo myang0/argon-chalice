@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class ToggleableWall : ResettableObject
 {
@@ -13,6 +14,11 @@ public class ToggleableWall : ResettableObject
     [SerializeField] private bool allButtonsMustBeActive;
     [SerializeField] private bool inverted;
     private bool isActive = false;
+
+    private void Start() {
+        Assert.IsTrue(buttons.Count > 0,
+            gameObject.name + " [ERROR] No buttons are attached to this object.");
+    }
 
     private void FixedUpdate() {
         if (inverted) {

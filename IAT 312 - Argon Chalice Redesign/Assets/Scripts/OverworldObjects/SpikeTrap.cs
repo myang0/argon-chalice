@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class SpikeTrap : ResettableObject {
     [SerializeField] private Sprite activeSpike;
@@ -23,6 +24,11 @@ public class SpikeTrap : ResettableObject {
     }
 
     private void Initialize() {
+        if (buttonToggleable) {
+            Assert.IsTrue(buttons.Count > 0,
+                gameObject.name + " [ERROR] No buttons are attached to this object.");
+        }
+        
         if (startDelay == 0) {
             _started = true;
         } else {

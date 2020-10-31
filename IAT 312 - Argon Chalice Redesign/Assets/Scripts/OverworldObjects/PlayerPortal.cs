@@ -1,25 +1,33 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
-public class PlayerPortal : Portal
-{
+public class PlayerPortal : Portal {
+    private bool isReady = false;
+
+    private void Update() {
+        if (Time.timeScale != 0 && isReady && Input.GetKeyDown(KeyCode.E)) {
+            WarpPlayer();
+        }
+    }
+
+    private void WarpPlayer() {
+        GameObject player = GameObject.FindWithTag("PlayerCharacter");
+        player.transform.position = new Vector3(linkedPosition.x, linkedPosition.y,
+            player.transform.position.z);
+    }
+
     private void OnTriggerEnter2D(Collider2D other) {
-        if (!linkedPortal) return;
-        if (other.CompareTag("PlayerCharacter") && !IsAlreadyWarped(other.gameObject)) {
-            GameObject otherObj = other.gameObject;
-            otherObj.transform.position = new Vector3(linkedPosition.x, linkedPosition.y,
-                otherObj.transform.position.z);
-            warpedObjects.Add(otherObj);
-            linkedPortal.GetComponent<Portal>().warpedObjects.Add(otherObj);
-            Debug.Log(warpedObjects.Count);
+        if (other.CompareTag("PlayerCharacter")) {
+            isReady = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if (!linkedPortal) return;
-        if (other.CompareTag("PlayerCharacter") && IsAlreadyWarped(other.gameObject)) {
-            StartCoroutine(AllowWarpingAgain(other.gameObject));
+        if (other.CompareTag("PlayerCharacter")) {
+            isReady = false;
         }
     }
 }
