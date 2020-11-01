@@ -9,7 +9,7 @@ public class MinigameManager : MonoBehaviour
 
     [SerializeField] private GameObject shootingStar;
     [SerializeField] private float maxStarDamage;
-    [SerializeField] private float numSpawnedStars;
+    [SerializeField] private float maxStars;
     private float numHitStars = 0;
 
     public Vector3 size;
@@ -22,6 +22,14 @@ public class MinigameManager : MonoBehaviour
     [SerializeField] private GameObject barMinigameBg;
     [SerializeField] private float maxBarDamage;
     private bool isBarMinigameActive = false;
+
+    [SerializeField] private GameObject clickIndicator;
+    private GameObject clickIndicatorObject = null;
+    [SerializeField] private float maxClickDamage;
+    [SerializeField] private int maxClickTime;
+    private int currentClickTime = 0;
+    [SerializeField] private float maxClicks;
+    private float numTimesClicked = 0;
 
     private BattleSystem battleSys;
 
@@ -39,8 +47,14 @@ public class MinigameManager : MonoBehaviour
     }
 
     void Update() {
-        if (isBarMinigameActive && Input.GetMouseButtonDown(0)) {
-            EndBarMinigame();
+        if (isBarMinigameActive && Input.GetMouseButtonDown(0)) EndBarMinigame();
+
+        if (currentClickTime > 0) {
+            if (Input.GetMouseButtonDown(0) && numTimesClicked < maxClicks) numTimesClicked++;
+
+            currentClickTime--;
+            
+            if (currentClickTime <= 0) EndClickMinigame();
         }
     }
 
@@ -80,7 +94,7 @@ public class MinigameManager : MonoBehaviour
     private void EndStarMinigame() {
         minigameBg.SetActive(false);
         DestroyAllStars();
-        boss.InflictDamage(Mathf.Floor((numHitStars / numSpawnedStars) * maxStarDamage));
+        boss.InflictDamage(Mathf.Floor((numHitStars / maxStars) * maxStarDamage));
         numHitStars = 0;
 
         StartCoroutine(EnemyPhaseTransition());
@@ -114,8 +128,28 @@ public class MinigameManager : MonoBehaviour
         StartCoroutine(EnemyPhaseTransition());
     }
 
+    public void StartClickMinigame() {
+        minigameBg.SetActive(true);
+        currentClickTime = maxClickTime;
+
+        clickIndicatorObject = Instantiate(clickIndicator, transform.position, Quaternion.identity);
+    }
+
+    private void EndClickMinigame() {
+        minigameBg.SetActive(false);
+
+        float dmg = Mathf.Floor((numTimesClicked / maxClicks) * maxClickDamage);
+        boss.InflictDamage(dmg);
+
+        numTimesClicked = 0;
+
+        Destroy(clickIndicatorObject);
+
+        StartCoroutine(EnemyPhaseTransition());
+    }
+
     IEnumerator StarWave() {
-        for (int i = 0; i < numSpawnedStars; i++) {
+        for (int i = 0; i < maxStars; i++) {
             SpawnStar();
             yield return new WaitForSeconds(0.1f);
         }

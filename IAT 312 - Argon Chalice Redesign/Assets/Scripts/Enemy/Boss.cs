@@ -14,7 +14,7 @@ public class Boss : MonoBehaviour
     void Start()
     {
         battleSys = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();
-        // eText = GameObject.FindGameObjectWithTag("EventText").GetComponent<EventText>();
+        eText = GameObject.FindGameObjectWithTag("EventText").GetComponent<EventText>();
     }
 
     void Update()
@@ -27,7 +27,9 @@ public class Boss : MonoBehaviour
     }
 
     public void InflictDamage(float damage) {
-        // eText.SetText(string.Format("Enemy took {0} damage!", damage));
+        eText.gameObject.SetActive(true);
+        eText.SetText(string.Format("Enemy took {0} damage!", damage));
+
         Debug.Log(string.Format("Enemy took {0} damage!", damage));
         health -= damage;
 

@@ -18,7 +18,7 @@ public class BattleSystem : MonoBehaviour
     void Start()
     {   
         boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
-        // eText = GameObject.FindGameObjectWithTag("EventText").GetComponent<EventText>();
+        eText = GameObject.FindGameObjectWithTag("EventText").GetComponent<EventText>();
         uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
 
         StartPlayerPhase();
@@ -28,25 +28,25 @@ public class BattleSystem : MonoBehaviour
         if (state != BattleState.PLAYER_WIN && state != BattleState.PLAYER_LOSE) {
             state = BattleState.PLAYER_PHASE;
             uiManager.ActivateButtons();
-            // eText.SetText("What will the Hero do?");
+            eText.SetText("What will the Hero do?");
         }
     }
 
     public void StartEnemyPhase() {
         if (state != BattleState.PLAYER_WIN && state != BattleState.PLAYER_LOSE) {
             state = BattleState.ENEMY_PHASE;
-            // eText.SetText("The enemy attacks!");
+            eText.SetText("The enemy attacks!");
             boss.EnemyPhaseAction();
         }
     }
 
     public void PlayerWin() {
         state = BattleState.PLAYER_WIN;
-        // eText.SetText("Enemy defeated!");
+        eText.SetText("Enemy defeated!");
     }
 
     public void PlayerLose() {
         state = BattleState.PLAYER_LOSE;
-        // eText.SetText("You were defeated...");
+        eText.SetText("You were defeated...");
     }
 }
