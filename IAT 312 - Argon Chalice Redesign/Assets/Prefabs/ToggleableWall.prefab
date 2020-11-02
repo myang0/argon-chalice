@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4348803565753790683}
+  - component: {fileID: 4348803565753790680}
   - component: {fileID: 4348803565753790502}
   - component: {fileID: 4348803565753790681}
-  - component: {fileID: 4348803565753790680}
   m_Layer: 0
   m_Name: ToggleableWall
   m_TagString: Untagged
@@ -27,12 +27,32 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4348803565753790682}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: -1, z: -3}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4348803565753790680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4348803565753790682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaed37d1c36a06b4a83c4933997240e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons:
+  - {fileID: 0}
+  boxCollider2D: {fileID: 4348803565753790681}
+  activeWall: {fileID: 21300000, guid: abfa7bccd91d2064590d6104fa4d96ae, type: 3}
+  inActiveWall: {fileID: 21300000, guid: ed50410e1f53bf54ba2cc81c7ab37469, type: 3}
+  spriteRenderer: {fileID: 4348803565753790502}
+  allButtonsMustBeActive: 0
+  inverted: 0
 --- !u!212 &4348803565753790502
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -109,22 +129,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
---- !u!114 &4348803565753790680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4348803565753790682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaed37d1c36a06b4a83c4933997240e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttons:
-  - {fileID: 0}
-  boxCollider2D: {fileID: 4348803565753790681}
-  activeWall: {fileID: 21300000, guid: abfa7bccd91d2064590d6104fa4d96ae, type: 3}
-  inActiveWall: {fileID: 21300000, guid: ed50410e1f53bf54ba2cc81c7ab37469, type: 3}
-  spriteRenderer: {fileID: 4348803565753790502}
-  allButtonsMustBeActive: 0
