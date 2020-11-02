@@ -21,12 +21,6 @@ public class BossBallProjectile : MonoBehaviour
         damage = Random.Range(5, 11);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void FixedUpdate() {
         transform.Rotate(0, 0, 1);
     }

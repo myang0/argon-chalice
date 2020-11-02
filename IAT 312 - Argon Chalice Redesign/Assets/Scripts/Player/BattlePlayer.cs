@@ -21,6 +21,10 @@ public class BattlePlayer : MonoBehaviour
     [SerializeField] private GenericBar hpBar;
     private float health;
 
+    [SerializeField] private GameObject shieldSprite;
+    private bool isBlocking = false;
+    private bool isBlockRecharging = false;
+
     void Start()
     {
         battleSys = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();
@@ -32,12 +36,14 @@ public class BattlePlayer : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && CanJump()) {
-            Jump();
-        }
+        if (Input.GetMouseButtonDown(0) && CanJump()) Jump();
+
+        if (Input.GetMouseButtonDown(1) && CanBlock()) StartCoroutine(Block());
     }
 
     public void InflictDamage(float dmg) {
+        dmg = isBlocking ? 0 : dmg;
+
         health -= dmg;
         hpBar.SetVal(health);
 
@@ -51,7 +57,11 @@ public class BattlePlayer : MonoBehaviour
     }
 
     private bool CanJump() {
-        return IsGrounded() && (battleSys.state == BattleState.ENEMY_PHASE);
+        return IsGrounded() && (battleSys.state == BattleState.ENEMY_PHASE) && !isBlockRecharging && !isBlocking;
+    }
+
+    private bool CanBlock() {
+        return (battleSys.state == BattleState.ENEMY_PHASE) && !isBlockRecharging && !isBlocking;
     }
 
     private bool IsGrounded() {
@@ -59,6 +69,19 @@ public class BattlePlayer : MonoBehaviour
         RaycastHit2D rch = Physics2D.Raycast(bc.bounds.center, Vector2.down, bc.bounds.extents.y + offset, floorLayerMask);
 
         return rch.collider != null;
+    }
+
+    IEnumerator Block() {
+        isBlocking = true;
+        shieldSprite.SetActive(true);
+        yield return new WaitForSeconds(0.15f);
+
+        isBlocking = false;
+        isBlockRecharging = true;
+        shieldSprite.SetActive(false);
+        yield return new WaitForSeconds(1);
+
+        isBlockRecharging = false;
     }
 
     IEnumerator EndPlayerPhase() {

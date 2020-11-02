@@ -8,6 +8,7 @@ public class Boss : MonoBehaviour
     private EventText eText;
 
     [SerializeField] private GameObject ballProjectile;
+    [SerializeField] private GameObject pillarAttack;
 
     [SerializeField] private float health;
 
@@ -40,7 +41,13 @@ public class Boss : MonoBehaviour
 
     public void EnemyPhaseAction() {
         // TODO: add more attacks and actions
-        StartCoroutine(ProjectileWave());
+        int randomAttack = Random.Range(0, 2);
+
+        if (randomAttack == 0) {
+            StartCoroutine(ProjectileWave());
+        } else {
+            StartCoroutine(PillarWave());
+        }   
     }
 
     IEnumerator ProjectileWave() {
@@ -52,6 +59,16 @@ public class Boss : MonoBehaviour
 
         yield return new WaitForSeconds(2);
 
+        battleSys.StartPlayerPhase();
+    }
+
+    IEnumerator PillarWave() {
+        for (int i = 0; i < 3; i++) {
+            Instantiate(pillarAttack, transform.position, Quaternion.identity);
+
+            yield return new WaitForSeconds(2f);
+        }
+        
         battleSys.StartPlayerPhase();
     }
 }
