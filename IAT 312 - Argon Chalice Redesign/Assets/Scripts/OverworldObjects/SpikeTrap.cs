@@ -33,6 +33,8 @@ public class SpikeTrap : ResettableObject {
                 gameObject.name + " [ERROR] No buttons are attached to this object.");
             Assert.IsTrue(buttons.Count == buttons.Distinct().Count(),
                 gameObject.name + ": [ERROR] Duplicate Buttons = " + buttons.Distinct().Count() + "/" + buttons.Count);
+        } else {
+            Assert.IsTrue(intervalDelay > 0);
         }
         
         if (startDelay == 0 && !buttonToggleable) {

@@ -51,7 +51,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 5107017090428532959}
   tileCollider: {fileID: 5107017090428532958}
   spikeCollider: {fileID: 2419540258408927005}
-  intervalDelay: 2
+  intervalDelay: 0
   startDelay: 0
   buttonToggleable: 0
   allButtonsMustBeActive: 0
