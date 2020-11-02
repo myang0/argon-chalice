@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
@@ -17,9 +19,12 @@ public class BaseChamber : MonoBehaviour
     [SerializeField] protected ChamberBoundary chamberBoundary;
     [SerializeField] protected BoxCollider cameraBoundary;
     [SerializeField] protected DarknessController darknessController;
+    [SerializeField] protected int stage;
     void Start()
     {
-        
+        Assert.IsTrue(stage > -1 && stage < 4, gameObject.name + ": Invalid Stage number");
+        Assert.IsTrue(buttons.Count == buttons.Distinct().Count(),
+            gameObject.name + ": Duplicate Buttons = " + buttons.Distinct().Count() + "/" + buttons.Count);
     }
 
     // Update is called once per frame
@@ -77,9 +82,9 @@ public class BaseChamber : MonoBehaviour
 
     protected virtual void ProceedChamber() {
         GameObject player = GameObject.FindWithTag("PlayerCharacter");
-        Transform nextSpawnPoint = player.GetComponent<OverWorldManager>().GetNextSpawn();
-        player.transform.position = nextSpawnPoint.position;
-        player.GetComponent<CharacterBehavior>().spawnPoint = nextSpawnPoint.position;
+        Vector3 nextSpawnPoint = player.GetComponent<OverWorldManager>().GetNextSpawn(stage);
+        player.transform.position = nextSpawnPoint;
+        player.GetComponent<CharacterBehavior>().spawnPoint = nextSpawnPoint;
     }
 
     protected virtual void SetGate() {

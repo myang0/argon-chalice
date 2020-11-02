@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -18,6 +19,9 @@ public class ToggleableWall : ResettableObject
     private void Start() {
         Assert.IsTrue(buttons.Count > 0,
             gameObject.name + " [ERROR] No buttons are attached to this object.");
+        
+        Assert.IsTrue(buttons.Count == buttons.Distinct().Count(),
+            gameObject.name + ": [ERROR] Duplicate Buttons = " + buttons.Distinct().Count() + "/" + buttons.Count);
     }
 
     private void FixedUpdate() {
