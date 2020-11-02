@@ -11,15 +11,9 @@ public class BattlePlayer : MonoBehaviour
 
     [SerializeField] private LayerMask floorLayerMask;
 
-    [SerializeField] private ChargeBar cb;
-
     private Boss boss;
 
-    public bool isCharging = false;
-    private float chargeDuration = 0;
-    private float maxChargeTime = 300;
-
-    private float jumpForce = 25f;
+    [SerializeField] private float jumpForce = 25f;
 
     [SerializeField] private float baseAttack;
 
@@ -27,9 +21,9 @@ public class BattlePlayer : MonoBehaviour
     [SerializeField] private GenericBar hpBar;
     private float health;
 
-    [SerializeField] private float maxMana;
-    [SerializeField] private GenericBar mpBar;
-    private float mana;
+    [SerializeField] private GameObject shieldSprite;
+    private bool isBlocking = false;
+    private bool isBlockRecharging = false;
 
     void Start()
     {
@@ -38,52 +32,24 @@ public class BattlePlayer : MonoBehaviour
 
         health = maxHealth;
         hpBar.SetMax(maxHealth);
-
-        mana = maxMana;
-        mpBar.SetMax(maxMana);
-
-        cb.SetMax(maxChargeTime);
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && CanJump()) {
-            Jump();
-        }
+        if (Input.GetMouseButtonDown(0) && CanJump()) Jump();
 
-        HandleAttackCharge();        
-    }
-
-    private void HandleAttackCharge() {
-        if (isCharging) {
-            chargeDuration++;
-            cb.SetVal(chargeDuration);
-
-            if (Input.GetMouseButtonDown(0)) EndAttack(chargeDuration / maxChargeTime);
-
-            if (chargeDuration >= maxChargeTime) EndAttack(0.1f);
-        }
-    }
-
-    public void StartAttack() {
-        isCharging = true;
-        cb.Activate();
-    }
-
-    private void EndAttack(float dmgMultiplier) {
-        isCharging = false;
-        boss.InflictDamage(Mathf.Floor(dmgMultiplier * baseAttack));
-        chargeDuration = 0;
-
-        cb.SetVal(chargeDuration);
-        cb.Deactivate();
-
-        StartCoroutine(EndPlayerPhase());
+        if (Input.GetMouseButtonDown(1) && CanBlock()) StartCoroutine(Block());
     }
 
     public void InflictDamage(float dmg) {
+        dmg = isBlocking ? 0 : dmg;
+
         health -= dmg;
         hpBar.SetVal(health);
+
+        if (health <= 0) {
+            battleSys.PlayerLose();
+        }
     }
 
     private void Jump() {
@@ -91,7 +57,11 @@ public class BattlePlayer : MonoBehaviour
     }
 
     private bool CanJump() {
-        return IsGrounded() && (battleSys.state == BattleState.ENEMY_PHASE);
+        return IsGrounded() && (battleSys.state == BattleState.ENEMY_PHASE) && !isBlockRecharging && !isBlocking;
+    }
+
+    private bool CanBlock() {
+        return (battleSys.state == BattleState.ENEMY_PHASE) && !isBlockRecharging && !isBlocking;
     }
 
     private bool IsGrounded() {
@@ -99,6 +69,19 @@ public class BattlePlayer : MonoBehaviour
         RaycastHit2D rch = Physics2D.Raycast(bc.bounds.center, Vector2.down, bc.bounds.extents.y + offset, floorLayerMask);
 
         return rch.collider != null;
+    }
+
+    IEnumerator Block() {
+        isBlocking = true;
+        shieldSprite.SetActive(true);
+        yield return new WaitForSeconds(0.15f);
+
+        isBlocking = false;
+        isBlockRecharging = true;
+        shieldSprite.SetActive(false);
+        yield return new WaitForSeconds(1);
+
+        isBlockRecharging = false;
     }
 
     IEnumerator EndPlayerPhase() {

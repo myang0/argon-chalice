@@ -13,6 +13,11 @@
             <e p="Boss.cs" t="Include" />
             <e p="BossBallProjectile.cs" t="Include" />
           </e>
+          <e p="Minigame" t="Include">
+            <e p="MinigameBar.cs" t="Include" />
+            <e p="MinigameStar.cs" t="Include" />
+          </e>
+          <e p="MinigameManager.cs" t="Include" />
           <e p="OverworldObjects" t="Include">
             <e p="BaseChamber.cs" t="Include" />
             <e p="BasicButton.cs" t="Include" />
@@ -46,6 +51,7 @@
             <e p="ChargeBar.cs" t="Include" />
             <e p="EventText.cs" t="Include" />
             <e p="GenericBar.cs" t="Include" />
+            <e p="UIManager.cs" t="Include" />
           </e>
         </e>
       </e>

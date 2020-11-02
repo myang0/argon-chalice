@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class ButtonBehavior : MonoBehaviour
 {
-    private BasicButton _basicButton;
+    private Button button;
 
     private BattlePlayer player;
     private BattleSystem battleSys;
 
     void Start() {
-        _basicButton = GetComponent<BasicButton>();
+        button = GetComponent<Button>();
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<BattlePlayer>();
         battleSys = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();

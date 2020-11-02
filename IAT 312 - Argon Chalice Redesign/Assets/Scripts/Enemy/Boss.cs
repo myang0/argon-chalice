@@ -8,6 +8,7 @@ public class Boss : MonoBehaviour
     private EventText eText;
 
     [SerializeField] private GameObject ballProjectile;
+    [SerializeField] private GameObject pillarAttack;
 
     [SerializeField] private float health;
 
@@ -19,7 +20,7 @@ public class Boss : MonoBehaviour
 
     void Update()
     {
-        transform.position += new Vector3(0, 0.00025f * Mathf.Sin(Time.time), 0);
+        transform.position += new Vector3(0, 0.0001f * Mathf.Sin(Time.time), 0);
     }
 
     void FixedUpdate() {
@@ -27,24 +28,47 @@ public class Boss : MonoBehaviour
     }
 
     public void InflictDamage(float damage) {
+        eText.gameObject.SetActive(true);
         eText.SetText(string.Format("Enemy took {0} damage!", damage));
+
+        Debug.Log(string.Format("Enemy took {0} damage!", damage));
         health -= damage;
+
+        if (health <= 0) {
+            battleSys.PlayerWin();
+        }
     }
 
     public void EnemyPhaseAction() {
         // TODO: add more attacks and actions
-        StartCoroutine(ProjectileWave());
+        int randomAttack = Random.Range(0, 2);
+
+        if (randomAttack == 0) {
+            StartCoroutine(ProjectileWave());
+        } else {
+            StartCoroutine(PillarWave());
+        }   
     }
 
     IEnumerator ProjectileWave() {
-        for (int i = 0; i < 3; i++) {
-            yield return new WaitForSeconds(1.5f);
+        for (int i = 0; i < 1; i++) {
+            yield return new WaitForSeconds(1.25f);
 
             Instantiate(ballProjectile, transform.position, Quaternion.identity);
         }
 
         yield return new WaitForSeconds(2);
 
+        battleSys.StartPlayerPhase();
+    }
+
+    IEnumerator PillarWave() {
+        for (int i = 0; i < 3; i++) {
+            Instantiate(pillarAttack, transform.position, Quaternion.identity);
+
+            yield return new WaitForSeconds(2f);
+        }
+        
         battleSys.StartPlayerPhase();
     }
 }

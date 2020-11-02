@@ -16,9 +16,13 @@ TagManager:
   - CameraBoundry
   - Camera
   - MovableRock
+  - MinigameStar
+  - MinigameManager
+  - MinigameBar
   - Wall
   - PushTile
   - Puddle
+  - UIManager
   - DarknessController
   - Darkness
   - PlayerPortal
