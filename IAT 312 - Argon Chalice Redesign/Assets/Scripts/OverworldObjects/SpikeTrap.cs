@@ -2,26 +2,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.Serialization;
 
 public class SpikeTrap : ResettableObject {
     [SerializeField] private Sprite activeSpike;
     [SerializeField] private Sprite inActiveSpike;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private BoxCollider2D tileCollider;
-    [SerializeField] private PolygonCollider2D spikeCollider;
+    [SerializeField] private BoxCollider2D boxCollider2D;
     [SerializeField] private float intervalDelay;
     [SerializeField] private float startDelay;
     [SerializeField] private bool buttonToggleable;
     [SerializeField] private bool allButtonsMustBeActive;
     [SerializeField] private List<BasicButton> buttons = new List<BasicButton>();
-    public bool started = false;
-    public bool isActive = false;
-    private Coroutine _activateTrapCoroutine = null;
-    private Coroutine _activateColliderCoroutine = null;
+    public bool _started = false;
+    public bool _isActive = false;
+    private Coroutine _currentCoroutine = null;
     // Start is called before the first frame update
     void Start() {
         Initialize();
@@ -31,21 +27,19 @@ public class SpikeTrap : ResettableObject {
         if (buttonToggleable) {
             Assert.IsTrue(buttons.Count > 0,
                 gameObject.name + " [ERROR] No buttons are attached to this object.");
-            Assert.IsTrue(buttons.Count == buttons.Distinct().Count(),
-                gameObject.name + ": [ERROR] Duplicate Buttons = " + buttons.Distinct().Count() + "/" + buttons.Count);
         }
         
-        if (startDelay == 0 && !buttonToggleable) {
-            started = true;
+        if (startDelay == 0) {
+            _started = true;
         } else {
-            _activateTrapCoroutine = StartCoroutine(ActivateTrap());
+            _currentCoroutine = StartCoroutine(ActivateTrap());
         }
     }
 
     private IEnumerator ActivateTrap() {
         yield return new WaitForSeconds(startDelay);
-        started = true;
-        _activateTrapCoroutine = null;
+        _started = true;
+        _currentCoroutine = null;
     }
 
     // Update is called once per frame
@@ -57,9 +51,9 @@ public class SpikeTrap : ResettableObject {
     private void FixedUpdate() {
         SetSprite();
         SetCollider();
-        if (started) {
+        if (_started) {
             if (buttonToggleable) {
-                isActive = !ButtonToggle();
+                _isActive = ButtonToggle();
             } else {
                 IntervalActivation();
             }
@@ -67,42 +61,25 @@ public class SpikeTrap : ResettableObject {
     }
 
     private void SetCollider() {
-        if (isActive) {
-            if (!spikeCollider.enabled && !tileCollider.enabled) {
-                spikeCollider.enabled = true;
-                StartCoroutine(ActivateColliderCoroutine());
-            } else if (!spikeCollider.enabled && tileCollider.enabled) {
-                tileCollider.enabled = true;
-            }
-        } else {
-            spikeCollider.enabled = false;
-            tileCollider.enabled = false;
-        }
+        boxCollider2D.enabled = _isActive;
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (!isActive) return;
-        if (other.CompareTag("PlayerCharacter")) {
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (!_isActive) return;
+        if (other.gameObject.CompareTag("PlayerCharacter")) {
             other.gameObject.GetComponent<CharacterBehavior>().OnTrapCollision();
         }
     }
 
     private void IntervalActivation() {
-        if (_activateTrapCoroutine != null) return;
-        _activateTrapCoroutine = StartCoroutine(IntervalCoroutine());
+        if (_currentCoroutine != null) return;
+        _currentCoroutine = StartCoroutine(IntervalCoroutine());
     }
 
     private IEnumerator IntervalCoroutine() {
         yield return new WaitForSeconds(intervalDelay);
-        isActive = !isActive;
-        _activateTrapCoroutine = null;
-    }
-
-    private IEnumerator ActivateColliderCoroutine() {
-        yield return new WaitForSeconds(0.05f);
-        spikeCollider.enabled = false;
-        tileCollider.enabled = true;
-        _activateColliderCoroutine = null;
+        _isActive = !_isActive;
+        _currentCoroutine = null;
     }
 
     private bool ButtonToggle() {
@@ -125,21 +102,16 @@ public class SpikeTrap : ResettableObject {
     }
 
     private void SetSprite() {
-        spriteRenderer.sprite = isActive ? activeSpike : inActiveSpike;
+        spriteRenderer.sprite = _isActive ? activeSpike : inActiveSpike;
     }
 
     public override void ResetObject() {
-        isActive = false;
-        if (_activateTrapCoroutine != null) {
-            StopCoroutine(_activateTrapCoroutine);
+        _isActive = false;
+        if (_currentCoroutine != null) {
+            StopCoroutine(_currentCoroutine);
         }
-
-        if (_activateColliderCoroutine != null) {
-            StopCoroutine(_activateColliderCoroutine);
-        }
-        _activateTrapCoroutine = null;
-        _activateColliderCoroutine = null;
-        started = false;
+        _currentCoroutine = null;
+        _started = false;
         Initialize();
     }
 }

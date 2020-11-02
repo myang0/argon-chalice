@@ -12,8 +12,6 @@ public class CharacterBehavior : ResettableObject {
     private float _movementSpeed = 5f;
     private float _pushSpeed = 10f;
     private float _pushAnimationAngle = 0f;
-    private bool _isInvulnerable = false;
-    private Coroutine _currentCoroutine = null;
     
     [SerializeField] private Animator anim;
     [SerializeField] private SpriteRenderer sprite;
@@ -52,21 +50,7 @@ public class CharacterBehavior : ResettableObject {
     }
 
     public void OnTrapCollision() {
-        if (!_isInvulnerable) {
-            TakeDamage(0);
-        }
-        _currentCoroutine = StartCoroutine(ActivateInvulnerability());
-    }
-
-    private void TakeDamage(float damage) {
         Debug.Log("Player: OWWWWW!! SPIKES?!?!?!?");
-    }
-
-    private IEnumerator ActivateInvulnerability() {
-        _isInvulnerable = true;
-        yield return new WaitForSeconds(0.1f);
-        _isInvulnerable = false;
-        _currentCoroutine = null;
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
@@ -81,38 +65,32 @@ public class CharacterBehavior : ResettableObject {
         state = State.Controllable;
         _pushAnimationAngle = 0;
         transform.rotation = new Quaternion(0, 0, 0, 1);
-        if (_currentCoroutine != null) {
-            StopCoroutine(_currentCoroutine);
-        }
-        _currentCoroutine = null;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
+        ShowInteractButton(other);
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        RemoveInteractButton(other);
+    }
+
+    private void RemoveInteractButton(Collider2D other) {
+        if (other.gameObject.CompareTag("GateExit")) {
+            GateArea gate = other.gameObject.GetComponent<GateArea>();
+            interactionButton.SetActive(false);
+        } else if (other.gameObject.CompareTag("PlayerPortal")) {
+            interactionButton.SetActive(false);
+        }
+    }
+
+    private void ShowInteractButton(Collider2D other) {
         if (other.gameObject.CompareTag("GateExit")) {
             GateArea gate = other.gameObject.GetComponent<GateArea>();
             interactionButton.SetActive(gate.GetIsEnabled());
         } else if (other.gameObject.CompareTag("PlayerPortal")) {
             interactionButton.SetActive(true);
-        } else if (other.gameObject.CompareTag("Chest") && !other.gameObject.GetComponent<Chest>().isOpened &&
-                   other.gameObject.GetComponent<Chest>().isUnlocked) {
-            interactionButton.SetActive(true);
         }
-    }
-
-    private void OnTriggerExit2D(Collider2D other) {
-        if (other.gameObject.CompareTag("GateExit")) {
-            GateArea gate = other.gameObject.GetComponent<GateArea>();
-            interactionButton.SetActive(false);
-        } else if (other.gameObject.CompareTag("PlayerPortal")) {
-            interactionButton.SetActive(false);
-        } else if (other.gameObject.CompareTag("Chest")) {
-            interactionButton.SetActive(false);
-        }
-    }
-
-    public void ActivateChest() {
-        interactionButton.SetActive(false);
-        Debug.Log("Opened chest!");
     }
 
     private void Animate() {

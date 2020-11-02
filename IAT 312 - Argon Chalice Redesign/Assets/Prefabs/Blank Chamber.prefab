@@ -7948,7 +7948,7 @@ GameObject:
   - component: {fileID: 7371604228971607278}
   - component: {fileID: 7371604228971607279}
   m_Layer: 0
-  m_Name: '[obsolete] Blank Chamber'
+  m_Name: Blank Chamber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

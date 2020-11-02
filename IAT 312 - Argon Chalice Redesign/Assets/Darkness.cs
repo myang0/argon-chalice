@@ -18,7 +18,6 @@ public class Darkness : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        transform.position = new Vector3(player.transform.position.x,
-            player.transform.position.y+1, player.transform.position.z);
+        transform.position = player.transform.position;
     }
 }

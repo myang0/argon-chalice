@@ -22,10 +22,6 @@ TagManager:
   - DarknessController
   - Darkness
   - PlayerPortal
-  - StageOne
-  - StageTwo
-  - StageThree
-  - Chest
   layers:
   - Default
   - TransparentFX
