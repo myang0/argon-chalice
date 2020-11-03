@@ -15,12 +15,15 @@ public class SpikeTrap : ResettableObject {
     [SerializeField] private PolygonCollider2D spikeCollider;
     [SerializeField] private float intervalDelay;
     [SerializeField] private float startDelay;
+    [SerializeField] private float cooldownDelay;
     [SerializeField] private bool buttonToggleable;
     [SerializeField] private bool allButtonsMustBeActive;
     [SerializeField] private List<BasicButton> buttons = new List<BasicButton>();
     public bool started = false;
     public bool isActive = false;
+    public bool isCooledDown = true;
     private Coroutine _activateTrapCoroutine = null;
+    private Coroutine _activateCoolDownCoroutine = null;
     private Coroutine _activateColliderCoroutine = null;
     // Start is called before the first frame update
     void Start() {
@@ -91,17 +94,26 @@ public class SpikeTrap : ResettableObject {
 
     private void IntervalActivation() {
         if (_activateTrapCoroutine != null) return;
+        if (!isCooledDown) return;
         _activateTrapCoroutine = StartCoroutine(IntervalCoroutine());
     }
 
     private IEnumerator IntervalCoroutine() {
+        isCooledDown = false;
         yield return new WaitForSeconds(intervalDelay);
         isActive = !isActive;
         _activateTrapCoroutine = null;
+        StartCoroutine(CooldownCoroutine());
+    }
+
+    private IEnumerator CooldownCoroutine() {
+        yield return new WaitForSeconds(cooldownDelay);
+        isCooledDown = true;
+        _activateCoolDownCoroutine = null;
     }
 
     private IEnumerator ActivateColliderCoroutine() {
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.1f);
         spikeCollider.enabled = false;
         tileCollider.enabled = true;
         _activateColliderCoroutine = null;
@@ -131,7 +143,6 @@ public class SpikeTrap : ResettableObject {
     }
 
     public override void ResetObject() {
-        isActive = false;
         if (_activateTrapCoroutine != null) {
             StopCoroutine(_activateTrapCoroutine);
         }
@@ -139,9 +150,16 @@ public class SpikeTrap : ResettableObject {
         if (_activateColliderCoroutine != null) {
             StopCoroutine(_activateColliderCoroutine);
         }
+
+        if (_activateCoolDownCoroutine != null) {
+            StopCoroutine(_activateCoolDownCoroutine);
+        }
         _activateTrapCoroutine = null;
         _activateColliderCoroutine = null;
+        _activateCoolDownCoroutine = null;
+        isActive = false;
         started = false;
+        isCooledDown = true;
         Initialize();
     }
 }
