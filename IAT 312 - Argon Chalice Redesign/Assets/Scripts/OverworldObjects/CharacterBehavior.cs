@@ -17,6 +17,7 @@ public class CharacterBehavior : ResettableObject {
     
     [SerializeField] private Animator anim;
     [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private Sprite standSprite;
     [SerializeField] private Rigidbody2D rigidBody;
     [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private GameObject interactionButton;
@@ -123,11 +124,16 @@ public class CharacterBehavior : ResettableObject {
     }
 
     private void Animate() {
-        if (IsPlayerMoving()) {
-            anim.speed = 1;
-        } else {
-            anim.Play("PlayerMovement", 0, 0.25f);
-            anim.speed = 0;
+        if (IsPlayerMoving())
+        {
+            anim.enabled = true;
+            //anim.speed = 1;
+        } else
+        {
+            anim.enabled = false;
+            sprite.sprite = standSprite;
+            //anim.Play("PlayerMovement", 0, 0.25f);
+            //anim.speed = 0;
         }
     }
 
@@ -138,9 +144,9 @@ public class CharacterBehavior : ResettableObject {
     private void FlipPlayer() {
         if (!IsPlayerMoving()) return;
         if (movementDirection.normalized.x > 0) {
-            sprite.flipX = true;
-        } else if (movementDirection.normalized.x < 0) {
             sprite.flipX = false;
+        } else if (movementDirection.normalized.x < 0) {
+            sprite.flipX = true;
         }
     }
 
