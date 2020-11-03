@@ -5,8 +5,11 @@ using UnityEngine;
 public class SetChildrenZtoZero : ResettableObject
 {
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
+        SetZLayer();
+    }
+
+    private void SetZLayer() {
         foreach (Transform t in transform) {
             t.localPosition = new Vector3(t.localPosition.x, t.localPosition.y, 0);
         }
@@ -25,5 +28,6 @@ public class SetChildrenZtoZero : ResettableObject
                 resettable.ResetObject();
             }
         }
+        SetZLayer();
     }
 }

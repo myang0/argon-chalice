@@ -4379,7 +4379,7 @@ GameObject:
   - component: {fileID: 1733291549849964057}
   - component: {fileID: 5396777903457978067}
   m_Layer: 0
-  m_Name: 1x1 Chamber
+  m_Name: 1x1 (15x7) Chamber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4438,7 +4438,8 @@ MonoBehaviour:
   chamberBoundary: {fileID: 6941077910017904363}
   cameraBoundary: {fileID: 4852733986901172927}
   darknessController: {fileID: 0}
-  stage: 0
+  enemy: {fileID: 0}
+  stage: -1
 --- !u!1 &8536462612422618897
 GameObject:
   m_ObjectHideFlags: 0
