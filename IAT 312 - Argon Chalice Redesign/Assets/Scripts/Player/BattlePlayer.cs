@@ -5,6 +5,7 @@ using UnityEngine;
 public class BattlePlayer : MonoBehaviour
 {
     private BattleSystem battleSys;
+    private EventText eText;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private BoxCollider2D bc;
@@ -29,6 +30,8 @@ public class BattlePlayer : MonoBehaviour
     {
         battleSys = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();
         boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
+        eText = GameObject.FindGameObjectWithTag("EventText").GetComponent<EventText>();
+
         maxHealth = GameManager.GetInstance().maxHealth;
         health = maxHealth;
         hpBar.SetMax(maxHealth);
@@ -50,6 +53,15 @@ public class BattlePlayer : MonoBehaviour
         if (health <= 0) {
             battleSys.PlayerLose();
         }
+    }
+
+    public void Heal(float healValue) {
+        health += healValue;
+        hpBar.SetVal(health);
+
+        eText.SetText(string.Format("The hero heals for {0} HP!", healValue));
+
+        if (health > healValue) health = maxHealth;
     }
 
     private void Jump() {
