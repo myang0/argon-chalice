@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetChildrenZtoZero : MonoBehaviour
+public class SetChildrenZtoZero : ResettableObject
 {
     // Start is called before the first frame update
     void Start()
@@ -16,5 +16,14 @@ public class SetChildrenZtoZero : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public override void ResetObject() {
+        foreach (Transform child in transform) {
+            ResettableObject resettable = child.gameObject.GetComponent<ResettableObject>();
+            if (resettable) {
+                resettable.ResetObject();
+            }
+        }
     }
 }
