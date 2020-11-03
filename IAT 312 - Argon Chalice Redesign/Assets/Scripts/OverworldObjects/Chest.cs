@@ -41,7 +41,8 @@ public class Chest : MonoBehaviour {
     }
     
     private void OpenChest() {
-        if (!isOpened && isPlayerNearby && Input.GetKeyDown(KeyCode.E) && isUnlocked) {
+        if (!isOpened && isPlayerNearby && Input.GetKeyDown(KeyCode.E) && isUnlocked &&
+            GameObject.FindWithTag("OverworldManager").GetComponent<OverWorldManager>()._overworldIsActive) {
             isOpened = true;
             GameObject.FindWithTag("PlayerCharacter").GetComponent<CharacterBehavior>().ActivateChest();
         }

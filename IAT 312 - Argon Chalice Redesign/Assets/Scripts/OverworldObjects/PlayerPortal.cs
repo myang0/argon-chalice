@@ -8,7 +8,8 @@ public class PlayerPortal : Portal {
     private bool isReady = false;
 
     private void Update() {
-        if (Time.timeScale != 0 && isReady && Input.GetKeyDown(KeyCode.E)) {
+        if (Time.timeScale != 0 && isReady && Input.GetKeyDown(KeyCode.E)
+            && GameObject.FindWithTag("OverworldManager").GetComponent<OverWorldManager>()._overworldIsActive) {
             WarpPlayer();
         }
     }

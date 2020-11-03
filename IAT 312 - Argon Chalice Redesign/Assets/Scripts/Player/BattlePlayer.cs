@@ -29,7 +29,7 @@ public class BattlePlayer : MonoBehaviour
     {
         battleSys = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();
         boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
-
+        maxHealth = GameManager.GetInstance().maxHealth;
         health = maxHealth;
         hpBar.SetMax(maxHealth);
     }

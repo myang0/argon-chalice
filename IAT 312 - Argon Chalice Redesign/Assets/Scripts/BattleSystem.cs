@@ -43,6 +43,12 @@ public class BattleSystem : MonoBehaviour
     public void PlayerWin() {
         state = BattleState.PLAYER_WIN;
         eText.SetText("Enemy defeated!");
+        StartCoroutine(EndBattle());
+    }
+
+    private IEnumerator EndBattle() {
+        yield return new WaitForSeconds(2.5f);
+        GameManager.GetInstance().EndBattle();
     }
 
     public void PlayerLose() {

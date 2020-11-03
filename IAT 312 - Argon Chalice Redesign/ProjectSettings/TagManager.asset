@@ -30,6 +30,8 @@ TagManager:
   - StageTwo
   - StageThree
   - Chest
+  - EnemyOverworld
+  - OverworldManager
   layers:
   - Default
   - TransparentFX

@@ -19,6 +19,7 @@ public class BaseChamber : MonoBehaviour
     [SerializeField] protected ChamberBoundary chamberBoundary;
     [SerializeField] protected BoxCollider cameraBoundary;
     [SerializeField] protected DarknessController darknessController;
+    [SerializeField] protected EnemyOverworld enemy;
     [SerializeField] protected int stage;
     void Start()
     {
@@ -29,7 +30,7 @@ public class BaseChamber : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if (Time.timeScale != 0) {
+        if (Time.timeScale != 0 && GameObject.FindWithTag("OverworldManager").GetComponent<OverWorldManager>()._overworldIsActive) {
             PlayerEnterGate();
             if (Input.GetKeyDown(KeyCode.O) && chamberBoundary.GetChamberIsActive()) {
                 foreach (Transform child in transform) {
@@ -64,25 +65,33 @@ public class BaseChamber : MonoBehaviour
 
     protected virtual void PlayerEnterGate() {
         foreach (GateArea gate in gates) {
-            if (gate.GetIsPlayerNearby() && Input.GetKeyDown(KeyCode.E) && GetChamberComplete()) {
+            if (gate.GetIsPlayerNearby() && Input.GetKeyDown(KeyCode.E) && GetChamberComplete()
+                && GameObject.FindWithTag("OverworldManager").GetComponent<OverWorldManager>()._overworldIsActive) {
                 ProceedChamber();
             }
         }
     }
 
     public virtual bool GetChamberComplete() {
-        if (buttons.Count == 0) return true;
-        foreach (BasicButton button in buttons) {
-            if (!button.GetIsPushed()) {
-                return false;
+        if (buttons.Count == 0 && !enemy) return true;
+        if (buttons.Count > 0) {
+            foreach (BasicButton button in buttons) {
+                if (!button.GetIsPushed()) {
+                    return false;
+                }
             }
+        }
+
+        if (!enemy) return true;
+        if (!enemy.isCompleted) {
+            return false;
         }
         return true;
     }
 
     protected virtual void ProceedChamber() {
         GameObject player = GameObject.FindWithTag("PlayerCharacter");
-        Vector3 nextSpawnPoint = player.GetComponent<OverWorldManager>().GetNextSpawn(stage);
+        Vector3 nextSpawnPoint = GameObject.FindWithTag("OverworldManager").GetComponent<OverWorldManager>().GetNextSpawn(stage);
         player.transform.position = nextSpawnPoint;
         player.GetComponent<CharacterBehavior>().spawnPoint = nextSpawnPoint;
     }

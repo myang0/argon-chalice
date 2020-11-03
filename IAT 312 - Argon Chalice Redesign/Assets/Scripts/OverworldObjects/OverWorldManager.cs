@@ -16,7 +16,9 @@ public class OverWorldManager : MonoBehaviour
     [SerializeField] private Transform stageOneBossSpawn;
     [SerializeField] private Transform stageTwoBossSpawn;
     [SerializeField] private Transform stageThreeBossSpawn;
+    [SerializeField] private List<GameObject> disableList = new List<GameObject>();
     private int _stageCount = 0;
+    public bool _overworldIsActive = true;
     // Start is called before the first frame update
     void Start() {
         Assert.IsTrue(tutorialSpawns.Count == tutorialSpawns.Distinct().Count(), 
@@ -53,6 +55,13 @@ public class OverWorldManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void OverworldSetState(bool state) {
+        _overworldIsActive = state;
+        foreach (GameObject g in disableList) {
+            g.SetActive(state);
+        }
     }
 
     public Vector3 GetNextSpawn(int stage) {

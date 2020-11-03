@@ -6,12 +6,14 @@
     <e p="C:\Users\The Memebase\Desktop\iat312-chalice\IAT 312 - Argon Chalice Redesign" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="GameManager.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="BattleSystem.cs" t="Include" />
           <e p="DestroyOnAnimEnd.cs" t="Include" />
           <e p="Enemy" t="Include">
             <e p="Boss.cs" t="Include" />
             <e p="BossBallProjectile.cs" t="Include" />
+            <e p="BossFirePillar.cs" t="Include" />
           </e>
           <e p="Minigame" t="Include">
             <e p="MinigameBar.cs" t="Include" />
@@ -27,6 +29,7 @@
             <e p="Chest.cs" t="Include" />
             <e p="Darkness.cs" t="Include" />
             <e p="DarknessController.cs" t="Include" />
+            <e p="EnemyOverworld.cs" t="Include" />
             <e p="GateArea.cs" t="Include" />
             <e p="GreenBasicButton.cs" t="Include" />
             <e p="MovableRock.cs" t="Include" />

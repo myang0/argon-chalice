@@ -30,6 +30,8 @@ public class CharacterBehavior : ResettableObject {
     }
 
     private void FixedUpdate() {
+        if (!GameObject.FindWithTag("OverworldManager").GetComponent<OverWorldManager>()
+            ._overworldIsActive) return;
         if (state == State.Controllable) {
             GetPlayerMovement();
             MovePlayer();
@@ -96,6 +98,9 @@ public class CharacterBehavior : ResettableObject {
         } else if (other.gameObject.CompareTag("Chest") && !other.gameObject.GetComponent<Chest>().isOpened &&
                    other.gameObject.GetComponent<Chest>().isUnlocked) {
             interactionButton.SetActive(true);
+        } else if (other.gameObject.CompareTag("EnemyOverworld") &&
+                   other.gameObject.GetComponent<EnemyOverworld>().isBattleReady) {
+            interactionButton.SetActive(true);
         }
     }
 
@@ -106,6 +111,8 @@ public class CharacterBehavior : ResettableObject {
         } else if (other.gameObject.CompareTag("PlayerPortal")) {
             interactionButton.SetActive(false);
         } else if (other.gameObject.CompareTag("Chest")) {
+            interactionButton.SetActive(false);
+        } else if (other.gameObject.CompareTag("EnemyOverworld")) {
             interactionButton.SetActive(false);
         }
     }
