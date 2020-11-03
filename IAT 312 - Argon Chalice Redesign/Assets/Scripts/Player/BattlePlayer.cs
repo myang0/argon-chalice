@@ -6,6 +6,10 @@ public class BattlePlayer : MonoBehaviour
 {
     private BattleSystem battleSys;
 
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Sprite jumpSprite;
+    [SerializeField] private Sprite attackSprite;
+    [SerializeField] private Sprite standSprite;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private BoxCollider2D bc;
 
@@ -39,6 +43,14 @@ public class BattlePlayer : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && CanJump()) Jump();
 
         if (Input.GetMouseButtonDown(1) && CanBlock()) StartCoroutine(Block());
+
+        UpdateSprite();
+
+    }
+
+    private void UpdateSprite()
+    {
+        spriteRenderer.sprite = IsGrounded() ? standSprite : jumpSprite;
     }
 
     public void InflictDamage(float dmg) {

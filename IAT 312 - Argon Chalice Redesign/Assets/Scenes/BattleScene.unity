@@ -1181,7 +1181,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 372cf1200a51d304684333e899b65389, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6248eaf033d69994d9d75fd5e6b59cc5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1201,7 +1201,7 @@ Transform:
   m_GameObject: {fileID: 925685589}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5, y: 2.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -3710,7 +3710,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.4628571, y: 1.4628571}
+    oldSize: {x: 10.24, y: 10.24}
     newSize: {x: 1.4628571, y: 1.4628571}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3779,7 +3779,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b2ab4a770b3bbf64181972c1ca1af7f4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 15c446130f3d74b4089497ea36e25d56, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3798,8 +3798,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1932830240}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: 1.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -4.3, y: 2.5, z: 0}
+  m_LocalScale: {x: 0.45, y: 0.45, z: 1}
   m_Children:
   - {fileID: 188679944}
   m_Father: {fileID: 0}
@@ -3817,6 +3817,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b3756639b3cc1143ae2d39d7c35529e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1932830243}
+  jumpSprite: {fileID: 21300000, guid: 9cc0672f47d92d44c9c921da5005d1cb, type: 3}
+  attackSprite: {fileID: 21300000, guid: 4947a6f39d67a04419fc3d9dd9c56572, type: 3}
+  standSprite: {fileID: 21300000, guid: 15c446130f3d74b4089497ea36e25d56, type: 3}
   rb: {fileID: 1932830242}
   bc: {fileID: 1932830241}
   floorLayerMask:
