@@ -13,6 +13,10 @@ public class Chest : MonoBehaviour {
     public bool isUnlocked = false;
     public bool isOpened = false;
     public bool isPlayerNearby = false;
+
+    [SerializeField] private int numLootItems;
+    public GameObject[] possibleLoot;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +49,9 @@ public class Chest : MonoBehaviour {
             GameObject.FindWithTag("OverworldManager").GetComponent<OverWorldManager>()._overworldIsActive) {
             isOpened = true;
             GameObject.FindWithTag("PlayerCharacter").GetComponent<CharacterBehavior>().ActivateChest();
+
+            int randLootIndex = UnityEngine.Random.Range(0, numLootItems);
+            Instantiate(possibleLoot[randLootIndex], transform.position, Quaternion.identity);
         }
     }
 

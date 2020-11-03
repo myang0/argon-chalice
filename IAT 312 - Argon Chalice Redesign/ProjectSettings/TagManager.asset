@@ -32,6 +32,8 @@ TagManager:
   - Chest
   - EnemyOverworld
   - OverworldManager
+  - Inventory
+  - Item
   layers:
   - Default
   - TransparentFX
