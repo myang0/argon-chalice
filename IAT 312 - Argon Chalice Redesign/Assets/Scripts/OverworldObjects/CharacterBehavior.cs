@@ -101,6 +101,8 @@ public class CharacterBehavior : ResettableObject {
         } else if (other.gameObject.CompareTag("EnemyOverworld") &&
                    other.gameObject.GetComponent<EnemyOverworld>().isBattleReady) {
             interactionButton.SetActive(true);
+        } else if (other.gameObject.CompareTag("Item") && !other.gameObject.GetComponent<BaseItem>().isPickedUp) {
+            interactionButton.SetActive(true);
         }
     }
 
@@ -114,7 +116,13 @@ public class CharacterBehavior : ResettableObject {
             interactionButton.SetActive(false);
         } else if (other.gameObject.CompareTag("EnemyOverworld")) {
             interactionButton.SetActive(false);
+        } else if (other.gameObject.CompareTag("Item")) {
+            interactionButton.SetActive(false);
         }
+    }
+
+    public void DeactivateInteractionButton() {
+        interactionButton.SetActive(false);
     }
 
     public void ActivateChest() {

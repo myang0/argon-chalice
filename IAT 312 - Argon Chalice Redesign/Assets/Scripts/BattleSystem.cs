@@ -46,13 +46,22 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(EndBattle());
     }
 
-    private IEnumerator EndBattle() {
-        yield return new WaitForSeconds(2.5f);
-        GameManager.GetInstance().EndBattle();
+    public void StartEnemyPhaseOnDelay() {
+        StartCoroutine(EnemyPhaseDelay());
     }
 
     public void PlayerLose() {
         state = BattleState.PLAYER_LOSE;
         eText.SetText("You were defeated...");
+    }
+
+    private IEnumerator EndBattle() {
+        yield return new WaitForSeconds(2.5f);
+        GameManager.GetInstance().EndBattle();
+    }
+
+    IEnumerator EnemyPhaseDelay() {
+        yield return new WaitForSeconds(1.5f);
+        StartEnemyPhase();
     }
 }

@@ -52,8 +52,14 @@ MonoBehaviour:
   chestOpenedSprite: {fileID: 21300000, guid: 15d4d5a6ba501b04ab4ee5b37991d3a6, type: 3}
   spriteRenderer: {fileID: 4430722260490745576}
   chamber: {fileID: 0}
+  isUnlocked: 0
   isOpened: 0
   isPlayerNearby: 0
+  numLootItems: 3
+  possibleLoot:
+  - {fileID: 1481776495873008984, guid: 5db95d395712b5149a775f449f0c6961, type: 3}
+  - {fileID: 7551980936089786174, guid: daf3059200b42064cbe0272818e17579, type: 3}
+  - {fileID: 113897997322518470, guid: c59ee57f46ddd824dbdba651d84717bd, type: 3}
 --- !u!212 &4430722260490745576
 SpriteRenderer:
   m_ObjectHideFlags: 0
