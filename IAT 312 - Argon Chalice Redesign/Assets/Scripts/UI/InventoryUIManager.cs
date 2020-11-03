@@ -9,13 +9,15 @@ public class InventoryUIManager : MonoBehaviour
 
     [SerializeField] private Text[] buttonTexts;
     [SerializeField] private GameObject eText;
-
+    
+    private UIManager uiManager;
     private BattleSystem battleSys;
 
     void Start() {
         inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
 
         battleSys = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();
+        uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
 
         SetText();
     }
@@ -24,6 +26,7 @@ public class InventoryUIManager : MonoBehaviour
         if (!inventory.UseItemWithIndex(index)) return;
 
         battleSys.StartEnemyPhaseOnDelay();
+        uiManager.DisableButtons();
 
         eText.SetActive(true);
         SetText();
