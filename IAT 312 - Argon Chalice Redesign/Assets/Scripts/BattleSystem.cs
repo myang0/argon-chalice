@@ -28,7 +28,7 @@ public class BattleSystem : MonoBehaviour
         if (state != BattleState.PLAYER_WIN && state != BattleState.PLAYER_LOSE) {
             state = BattleState.PLAYER_PHASE;
             uiManager.ActivateButtons();
-            eText.SetText("What will the Hero do?");
+            eText.SetText("What will the Adventurer do?");
         }
     }
 
@@ -65,7 +65,7 @@ public class BattleSystem : MonoBehaviour
     }
 
     IEnumerator EnemyPhaseDelay() {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2.5f);
         StartEnemyPhase();
     }
 }

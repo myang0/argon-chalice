@@ -35,7 +35,7 @@ public class DeathScreen : MonoBehaviour {
         " forsake your humanity? My offer still stands.";
 
     private readonly string _respawnText = "An excellent choice. It is one you shall not regret. Let the " +
-                                           "energy of the Argon flow through your veins, mortal.";
+                                           "energy of the Argon Chalice flow through your veins, mortal.";
     
     void Start()
     {
@@ -126,7 +126,7 @@ public class DeathScreen : MonoBehaviour {
     }
 
     private IEnumerator Respawn() {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         state = State.ReverseDeath;
     }
 

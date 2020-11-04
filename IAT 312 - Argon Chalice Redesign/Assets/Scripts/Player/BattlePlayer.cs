@@ -97,9 +97,19 @@ public class BattlePlayer : MonoBehaviour
     public void Heal(float healValue) {
         health += healValue;
         hpBar.SetVal(health);
+        GameManager.GetInstance().humanityValue += (int) (healValue / 2);
 
-        eText.SetText(string.Format("The hero heals for {0} HP!", healValue));
-
+        string healText = $"The Adventurer heals for {healValue} HP!\n\n";
+       
+        if (healValue > 90) {
+            healText = healText + "The blissful taste of a delicious meal restores our adventurer's" +
+                       " humanity.";
+        } else if (healValue > 40) {
+            healText = healText + "The comforting taste of a meal reminds our adventurer of home.";
+        } else {
+            healText = healText + "The taste of food keeps our adventurer's sanity in check.";
+        }
+        eText.SetText(healText);
         if (health > maxHealth) health = maxHealth;
     }
 
