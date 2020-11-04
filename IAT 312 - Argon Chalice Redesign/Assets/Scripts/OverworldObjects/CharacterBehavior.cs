@@ -108,7 +108,15 @@ public class CharacterBehavior : ResettableObject {
             interactionButton.SetActive(true);
         } else if (other.gameObject.CompareTag("Item") && !other.gameObject.GetComponent<BaseItem>().isPickedUp) {
             interactionButton.SetActive(true);
+        } else if (other.gameObject.CompareTag("NonSlip")) {
+            StartCoroutine(DelayReset());
         }
+
+    }
+
+    private IEnumerator DelayReset() {
+        yield return new WaitForSeconds(0.125f);
+        ResetState();
     }
 
     private void OnTriggerExit2D(Collider2D other) {
