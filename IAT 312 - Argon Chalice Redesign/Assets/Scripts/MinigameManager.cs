@@ -160,7 +160,7 @@ public class MinigameManager : MonoBehaviour
 
     IEnumerator EnemyPhaseTransition() {
         yield return new WaitForSeconds(2);
-
+        GameObject.FindWithTag("Player").GetComponent<BattlePlayer>()._isAttacking = false;
         battleSys.StartEnemyPhase();
     }
 }

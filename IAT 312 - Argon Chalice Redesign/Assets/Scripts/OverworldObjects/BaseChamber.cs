@@ -32,7 +32,7 @@ public class BaseChamber : MonoBehaviour
     void Update() {
         if (Time.timeScale != 0 && GameObject.FindWithTag("OverworldManager").GetComponent<OverWorldManager>()._overworldIsActive) {
             PlayerEnterGate();
-            if (Input.GetKeyDown(KeyCode.O) && chamberBoundary.GetChamberIsActive()) {
+            if (Input.GetKeyDown(KeyCode.O) && GetChamberIsActive()) {
                 foreach (Transform child in transform) {
                     ResettableObject resettable = child.gameObject.GetComponent<ResettableObject>();
                     if (resettable) {
@@ -42,6 +42,10 @@ public class BaseChamber : MonoBehaviour
                 GameObject.FindWithTag("PlayerCharacter").GetComponent<CharacterBehavior>().ResetObject();
             }
         }
+    }
+
+    public bool GetChamberIsActive() {
+        return chamberBoundary.GetChamberIsActive();
     }
 
     private void FixedUpdate() {

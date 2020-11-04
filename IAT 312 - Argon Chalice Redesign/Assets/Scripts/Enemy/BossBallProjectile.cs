@@ -7,7 +7,8 @@ public class BossBallProjectile : MonoBehaviour
     private Animator anim;
 
     private string[] animStates = {"normalMovement", "stutterMovement", "highMovement", "bossBallLoop"};
-
+    public float maxDamage;
+    public float minDamage;
     private float damage;
 
     // Start is called before the first frame update
@@ -18,7 +19,7 @@ public class BossBallProjectile : MonoBehaviour
         int randIndex = Random.Range(0, animStates.Length);
         anim.Play(animStates[randIndex]);
 
-        damage = Random.Range(5, 11);
+        damage = Random.Range(minDamage, maxDamage);
     }
 
     void FixedUpdate() {

@@ -18,10 +18,11 @@ public class GameManager : MonoBehaviour {
     }
 
     public float maxHealth = 150;
-    private EnemyOverworld currentEnemy;
-    void Start()
-    {
-        
+    public float health;
+    // public int humanityValue;
+    public EnemyOverworld currentEnemy;
+    void Start() {
+        health = maxHealth;
     }
 
     void Update()
@@ -40,5 +41,8 @@ public class GameManager : MonoBehaviour {
         SceneManager.UnloadSceneAsync("BattleScene");
         currentEnemy.BattleComplete();
         currentEnemy = null;
+        foreach (GameObject g in GameObject.FindGameObjectsWithTag("SpikeTrap")) {
+            g.GetComponent<SpikeTrap>().ResetObject();
+        }
     }
 }

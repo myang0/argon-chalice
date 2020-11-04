@@ -5,9 +5,11 @@ using UnityEngine;
 public class BossFirePillar : MonoBehaviour
 {
     private float damage;
+    public float maxDamage;
+    public float minDamage;
 
     void Start() {
-        damage = Random.Range(20, 30);
+        damage = Random.Range(minDamage, maxDamage);
     }
 
     void OnTriggerEnter2D(Collider2D col) {
