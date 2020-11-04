@@ -14,6 +14,8 @@ public class EnemyOverworld : MonoBehaviour {
     public int pillarDamageMax;
     public int ballAttackRepeat;
     public int pillarAttackRepeat;
+    public float ballAttackRepeatDelay;
+    public float pillarAttackRepeatDelay;
     
     public bool isCompleted = false;
     public bool isBattleReady = true;

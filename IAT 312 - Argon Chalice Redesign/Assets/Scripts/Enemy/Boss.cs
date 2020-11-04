@@ -12,6 +12,8 @@ public class Boss : MonoBehaviour
     [SerializeField] private float health;
     private int _ballAttackRepeat;
     private int _pillarAttackRepeat;
+    private float _ballAttackRepeatDelay;
+    private float _pillarAttackRepeatDelay;
     private GameManager _gameManager = null;
     void Start() {
         _gameManager = GameManager.GetInstance();
@@ -23,6 +25,8 @@ public class Boss : MonoBehaviour
         pillarAttack.GetComponent<BossFirePillar>().minDamage = _gameManager.currentEnemy.pillarDamageMin;
         _ballAttackRepeat = _gameManager.currentEnemy.ballAttackRepeat;
         _pillarAttackRepeat = _gameManager.currentEnemy.pillarAttackRepeat;
+        _ballAttackRepeatDelay = _gameManager.currentEnemy.ballAttackRepeatDelay;
+        _pillarAttackRepeatDelay = _gameManager.currentEnemy.pillarAttackRepeatDelay;
         battleSys = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();
         eText = GameObject.FindGameObjectWithTag("EventText").GetComponent<EventText>();
     }
@@ -68,7 +72,7 @@ public class Boss : MonoBehaviour
 
     IEnumerator ProjectileWave() {
         for (int i = 0; i < _ballAttackRepeat; i++) {
-            yield return new WaitForSeconds(1.25f);
+            yield return new WaitForSeconds(_ballAttackRepeatDelay);
 
             Instantiate(ballProjectile, transform.position, Quaternion.identity);
         }
@@ -82,7 +86,7 @@ public class Boss : MonoBehaviour
         for (int i = 0; i < _pillarAttackRepeat; i++) {
             Instantiate(pillarAttack, transform.position, Quaternion.identity);
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(_pillarAttackRepeatDelay);
         }
         
         battleSys.StartPlayerPhase();

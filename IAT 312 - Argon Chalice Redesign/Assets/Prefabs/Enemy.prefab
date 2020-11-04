@@ -55,6 +55,8 @@ MonoBehaviour:
   pillarDamageMax: 10
   ballAttackRepeat: 1
   pillarAttackRepeat: 2
+  ballAttackRepeatDelay: 1.25
+  pillarAttackRepeatDelay: 2
   isCompleted: 0
   isBattleReady: 1
 --- !u!212 &973711176985406917
