@@ -32,7 +32,7 @@ public class OverWorldManager : MonoBehaviour
 
         Assert.IsTrue(stageOneSpawns.Count == GameObject.FindWithTag("StageOne").transform.childCount-1,
             "Stage One spawnpoints List, List is missing spawnpoint(s)");
-        Assert.IsTrue(stageTwoSpawns.Count == GameObject.FindWithTag("StageTwo").transform.childCount,
+        Assert.IsTrue(stageTwoSpawns.Count == GameObject.FindWithTag("StageTwo").transform.childCount-1,
             "Stage Two spawnpoints List, List is missing spawnpoint(s)");
         Assert.IsTrue(stageThreeSpawns.Count == GameObject.FindWithTag("StageThree").transform.childCount,
             "Stage Three spawnpoints List, List is missing spawnpoint(s)");
