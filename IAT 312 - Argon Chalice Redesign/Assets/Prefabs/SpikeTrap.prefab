@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2419540258408927005}
   m_Layer: 0
   m_Name: SpikeTrap
-  m_TagString: Untagged
+  m_TagString: SpikeTrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,11 +53,13 @@ MonoBehaviour:
   spikeCollider: {fileID: 2419540258408927005}
   intervalDelay: 0
   startDelay: 0
+  cooldownDelay: 0
   buttonToggleable: 0
   allButtonsMustBeActive: 0
   buttons: []
   started: 0
   isActive: 0
+  isCooledDown: 1
 --- !u!212 &5107017090428532959
 SpriteRenderer:
   m_ObjectHideFlags: 0

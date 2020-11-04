@@ -14,9 +14,13 @@ public class ToggleableWall : ResettableObject
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private bool allButtonsMustBeActive;
     [SerializeField] private bool inverted;
-    private bool isActive = false;
+    [SerializeField] private AudioClip doorOpenAudio;
+    [SerializeField] private AudioClip doorCloseAudio;
+    [SerializeField] private AudioSource audioSource;
+    private bool _isActive = false;
 
     private void Start() {
+        SetMute();
         Assert.IsTrue(buttons.Count > 0,
             gameObject.name + " [ERROR] No buttons are attached to this object.");
         
@@ -25,13 +29,36 @@ public class ToggleableWall : ResettableObject
     }
 
     private void FixedUpdate() {
-        if (inverted) {
-            isActive = !SetActive();
-        } else {
-            isActive = SetActive();
-        }
+        SetMute();
+        SetState();
         SetSprite();
         SetCollider();
+    }
+
+    private void SetMute() {
+        audioSource.mute = !transform.parent.parent.GetComponent<BaseChamber>().GetChamberIsActive();
+    }
+
+    private void SetState() {
+        bool prevState = _isActive;
+        if (inverted) {
+            _isActive = !SetActive();
+        } else {
+            _isActive = SetActive();
+        }
+
+        if (prevState != _isActive) {
+            playOpenDoorAudio(_isActive);
+        }
+    }
+
+    private void playOpenDoorAudio(bool value) {
+        if (value) {
+            audioSource.clip = doorOpenAudio;
+        } else {
+            audioSource.clip = doorCloseAudio;
+        }
+        audioSource.Play();
     }
 
     private bool SetActive() {
@@ -54,14 +81,14 @@ public class ToggleableWall : ResettableObject
     }
 
     private void SetCollider() {
-        boxCollider2D.enabled = !isActive;
+        boxCollider2D.enabled = !_isActive;
     }
 
     private void SetSprite() {
-        spriteRenderer.sprite = !isActive ? activeWall : inActiveWall;
+        spriteRenderer.sprite = !_isActive ? activeWall : inActiveWall;
     }
 
     public override void ResetObject() {
-        isActive = true;
+        _isActive = true;
     }
 }

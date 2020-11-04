@@ -24,11 +24,12 @@ public class BattlePlayer : MonoBehaviour
 
     [SerializeField] private float maxHealth;
     [SerializeField] private GenericBar hpBar;
-    private float health;
+    public float health;
 
     [SerializeField] private GameObject shieldSprite;
     private bool isBlocking = false;
     private bool isBlockRecharging = false;
+    public bool _isAttacking;
 
     void Start()
     {
@@ -37,12 +38,14 @@ public class BattlePlayer : MonoBehaviour
         eText = GameObject.FindGameObjectWithTag("EventText").GetComponent<EventText>();
 
         maxHealth = GameManager.GetInstance().maxHealth;
-        health = maxHealth;
+        health = GameManager.GetInstance().health;
         hpBar.SetMax(maxHealth);
+        hpBar.SetVal(health);
     }
 
     void Update()
     {
+        
         if (Input.GetMouseButtonDown(0) && CanJump()) Jump();
 
         if (Input.GetMouseButtonDown(1) && CanBlock()) StartCoroutine(Block());
@@ -51,9 +54,12 @@ public class BattlePlayer : MonoBehaviour
 
     }
 
-    private void UpdateSprite()
-    {
-        spriteRenderer.sprite = IsGrounded() ? standSprite : jumpSprite;
+    private void UpdateSprite() {
+        if (_isAttacking) {
+            spriteRenderer.sprite = attackSprite;
+        } else {
+            spriteRenderer.sprite = IsGrounded() ? standSprite : jumpSprite;
+        }
     }
 
     public void InflictDamage(float dmg) {
@@ -61,7 +67,9 @@ public class BattlePlayer : MonoBehaviour
 
         health -= dmg;
         hpBar.SetVal(health);
-
+        // if (health <= 35) {
+        //     GameObject.FindWithTag("RedScreen").GetComponent<RedScreen>().state = RedScreen.State.Heartbeat;
+        // }
         if (health <= 0) {
             battleSys.PlayerLose();
         }
@@ -73,7 +81,7 @@ public class BattlePlayer : MonoBehaviour
 
         eText.SetText(string.Format("The hero heals for {0} HP!", healValue));
 
-        if (health > healValue) health = maxHealth;
+        if (health > maxHealth) health = maxHealth;
     }
 
     private void Jump() {

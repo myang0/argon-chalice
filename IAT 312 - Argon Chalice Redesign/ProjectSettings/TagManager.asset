@@ -34,6 +34,8 @@ TagManager:
   - OverworldManager
   - Inventory
   - Item
+  - SpikeTrap
+  - RedScreen
   layers:
   - Default
   - TransparentFX

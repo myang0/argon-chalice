@@ -5,6 +5,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class EnemyOverworld : MonoBehaviour {
+    public Sprite overworldSprite;
+    public Sprite battleSprite;
+    public float maxHealth;
+    public int ballDamageMin;
+    public int ballDamageMax;
+    public int pillarDamageMin;
+    public int pillarDamageMax;
+    public int ballAttackRepeat;
+    public int pillarAttackRepeat;
+    
     public bool isCompleted = false;
     public bool isBattleReady = true;
     private bool _isPlayerNear = false;

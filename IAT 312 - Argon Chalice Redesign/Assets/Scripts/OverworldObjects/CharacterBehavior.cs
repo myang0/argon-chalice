@@ -56,13 +56,17 @@ public class CharacterBehavior : ResettableObject {
 
     public void OnTrapCollision() {
         if (!_isInvulnerable) {
-            TakeDamage(0);
+            TakeDamage(10);
         }
         _currentCoroutine = StartCoroutine(ActivateInvulnerability());
     }
 
     private void TakeDamage(float damage) {
-        Debug.Log("Player: OWWWWW!! SPIKES?!?!?!?");
+        GameManager.GetInstance().health -= damage;
+        if (GameManager.GetInstance().health < 1) {
+            GameManager.GetInstance().health = 1;
+        }
+        Debug.Log("Player: OW SPIKES??? --- Health = " + GameManager.GetInstance().health);
     }
 
     private IEnumerator ActivateInvulnerability() {
