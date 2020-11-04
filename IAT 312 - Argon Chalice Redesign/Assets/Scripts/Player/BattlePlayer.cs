@@ -51,7 +51,31 @@ public class BattlePlayer : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && CanBlock()) StartCoroutine(Block());
 
         UpdateSprite();
+    }
 
+    public void Respawn() {
+        health = 100;
+        battleSys.state = BattleState.PLAYER_PHASE;
+        battleSys.StartPlayerPhase();
+        hpBar.SetVal(health);
+    }
+
+    private void SetDeathScreen() {
+        DeathScreen.State state = GameObject.FindWithTag("RedScreen").GetComponent<DeathScreen>().state;
+        if (health > 35) {
+            state = DeathScreen.State.Disabled;
+        }
+
+        if (health <= 35 && state == DeathScreen.State.Disabled) {
+            state = DeathScreen.State.Heartbeat;
+        }
+
+        if (health <= 0 && (state == DeathScreen.State.Disabled || state == DeathScreen.State.Heartbeat)) {
+            state = DeathScreen.State.StartDeath;
+            battleSys.PlayerLose();
+        }
+
+        GameObject.FindWithTag("RedScreen").GetComponent<DeathScreen>().state = state;
     }
 
     private void UpdateSprite() {
@@ -67,12 +91,7 @@ public class BattlePlayer : MonoBehaviour
 
         health -= dmg;
         hpBar.SetVal(health);
-        // if (health <= 35) {
-        //     GameObject.FindWithTag("RedScreen").GetComponent<RedScreen>().state = RedScreen.State.Heartbeat;
-        // }
-        if (health <= 0) {
-            battleSys.PlayerLose();
-        }
+        SetDeathScreen();
     }
 
     public void Heal(float healValue) {

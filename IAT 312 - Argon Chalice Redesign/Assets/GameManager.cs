@@ -19,15 +19,16 @@ public class GameManager : MonoBehaviour {
 
     public float maxHealth = 150;
     public float health;
-    // public int humanityValue;
+    public int humanityValue;
+    public int deathCount = 0;
     public EnemyOverworld currentEnemy;
     void Start() {
         health = maxHealth;
     }
 
-    void Update()
-    {
-        
+    void Update() {
+        if (humanityValue > 100) humanityValue = 100;
+        if (humanityValue < -100) humanityValue = -100;
     }
 
     public void StartBattle(EnemyOverworld enemy) {

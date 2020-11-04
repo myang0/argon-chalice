@@ -35,7 +35,9 @@ public class BattleSystem : MonoBehaviour
     public void StartEnemyPhase() {
         if (state != BattleState.PLAYER_WIN && state != BattleState.PLAYER_LOSE) {
             state = BattleState.ENEMY_PHASE;
-            eText.SetText("The enemy attacks!");
+            eText.SetText("The enemy attacks!\n\n" +
+                          "[LEFT CLICK] Jump\n" +
+                          "[RIGHT CLICK] Block");
             boss.EnemyPhaseAction();
         }
     }

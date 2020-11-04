@@ -76,6 +76,11 @@ public class CharacterBehavior : ResettableObject {
         _currentCoroutine = null;
     }
 
+    private IEnumerator DelayReset() {
+        yield return new WaitForSeconds(0.2f);
+        ResetState();
+    }
+
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("PlayerIgnoreCollision")) {
             Physics2D.IgnoreCollision(this.boxCollider, other.collider);
