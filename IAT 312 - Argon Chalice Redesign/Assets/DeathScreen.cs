@@ -169,12 +169,12 @@ public class DeathScreen : MonoBehaviour {
 
     private void HeartbeatEffect() {
         if (_opacityRising) {
-            _opacityValue += 0.003f;
+            _opacityValue += 0.002f;
             if (_opacityValue > 0.4f) {
                 _opacityRising = false;
             }
         } else {
-            _opacityValue -= 0.003f;
+            _opacityValue -= 0.002f;
             if (_opacityValue < 0f) {
                 _opacityRising = true;
             }
