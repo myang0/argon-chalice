@@ -2633,6 +2633,8 @@ MonoBehaviour:
     type: 3}
   pillarAttack: {fileID: 8133432858460458978, guid: e78472590443d7f40b08a859e6420a3e,
     type: 3}
+  _spearAttack: {fileID: 7592826825747097506, guid: 0f3899339dacd3140baad507301c303e,
+    type: 3}
   health: 100
 --- !u!1 &975236827
 GameObject:

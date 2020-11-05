@@ -9,6 +9,7 @@ public class Boss : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject ballProjectile;
     [SerializeField] private GameObject pillarAttack;
+    [SerializeField] private GameObject _spearAttack;
     [SerializeField] private float health;
     private int _ballAttackRepeat;
     private int _pillarAttackRepeat;
@@ -61,13 +62,15 @@ public class Boss : MonoBehaviour
 
     public void EnemyPhaseAction() {
         // TODO: add more attacks and actions
-        int randomAttack = Random.Range(0, 2);
+        int randomAttack = Random.Range(0, 3);
 
         if (randomAttack == 0) {
             StartCoroutine(ProjectileWave());
-        } else {
+        } else if (randomAttack == 1) {
             StartCoroutine(PillarWave());
-        }   
+        } else {
+            StartCoroutine(SpearWave());
+        }
     }
 
     IEnumerator ProjectileWave() {
@@ -90,6 +93,17 @@ public class Boss : MonoBehaviour
         }
         
         yield return new WaitForSeconds(_pillarAttackRepeatDelay * _pillarAttackRepeat * 0.2f);
+        battleSys.StartPlayerPhase();
+    }
+
+    IEnumerator SpearWave() {
+        // TODO: remove hardcoding
+        for (int i = 0; i < 5; i++) {
+            Instantiate(_spearAttack, transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(1);
+        }
+
+        yield return new WaitForSeconds(2);
         battleSys.StartPlayerPhase();
     }
 }
