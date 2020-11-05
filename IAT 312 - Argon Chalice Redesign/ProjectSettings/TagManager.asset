@@ -39,6 +39,7 @@ TagManager:
   - NonSlip
   - TargetZone
   - MinigameHammer
+  - Menu
   layers:
   - Default
   - TransparentFX

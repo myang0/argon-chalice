@@ -17,8 +17,12 @@ public class OverWorldManager : MonoBehaviour
     [SerializeField] private Transform stageTwoBossSpawn;
     [SerializeField] private Transform stageThreeBossSpawn;
     [SerializeField] private List<GameObject> disableList = new List<GameObject>();
+    [SerializeField] public List<BaseChamber> chambers = new List<BaseChamber>();
+    [SerializeField] public EnemyOverworld boss;
     public int stageCount = 0;
     public bool _overworldIsActive = true;
+
+    private bool _ended = false;
     // Start is called before the first frame update
     void Start() {
         Assert.IsTrue(tutorialSpawns.Count == tutorialSpawns.Distinct().Count(), 
@@ -34,7 +38,7 @@ public class OverWorldManager : MonoBehaviour
             "Stage One spawnpoints List, List is missing spawnpoint(s)");
         Assert.IsTrue(stageTwoSpawns.Count == GameObject.FindWithTag("StageTwo").transform.childCount-1,
             "Stage Two spawnpoints List, List is missing spawnpoint(s)");
-        Assert.IsTrue(stageThreeSpawns.Count == GameObject.FindWithTag("StageThree").transform.childCount,
+        Assert.IsTrue(stageThreeSpawns.Count == GameObject.FindWithTag("StageThree").transform.childCount-1,
             "Stage Three spawnpoints List, List is missing spawnpoint(s)");
 
         foreach (Transform t in tutorialSpawns) {
@@ -54,7 +58,23 @@ public class OverWorldManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (boss.isCompleted && !_ended) {
+            if (GameManager.GetInstance().humanityValue > -1) {
+                GameObject.FindWithTag("Menu").GetComponent<Menu>().GoodEnd();
+            } else {
+                GameObject.FindWithTag("Menu").GetComponent<Menu>().BadEnd();
+            }
+
+            _ended = true;
+        }
+    }
+
+    public void ResetChamber() {
+        foreach (BaseChamber c in chambers) {
+            if (c.GetChamberIsActive()) {
+                c.ResetChamberObjects();
+            }
+        }
     }
 
     public void OverworldSetState(bool state) {

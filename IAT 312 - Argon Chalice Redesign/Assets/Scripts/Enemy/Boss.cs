@@ -77,7 +77,8 @@ public class Boss : MonoBehaviour
             Instantiate(ballProjectile, transform.position, Quaternion.identity);
         }
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(_ballAttackRepeatDelay * _ballAttackRepeat * 0.45f + 1.5f/_ballAttackRepeat);
+        // yield return new WaitForSeconds(2);
 
         battleSys.StartPlayerPhase();
     }
@@ -85,10 +86,10 @@ public class Boss : MonoBehaviour
     IEnumerator PillarWave() {
         for (int i = 0; i < _pillarAttackRepeat; i++) {
             Instantiate(pillarAttack, transform.position, Quaternion.identity);
-
             yield return new WaitForSeconds(_pillarAttackRepeatDelay);
         }
         
+        yield return new WaitForSeconds(_pillarAttackRepeatDelay * _pillarAttackRepeat * 0.2f);
         battleSys.StartPlayerPhase();
     }
 }
