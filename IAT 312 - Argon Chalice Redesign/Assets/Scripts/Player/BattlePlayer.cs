@@ -89,7 +89,7 @@ public class BattlePlayer : MonoBehaviour
     public void InflictDamage(float dmg) {
         dmg = isBlocking ? 0 : dmg;
 
-        health -= dmg;
+        health -= Mathf.Floor(dmg);
         hpBar.SetVal(health);
         SetDeathScreen();
     }
