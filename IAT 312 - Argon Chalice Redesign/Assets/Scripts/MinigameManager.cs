@@ -54,6 +54,7 @@ public class MinigameManager : MonoBehaviour
 
     public void StartStarMinigame() {
         minigameBg.SetActive(true);
+        targetZone.SetActive(false);
         StartCoroutine(StarWave());
     }
 
@@ -93,6 +94,7 @@ public class MinigameManager : MonoBehaviour
     public void StartBarMinigame() {
         minigameBg.SetActive(true);
         barMinigameBg.SetActive(true);
+        targetZone.SetActive(false);
 
         GameObject b = Instantiate(movingBar, pos, Quaternion.identity);
         MinigameBar mb = b.GetComponent<MinigameBar>();
