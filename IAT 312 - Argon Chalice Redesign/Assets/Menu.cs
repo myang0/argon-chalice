@@ -118,8 +118,8 @@ public class Menu : MonoBehaviour {
     }
 
     public void LoadNextDialogue() {
-        _dialogueIndex++;
         state = MenuState.Dialogue;
+        LoadNextLine();
     }
 
     private void LoadNextLine() {
@@ -130,6 +130,7 @@ public class Menu : MonoBehaviour {
         } else {
             if (!_isEnding) {
                 _lineIndex = 0;
+                _dialogueIndex++;
                 ResumeApp();  
             } else {
                 SceneManager.LoadScene("Scenes/IntroScene");

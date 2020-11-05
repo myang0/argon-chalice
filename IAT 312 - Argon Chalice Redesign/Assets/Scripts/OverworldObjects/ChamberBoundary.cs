@@ -34,7 +34,7 @@ public class ChamberBoundary : MonoBehaviour {
     }
 
     private IEnumerator StartDialogue() {
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.05f);
         GameObject.FindWithTag("Menu").GetComponent<Menu>().LoadNextDialogue();
     }
 

@@ -11,16 +11,16 @@ using UnityEngine.UIElements;
 
 public class BaseChamber : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField] protected List<BasicButton> buttons = new List<BasicButton>();
     [SerializeField] protected List<GateArea> gates = new List<GateArea>();
-    // [SerializeField] protected List<Transform> nextSpawnPoint = new List<Transform>();
     [SerializeField] protected Tilemap gateTileMap;
     [SerializeField] protected ChamberBoundary chamberBoundary;
     [SerializeField] protected BoxCollider cameraBoundary;
     [SerializeField] protected DarknessController darknessController;
     [SerializeField] protected EnemyOverworld enemy;
     [SerializeField] protected int stage;
+    public float chestTimerDuration;
+    public bool isChestUnlocked = false;
     void Start()
     {
         Assert.IsTrue(stage > -1 && stage < 4, gameObject.name + ": Invalid Stage number");
@@ -95,6 +95,7 @@ public class BaseChamber : MonoBehaviour
         if (!enemy.isCompleted) {
             return false;
         }
+
         return true;
     }
 

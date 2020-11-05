@@ -29,7 +29,7 @@ public class Chest : MonoBehaviour {
 
     private void FixedUpdate() {
         SetSprite();
-        isUnlocked = chamber.GetChamberComplete();
+        isUnlocked = chamber.isChestUnlocked;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -57,7 +57,7 @@ public class Chest : MonoBehaviour {
 
     private void SetSprite() {
         if (!isOpened) {
-            spriteRenderer.sprite = chamber.GetChamberComplete() ? chestUnlockedSprite : chestLockedSprite;
+            spriteRenderer.sprite = chamber.isChestUnlocked ? chestUnlockedSprite : chestLockedSprite;
         } else {
             spriteRenderer.sprite = chestOpenedSprite;
         }

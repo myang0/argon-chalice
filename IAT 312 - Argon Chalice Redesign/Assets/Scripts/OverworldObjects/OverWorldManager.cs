@@ -77,6 +77,16 @@ public class OverWorldManager : MonoBehaviour
         }
     }
 
+    public BaseChamber GetCurrentChamber() {
+        foreach (BaseChamber c in chambers) {
+            if (c.GetChamberIsActive()) {
+                return c;
+            }
+        }
+
+        return null;
+    }
+
     public void OverworldSetState(bool state) {
         _overworldIsActive = state;
         foreach (GameObject g in disableList) {
