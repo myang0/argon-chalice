@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Menu : MonoBehaviour {
@@ -18,9 +19,12 @@ public class Menu : MonoBehaviour {
     private List<Dialogue> _firstPuzzleDialogue = new List<Dialogue>();
     private List<Dialogue> _firstEnemyDialogue = new List<Dialogue>();
     private List<Dialogue> _actualStartDialogue = new List<Dialogue>();
+    private List<Dialogue> _goodEndDialogue = new List<Dialogue>();
+    private List<Dialogue> _badEndDialogue = new List<Dialogue>();
     private List<List<Dialogue>> _dialogueList = new List<List<Dialogue>>();
-    private int _dialogueIndex = 0;
-    private int _lineIndex = 0;
+    [SerializeField] private int _dialogueIndex = 0;
+    [SerializeField] private int _lineIndex = 0;
+    private bool _isEnding = false;
     
     // Start is called before the first frame update
     void Start() {
@@ -53,10 +57,29 @@ public class Menu : MonoBehaviour {
             "Our adventurer's true journey will begin beyond those gates. The ever shifting " +
             "chambers of the crypt will lead our adventurer into unforeseeable challenges, " +
             "unbelievable monsters, and mindblowingly mindblowing puzzles."));
+        
+        _goodEndDialogue.Add(new Dialogue("NARRATOR",
+            "Our adventurer has obtained the Argon Chalice and defeated the manifestations of its " +
+            "corrupt energies. No matter the hardships that our adventurer has endured, their humanity " +
+            "still remains whole and pure despite the ravenous dark energies of the Chalice."));
+        _goodEndDialogue.Add(new Dialogue("NARRATOR",
+            "With the legendary Argon Chalice in hand, our adventurer leaves the dungeon and " +
+            "returns home with a priceless treasure that not even the richest nobles can imagine " +
+            "possessing. The tale of our fearless adventurer and their triumphs will be forever " +
+            "recorded in the archives of history."));
+        _badEndDialogue.Add(new Dialogue("NARRATOR",
+            "Although our adventurer has obtained the Argon Chalice and defeated the manifestations " +
+            "of its corrupt energies, their humanity had been lost to the Chalice. With no human soul left, " +
+            "the energy of the Argon Chalice claimed its new host."));
+        _badEndDialogue.Add(new Dialogue("NARRATOR",
+            "And so, our adventurer's tale meets a tragic end as they become nothing more than one " +
+            "of the many victims of the Argon Chalice."));
         _dialogueList.Add(_introDialogue);
         _dialogueList.Add(_firstPuzzleDialogue);
         _dialogueList.Add(_firstEnemyDialogue);
         _dialogueList.Add(_actualStartDialogue);
+        _dialogueList.Add(_goodEndDialogue);
+        _dialogueList.Add(_badEndDialogue);
     }
 
     // Update is called once per frame
@@ -69,7 +92,6 @@ public class Menu : MonoBehaviour {
             healthValue.text = "" + GameManager.GetInstance().health;
         } else {
             if (Input.GetKeyDown(KeyCode.Space)) {
-                _lineIndex++;
                 LoadNextLine();
             } else if (Input.GetKeyDown(KeyCode.Return)) {
                 _lineIndex += _dialogueList[_dialogueIndex].Count;
@@ -77,6 +99,22 @@ public class Menu : MonoBehaviour {
             }
         }
         SetMenu();
+    }
+
+    public void GoodEnd() {
+        _dialogueIndex = _dialogueList.Count - 2;
+        _lineIndex = 0;
+        state = MenuState.Dialogue;
+        _isEnding = true;
+        LoadNextLine();
+    }
+
+    public void BadEnd() {
+        _dialogueIndex = _dialogueList.Count - 1;
+        _lineIndex = 0;
+        state = MenuState.Dialogue;
+        _isEnding = true;
+        LoadNextLine();
     }
 
     public void LoadNextDialogue() {
@@ -88,9 +126,14 @@ public class Menu : MonoBehaviour {
         if (_lineIndex < _dialogueList[_dialogueIndex].Count) {
             chatboxName.text = _dialogueList[_dialogueIndex][_lineIndex].GETName();
             chatboxSpeech.text = _dialogueList[_dialogueIndex][_lineIndex].GETText();
+            _lineIndex++;
         } else {
-            _lineIndex = 0;
-            ResumeApp();
+            if (!_isEnding) {
+                _lineIndex = 0;
+                ResumeApp();  
+            } else {
+                SceneManager.LoadScene("Scenes/IntroScene");
+            }
         }
     }
 

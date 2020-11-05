@@ -37,6 +37,7 @@ TagManager:
   - SpikeTrap
   - RedScreen
   - NonSlip
+  - Menu
   layers:
   - Default
   - TransparentFX

@@ -33,15 +33,20 @@ public class BaseChamber : MonoBehaviour
         if (Time.timeScale != 0 && GameObject.FindWithTag("OverworldManager").GetComponent<OverWorldManager>()._overworldIsActive) {
             PlayerEnterGate();
             if (Input.GetKeyDown(KeyCode.O) && GetChamberIsActive()) {
-                foreach (Transform child in transform) {
-                    ResettableObject resettable = child.gameObject.GetComponent<ResettableObject>();
-                    if (resettable) {
-                        resettable.ResetObject();
-                    }
-                }
-                GameObject.FindWithTag("PlayerCharacter").GetComponent<CharacterBehavior>().ResetObject();
+                ResetChamberObjects();
             }
         }
+    }
+
+    public void ResetChamberObjects() {
+        foreach (Transform child in transform) {
+            ResettableObject resettable = child.gameObject.GetComponent<ResettableObject>();
+            if (resettable) {
+                resettable.ResetObject();
+            }
+        }
+
+        GameObject.FindWithTag("PlayerCharacter").GetComponent<CharacterBehavior>().ResetObject();
     }
 
     public bool GetChamberIsActive() {

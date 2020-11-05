@@ -118,7 +118,7 @@ public class BattlePlayer : MonoBehaviour
     }
 
     private bool CanJump() {
-        return IsGrounded() && (battleSys.state == BattleState.ENEMY_PHASE) && !isBlockRecharging && !isBlocking;
+        return IsGrounded() && (battleSys.state == BattleState.ENEMY_PHASE) && !isBlocking;
     }
 
     private bool CanBlock() {
@@ -140,7 +140,7 @@ public class BattlePlayer : MonoBehaviour
         isBlocking = false;
         isBlockRecharging = true;
         shieldSprite.SetActive(false);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.8f);
 
         isBlockRecharging = false;
     }

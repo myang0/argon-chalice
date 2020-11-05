@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DeathScreen : MonoBehaviour {
@@ -37,6 +38,8 @@ public class DeathScreen : MonoBehaviour {
     private readonly string _respawnText = "An excellent choice. It is one you shall not regret. Let the " +
                                            "energy of the Argon Chalice flow through your veins, mortal.";
     
+    private readonly string _refuseText = "Very well. If you're that desperate to hold onto your humanity," +
+                                          " then perish.";
     void Start()
     {
         // refuseButton.onClick.AddListener(RefuseDeal);
@@ -73,14 +76,17 @@ public class DeathScreen : MonoBehaviour {
             GameManager gameManager = GameManager.GetInstance();
             switch (gameManager.deathCount) {
                 case 0:
-                    if (blackTextBoxText.text != _respawnText) blackTextBoxText.text = _firstDeath;
+                    if (blackTextBoxText.text != _respawnText
+                        && blackTextBoxText.text != _refuseText) blackTextBoxText.text = _firstDeath;
                     break;
                 case 1:
-                    if (blackTextBoxText.text != _respawnText) blackTextBoxText.text = _secondDeath;
+                    if (blackTextBoxText.text != _respawnText
+                        && blackTextBoxText.text != _refuseText) blackTextBoxText.text = _secondDeath;
                     break;
                 default: {
                     if (gameManager.deathCount > 1) {
-                        if (blackTextBoxText.text != _respawnText) blackTextBoxText.text = _thirdDeath;
+                        if (blackTextBoxText.text != _respawnText
+                        && blackTextBoxText.text != _refuseText) blackTextBoxText.text = _thirdDeath;
                     }
                     break;
                 }
@@ -105,15 +111,15 @@ public class DeathScreen : MonoBehaviour {
         Debug.Log("Refused");
         acceptButton.gameObject.SetActive(false);
         refuseButton.gameObject.SetActive(false);
-        blackTextBoxText.text = "Very well. If you're that desperate to hold onto your humanity," +
-                                " then perish.";
+        blackTextBoxText.text = _refuseText;
+        _disableButtons = true;
         state = State.GameOver;
         StartCoroutine(LoadGameOver());
     }
 
     private IEnumerator LoadGameOver() {
         yield return new WaitForSeconds(2f);
-        Application.Quit();
+        SceneManager.LoadScene("Scenes/IntroScene");
     }
 
     public void AcceptDeal() {
