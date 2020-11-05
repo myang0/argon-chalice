@@ -23,13 +23,11 @@ public class MinigameManager : MonoBehaviour
     [SerializeField] private float maxBarDamage;
     private bool isBarMinigameActive = false;
 
-    [SerializeField] private GameObject clickIndicator;
-    private GameObject clickIndicatorObject = null;
-    [SerializeField] private float maxClickDamage;
-    [SerializeField] private int maxClickTime;
-    private int currentClickTime = 0;
-    [SerializeField] private float maxClicks;
-    private float numTimesClicked = 0;
+    [SerializeField] private GameObject clickHammer;
+    [SerializeField] private GameObject targetZone;
+    [SerializeField] private float maxClickDamage = 60;
+    private float maxClicks = 12;
+    private float numClicks = 0;
 
     private BattleSystem battleSys;
 
@@ -48,14 +46,6 @@ public class MinigameManager : MonoBehaviour
 
     void Update() {
         if (isBarMinigameActive && Input.GetMouseButtonDown(0)) EndBarMinigame();
-
-        if (currentClickTime > 0) {
-            if (Input.GetMouseButtonDown(0) && numTimesClicked < maxClicks) numTimesClicked++;
-
-            currentClickTime--;
-            
-            if (currentClickTime <= 0) EndClickMinigame();
-        }
     }
 
     void OnDrawGizmosSelected() {
@@ -130,21 +120,31 @@ public class MinigameManager : MonoBehaviour
 
     public void StartClickMinigame() {
         minigameBg.SetActive(true);
-        currentClickTime = maxClickTime;
+        targetZone.SetActive(true);
 
-        clickIndicatorObject = Instantiate(clickIndicator, transform.position, Quaternion.identity);
+        StartCoroutine(ClickWave());
+    }
+
+    public void ClickSuccess() {
+        numClicks++;
     }
 
     private void EndClickMinigame() {
         minigameBg.SetActive(false);
+        targetZone.SetActive(false);
 
-        float dmg = Mathf.Floor((numTimesClicked / maxClicks) * maxClickDamage);
+        foreach (GameObject h in GameObject.FindGameObjectsWithTag("MinigameHammer")) {
+            Destroy(h);
+        }
+
+        if (numClicks > maxClicks) numClicks = maxClicks;
+
+        float dmg = Mathf.Floor((numClicks / maxClicks) * maxClickDamage);
+        numClicks = 0;
+
+        Debug.Log(dmg);
+
         boss.InflictDamage(dmg);
-
-        numTimesClicked = 0;
-
-        Destroy(clickIndicatorObject);
-
         StartCoroutine(EnemyPhaseTransition());
     }
 
@@ -156,6 +156,16 @@ public class MinigameManager : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
         EndStarMinigame();
+    }
+
+    IEnumerator ClickWave() {
+        for (int i = 0; i < 5; i++) {
+            Instantiate(clickHammer, transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(0.325f);
+        }
+
+        yield return new WaitForSeconds(5f);
+        EndClickMinigame();
     }
 
     IEnumerator EnemyPhaseTransition() {

@@ -37,6 +37,8 @@ TagManager:
   - SpikeTrap
   - RedScreen
   - NonSlip
+  - TargetZone
+  - MinigameHammer
   layers:
   - Default
   - TransparentFX
