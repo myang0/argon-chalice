@@ -2635,6 +2635,8 @@ MonoBehaviour:
     type: 3}
   _spearAttack: {fileID: 7592826825747097506, guid: 0f3899339dacd3140baad507301c303e,
     type: 3}
+  _spikeAttack: {fileID: 7413599342790230051, guid: d9f3a3dc79a20644c86b8c23e2db9e3a,
+    type: 3}
   health: 100
 --- !u!1 &975236827
 GameObject:
