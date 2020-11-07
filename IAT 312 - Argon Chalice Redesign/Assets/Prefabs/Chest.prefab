@@ -55,11 +55,13 @@ MonoBehaviour:
   isUnlocked: 0
   isOpened: 0
   isPlayerNearby: 0
-  numLootItems: 3
+  numLootItems: 5
   possibleLoot:
   - {fileID: 1481776495873008984, guid: 5db95d395712b5149a775f449f0c6961, type: 3}
   - {fileID: 7551980936089786174, guid: daf3059200b42064cbe0272818e17579, type: 3}
   - {fileID: 113897997322518470, guid: c59ee57f46ddd824dbdba651d84717bd, type: 3}
+  - {fileID: 2460062534154686787, guid: 5bb41795964cbc541815d6b09a2f52b4, type: 3}
+  - {fileID: 7665198832284836170, guid: d367f29b5f23bd340b3a692b1e29473c, type: 3}
 --- !u!212 &4430722260490745576
 SpriteRenderer:
   m_ObjectHideFlags: 0

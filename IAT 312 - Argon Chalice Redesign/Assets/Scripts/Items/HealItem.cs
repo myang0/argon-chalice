@@ -14,7 +14,6 @@ public class HealItem : BaseItem
 
         BattlePlayer bp = bpObject.GetComponent<BattlePlayer>();
         bp.Heal(healValue);
-        
     }
 
     public override string GetName() {
