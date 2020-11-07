@@ -103,7 +103,7 @@ public class Boss : MonoBehaviour
         // TODO: remove hardcoding
         for (int i = 0; i < 5; i++) {
             Instantiate(_spearAttack, transform.position, Quaternion.identity);
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.75f + Random.Range(0f, 0.5f));
         }
 
         yield return new WaitForSeconds(2);
@@ -112,15 +112,15 @@ public class Boss : MonoBehaviour
 
     IEnumerator SpikeWave() {
         // TODO: remove hardcoding
-        yield return new WaitForSeconds(1);
+        for (int i = 0; i < 3; i++) {
+            float xPos = 2;
+            for (int j = 0; j < 12; j++) {
+                Vector3 pos = new Vector3(xPos, 1.2f, 0);
+                Instantiate(_spikeAttack, pos, Quaternion.identity);
+                xPos -= 1f;
 
-        float xPos = 2;
-        for (int i = 0; i < 20; i++) {
-            Vector3 pos = new Vector3(xPos, 1.2f, 0);
-            Instantiate(_spikeAttack, pos, Quaternion.identity);
-            xPos -= 1f;
-
-            yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.1f);
+            }
         }
 
         yield return new WaitForSeconds(1);
