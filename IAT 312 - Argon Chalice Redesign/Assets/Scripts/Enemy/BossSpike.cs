@@ -9,10 +9,13 @@ public class BossSpike : MonoBehaviour
     private bool _isActive = true;
 
     private SpriteRenderer _sr;
+    [SerializeField] private GameObject spawnParticles;
 
     void Start() {
         _damage =  Random.Range(5, 15);
         _sr = GetComponent<SpriteRenderer>();
+
+        Instantiate(spawnParticles, transform.position, Quaternion.Euler(-90, 0, 0));
 
         StartCoroutine(DestroyTimer());
     }
