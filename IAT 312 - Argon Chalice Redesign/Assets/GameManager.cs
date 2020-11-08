@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour {
 
     public float maxHealth = 150;
     public float health;
+    public bool hoverEnabled = false;
+    public bool hasRage = false;
+    public bool canRevive = false;
     public int humanityValue;
     public int deathCount = 0;
     public EnemyOverworld currentEnemy;

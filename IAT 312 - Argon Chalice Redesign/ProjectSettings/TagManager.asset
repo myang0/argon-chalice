@@ -40,6 +40,7 @@ TagManager:
   - TargetZone
   - MinigameHammer
   - Menu
+  - ExtraLife
   layers:
   - Default
   - TransparentFX

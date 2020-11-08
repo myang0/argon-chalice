@@ -19,12 +19,16 @@ public class BattlePlayer : MonoBehaviour
     private Boss boss;
 
     [SerializeField] private float jumpForce = 25f;
+    [SerializeField] private float _maxHoverTime = 30;
+    [SerializeField] private float _hoverTimer;
+    public bool hoverEnabled = false;
 
-    [SerializeField] private float baseAttack;
+    public bool hasRage = false;
 
-    [SerializeField] private float maxHealth;
+    public float maxHealth;
     [SerializeField] private GenericBar hpBar;
     public float health;
+    public bool canRevive = false;
 
     [SerializeField] private GameObject shieldSprite;
     private bool isBlocking = false;
@@ -41,14 +45,30 @@ public class BattlePlayer : MonoBehaviour
         health = GameManager.GetInstance().health;
         hpBar.SetMax(maxHealth);
         hpBar.SetVal(health);
+
+        hoverEnabled = GameManager.GetInstance().hoverEnabled;
+        hasRage = GameManager.GetInstance().hasRage;
+        canRevive = GameManager.GetInstance().canRevive;
+
+        _hoverTimer = _maxHoverTime;
     }
 
     void Update()
     {
-        
-        if (Input.GetMouseButtonDown(0) && CanJump()) Jump();
+        if (Input.GetMouseButton(0) && CanHover()) {
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.gravityScale = 0;
+            _hoverTimer--;
+        } else {
+            rb.gravityScale = 14;
+        }
 
+        if (Input.GetMouseButtonDown(0) && CanJump()) Jump();
         if (Input.GetMouseButtonDown(1) && CanBlock()) StartCoroutine(Block());
+
+        if (IsGrounded()) {
+            _hoverTimer = _maxHoverTime;
+        }
 
         UpdateSprite();
     }
@@ -71,8 +91,16 @@ public class BattlePlayer : MonoBehaviour
         }
 
         if (health <= 0 && (state == DeathScreen.State.Disabled || state == DeathScreen.State.Heartbeat)) {
-            state = DeathScreen.State.StartDeath;
-            battleSys.PlayerLose();
+            if (canRevive) {
+                health = 100;
+                hpBar.SetVal(health);
+                state = DeathScreen.State.Disabled;
+
+                canRevive = false;
+            } else {
+                state = DeathScreen.State.StartDeath;
+                battleSys.PlayerLose();
+            }
         }
 
         GameObject.FindWithTag("RedScreen").GetComponent<DeathScreen>().state = state;
@@ -115,6 +143,10 @@ public class BattlePlayer : MonoBehaviour
 
     private void Jump() {
         rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
+    }
+
+    private bool CanHover() {
+        return rb.velocity.y < 0 && !IsGrounded() && _hoverTimer > 0 && hoverEnabled;
     }
 
     private bool CanJump() {
