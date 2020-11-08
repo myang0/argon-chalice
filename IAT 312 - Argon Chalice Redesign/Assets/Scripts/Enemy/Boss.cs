@@ -17,6 +17,7 @@ public class Boss : MonoBehaviour
     private float _ballAttackRepeatDelay;
     private float _pillarAttackRepeatDelay;
     private GameManager _gameManager = null;
+
     void Start() {
         _gameManager = GameManager.GetInstance();
         spriteRenderer.sprite = _gameManager.currentEnemy.battleSprite;
@@ -51,10 +52,45 @@ public class Boss : MonoBehaviour
         health -= damage;
 
         if (health <= 0) {
+            RewardChance();
             StartCoroutine(WinDelay());
             // battleSys.PlayerWin();
         }
     }
+
+    private void RewardChance() {
+        int giveRewardChance = Random.Range(0, 2);
+        if (giveRewardChance != 0) return;
+
+        BattlePlayer player = GameObject.FindWithTag("Player").GetComponent<BattlePlayer>();
+        int rewardIndex = Random.Range(0, 3);
+        string rewardName;
+
+        if (rewardIndex == 0) {
+            if (player.hoverEnabled) return;
+
+            player.hoverEnabled = true;
+            rewardName = "Hover Feather! Left click while in the air to fall slower.";
+        } else if (rewardIndex == 1) {
+            if (player.hasRage) return;
+
+            player.hasRage = true;
+            rewardName = "Rage Bandanna! Deal more damage the lower your health is.";
+        } else {
+            if (player.canRevive) return;
+
+            player.canRevive = true;
+            rewardName = "Ankh Charm! You can now cheat death one time.";
+        }
+
+        eText.SetText(string.Format("The enemy dropped the {0} You add it to your inventory.", rewardName));
+        StartCoroutine(ItemDelay());
+    }
+
+    private IEnumerator ItemDelay() {
+        yield return new WaitForSeconds(5f);
+        battleSys.PlayerWin();
+    } 
 
     private IEnumerator WinDelay() {
         yield return new WaitForSeconds(1.5f);

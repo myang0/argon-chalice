@@ -59,8 +59,13 @@ public class BattleSystem : MonoBehaviour
 
     private IEnumerator EndBattle() {
         yield return new WaitForSeconds(1.5f);
-        GameManager.GetInstance().health =
-            GameObject.FindWithTag("Player").GetComponent<BattlePlayer>().health;
+        BattlePlayer player = GameObject.FindWithTag("Player").GetComponent<BattlePlayer>();
+
+        GameManager.GetInstance().health = player.health;
+        GameManager.GetInstance().hasRage = player.hasRage;
+        GameManager.GetInstance().canRevive = player.canRevive;
+        GameManager.GetInstance().hoverEnabled = player.hoverEnabled;
+            
         GameManager.GetInstance().EndBattle();
     }
 

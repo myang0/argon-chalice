@@ -7,6 +7,8 @@ public class MinigameManager : MonoBehaviour
     [SerializeField] private GameObject minigameBg;
     private Boss boss;
 
+    private BattlePlayer _player;
+
     [SerializeField] private GameObject shootingStar;
     [SerializeField] private float maxStarDamage;
     [SerializeField] private float maxStars;
@@ -35,6 +37,7 @@ public class MinigameManager : MonoBehaviour
         pos = transform.position;
 
         boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<BattlePlayer>();
 
         halfSize = new Vector2(size.x / 2, size.y / 2);
 
@@ -85,7 +88,8 @@ public class MinigameManager : MonoBehaviour
     private void EndStarMinigame() {
         minigameBg.SetActive(false);
         DestroyAllStars();
-        boss.InflictDamage(Mathf.Floor((numHitStars / maxStars) * maxStarDamage));
+        float dmg = Mathf.Floor((numHitStars / maxStars) * maxStarDamage);
+        CalcDamage(dmg);
         numHitStars = 0;
 
         StartCoroutine(EnemyPhaseTransition());
@@ -112,7 +116,7 @@ public class MinigameManager : MonoBehaviour
         Destroy(bar.gameObject);
 
         float dmg = Mathf.Floor((Mathf.Abs(dist - xBounds.snd) / xBounds.snd) * maxBarDamage);
-        boss.InflictDamage(dmg);
+        CalcDamage(dmg);
 
         barMinigameBg.SetActive(false);
         isBarMinigameActive = false;
@@ -144,10 +148,20 @@ public class MinigameManager : MonoBehaviour
         float dmg = Mathf.Floor((numClicks / maxClicks) * maxClickDamage);
         numClicks = 0;
 
-        Debug.Log(dmg);
-
-        boss.InflictDamage(dmg);
+        CalcDamage(dmg);
         StartCoroutine(EnemyPhaseTransition());
+    }
+
+    private void CalcDamage(float damage) {
+        float dmg;
+        if (_player.hasRage) {
+            float fracLost = Mathf.Abs(_player.health - _player.maxHealth) / _player.maxHealth;
+            dmg = Mathf.Floor(damage + ((1 + fracLost) * damage));
+        } else {
+            dmg = damage;
+        }
+        
+        boss.InflictDamage(dmg);
     }
 
     IEnumerator StarWave() {
