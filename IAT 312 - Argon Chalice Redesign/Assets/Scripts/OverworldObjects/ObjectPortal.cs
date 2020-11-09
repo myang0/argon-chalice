@@ -14,6 +14,7 @@ public class ObjectPortal : Portal
                 otherObj.transform.position.z);
             warpedObjects.Add(otherObj);
             linkedPortal.GetComponent<ObjectPortal>().warpedObjects.Add(otherObj);
+            audioSource.Play();
         }
     }
 

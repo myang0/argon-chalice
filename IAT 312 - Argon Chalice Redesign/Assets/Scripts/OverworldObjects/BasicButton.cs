@@ -7,6 +7,8 @@ public class BasicButton : ResettableObject {
     [SerializeField] protected Sprite unpushedSprite;
     [SerializeField] protected Sprite pushedSprite;
     [SerializeField] protected SpriteRenderer spriteRenderer;
+    [SerializeField] protected AudioSource audioSource;
+    [SerializeField] protected AudioClip pressedSound;
     protected bool isPushed = false;
     // Start is called before the first frame update
     void Start()

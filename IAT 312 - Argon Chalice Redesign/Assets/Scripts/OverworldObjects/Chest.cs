@@ -10,6 +10,7 @@ public class Chest : MonoBehaviour {
     [SerializeField] private Sprite chestOpenedSprite;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private BaseChamber chamber;
+    [SerializeField] private AudioSource audio;
     public bool isUnlocked = false;
     public bool isOpened = false;
     public bool isPlayerNearby = false;
@@ -52,6 +53,7 @@ public class Chest : MonoBehaviour {
 
             int randLootIndex = UnityEngine.Random.Range(0, numLootItems);
             Instantiate(possibleLoot[randLootIndex], transform.position, Quaternion.identity);
+            audio.Play();
         }
     }
 

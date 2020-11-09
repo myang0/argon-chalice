@@ -104,6 +104,7 @@ public class BaseChamber : MonoBehaviour
         Vector3 nextSpawnPoint = GameObject.FindWithTag("OverworldManager").GetComponent<OverWorldManager>().GetNextSpawn(stage);
         player.transform.position = nextSpawnPoint;
         player.GetComponent<CharacterBehavior>().spawnPoint = nextSpawnPoint;
+        GameObject.FindWithTag("Menu").GetComponent<Menu>().BeginStageTitleDisplay();
     }
 
     protected virtual void SetGate() {

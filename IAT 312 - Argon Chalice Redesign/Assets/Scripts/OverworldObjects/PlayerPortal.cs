@@ -18,6 +18,7 @@ public class PlayerPortal : Portal {
         GameObject player = GameObject.FindWithTag("PlayerCharacter");
         player.transform.position = new Vector3(linkedPosition.x, linkedPosition.y,
             player.transform.position.z);
+        audioSource.Play();
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

@@ -20,6 +20,8 @@ public class OverWorldManager : MonoBehaviour
     [SerializeField] public List<BaseChamber> chambers = new List<BaseChamber>();
     [SerializeField] public EnemyOverworld boss;
     public int stageCount = 0;
+    public int stageNumber = 0;
+    public bool isBossStage = false;
     public bool _overworldIsActive = true;
 
     private bool _ended = false;
@@ -124,26 +126,36 @@ public class OverWorldManager : MonoBehaviour
                 }
             }
 
+            isBossStage = false;
             stageCount++;
         } else {
-            stageCount = 0;
             switch (stage) {
                 case 0: {
                     int random = Random.Range(0, stageOneSpawns.Count);
                     spawnPoint = stageOneSpawns[random];
                     stageOneSpawns.RemoveAt(random);
+                    stageNumber = 1;
+                    stageCount = 0;
                     break;
                 }
                 case 1: {
                     spawnPoint = stageOneBossSpawn;
+                    isBossStage = true;
+                    stageNumber = 2;
+                    stageCount = -1;
                     break;
                 }
                 case 2: {
                     spawnPoint = stageTwoBossSpawn;
+                    isBossStage = true;
+                    stageNumber = 3;
+                    stageCount = -1;
                     break;
                 }
                 case 3: {
                     spawnPoint = stageThreeBossSpawn;
+                    stageNumber = 4;
+                    isBossStage = true;
                     break;
                 }
             }

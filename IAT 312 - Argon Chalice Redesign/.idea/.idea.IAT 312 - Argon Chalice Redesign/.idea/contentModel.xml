@@ -20,6 +20,7 @@
             <e p="BossBallProjectile.cs" t="Include" />
             <e p="BossFirePillar.cs" t="Include" />
             <e p="BossSpear.cs" t="Include" />
+            <e p="BossSpike.cs" t="Include" />
           </e>
           <e p="Inventory.cs" t="Include" />
           <e p="Items" t="Include">

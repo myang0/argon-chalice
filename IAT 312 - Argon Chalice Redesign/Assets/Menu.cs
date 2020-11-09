@@ -12,9 +12,14 @@ public class Menu : MonoBehaviour {
     [SerializeField] private Image uiShadow;
     [SerializeField] private GameObject menu;
     [SerializeField] private Text healthValue;
+    [SerializeField] private Text humanityValue;
+    [SerializeField] private Text humanityDesc;
     [SerializeField] private GameObject chatbox;
     [SerializeField] private Text chatboxName;
     [SerializeField] private Text chatboxSpeech;
+    [SerializeField] private CanvasGroup stageDisplayGroup;
+    [SerializeField] private Text stageTitle;
+    [SerializeField] private Text stageNumber;
     private List<Dialogue> _introDialogue = new List<Dialogue>();
     private List<Dialogue> _firstPuzzleDialogue = new List<Dialogue>();
     private List<Dialogue> _firstEnemyDialogue = new List<Dialogue>();
@@ -32,6 +37,7 @@ public class Menu : MonoBehaviour {
         chatboxName.text = _dialogueList[_dialogueIndex][_lineIndex].GETName();
         chatboxSpeech.text = _dialogueList[_dialogueIndex][_lineIndex].GETText();
         StartCoroutine(BeginDialogueDelay());
+        BeginStageTitleDisplay();
     }
 
     private IEnumerator BeginDialogueDelay() {
@@ -39,57 +45,74 @@ public class Menu : MonoBehaviour {
         state = MenuState.Dialogue;
     }
 
-    private void AddDialogues() {
-        _introDialogue.Add(new Dialogue("NARRATOR", 
-            "A swashbuckling adventurer whose thirst for treasure knows no bounds enters " +
-            "an ancient crypt in search of the rumored Argon Chalice."));
-        _introDialogue.Add(new Dialogue("NARRATOR",
-            "Will this be a tale of tragedy about an adventurer who perished to the denizens " +
-            "of the mysterious crypt and its enigmatic puzzles? Or will it be a story of awe and fortune?"));
-        _firstPuzzleDialogue.Add(new Dialogue("NARRATOR",
-            "In order our beloved adventurer to make their way through the crypt, they must " +
-            "solve a series of brain obliterating puzzles to reach and unlock the chamber gates!"));
-        _firstEnemyDialogue.Add(new Dialogue("NARRATOR", 
-            "However puzzles are not the only dangers of the crypt for monsters corrupted by " +
-            "the Argon Chalice's energies also guard the gates. Does our dear adventurer even stand " +
-            "a chance against these dreadful otherworldly amalgamations?"));
-        _actualStartDialogue.Add(new Dialogue("NARRATOR", 
-            "Our adventurer's true journey will begin beyond those gates. The ever shifting " +
-            "chambers of the crypt will lead our adventurer into unforeseeable challenges, " +
-            "unbelievable monsters, and mindblowingly mindblowing puzzles."));
-        
-        _goodEndDialogue.Add(new Dialogue("NARRATOR",
-            "Our adventurer has obtained the Argon Chalice and defeated the manifestations of its " +
-            "corrupt energies. No matter the hardships that our adventurer has endured, their humanity " +
-            "still remains whole and pure despite the ravenous dark energies of the Chalice."));
-        _goodEndDialogue.Add(new Dialogue("NARRATOR",
-            "With the legendary Argon Chalice in hand, our adventurer leaves the dungeon and " +
-            "returns home with a priceless treasure that not even the richest nobles can imagine " +
-            "possessing. The tale of our fearless adventurer and their triumphs will be forever " +
-            "recorded in the archives of history."));
-        _badEndDialogue.Add(new Dialogue("NARRATOR",
-            "Although our adventurer has obtained the Argon Chalice and defeated the manifestations " +
-            "of its corrupt energies, their humanity had been lost to the Chalice. With no human soul left, " +
-            "the energy of the Argon Chalice claimed its new host."));
-        _badEndDialogue.Add(new Dialogue("NARRATOR",
-            "And so, our adventurer's tale meets a tragic end as they become nothing more than one " +
-            "of the many victims of the Argon Chalice."));
-        _dialogueList.Add(_introDialogue);
-        _dialogueList.Add(_firstPuzzleDialogue);
-        _dialogueList.Add(_firstEnemyDialogue);
-        _dialogueList.Add(_actualStartDialogue);
-        _dialogueList.Add(_goodEndDialogue);
-        _dialogueList.Add(_badEndDialogue);
+    public void BeginStageTitleDisplay() {
+        StartCoroutine(DisplayStageTitle());
+    }
+
+    private IEnumerator DisplayStageTitle() {
+        yield return new WaitForSeconds(0.1f);
+        OverWorldManager overWorldManager =
+            GameObject.FindWithTag("OverworldManager").GetComponent<OverWorldManager>();
+        stageTitle.text =  overWorldManager.GetCurrentChamber().name;
+        string stageNumberS;
+        string stageCountS;
+        if (overWorldManager.isBossStage) {
+            stageNumberS = "" + (overWorldManager.stageNumber-1);
+            stageCountS = "Boss";
+        } else {
+            stageNumberS = "" + overWorldManager.stageNumber;
+            stageCountS = (overWorldManager.stageCount+1) + "/3";
+        }
+        stageNumber.text = "Stage " + stageNumberS + " - Chamber: " + stageCountS;
+        StartCoroutine(FadeInStageTitle());
+    }
+
+    private IEnumerator FadeInStageTitle() {
+        float timeElapsed = 0;
+        float fadeInTime = 0.25f;
+
+        while (timeElapsed < fadeInTime) {
+            stageDisplayGroup.alpha = Mathf.Lerp(0, 1, timeElapsed/fadeInTime);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        stageDisplayGroup.alpha = 1;
+        StartCoroutine(FadeOutStageTitle());
+    }
+
+    private IEnumerator FadeOutStageTitle() {
+        yield return new WaitForSeconds(2f);
+        float timeElapsed = 0;
+        float fadeOutTime = 0.25f;
+
+        while (timeElapsed < fadeOutTime) {
+            stageDisplayGroup.alpha = Mathf.Lerp(1, 0, timeElapsed/fadeOutTime);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        stageDisplayGroup.alpha = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (state != MenuState.Dialogue) {
+            GameManager gameManager = GameManager.GetInstance();
+
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 state = (state == MenuState.Paused) ? MenuState.Active : MenuState.Paused;
             } 
-            healthValue.text = "" + GameManager.GetInstance().health;
+            healthValue.text = "" + gameManager.health;
+            humanityValue.text = "" + gameManager.humanityValue;
+            if (gameManager.humanityValue > -1) {
+                humanityValue.color = Color.green;
+                humanityDesc.color = Color.green;
+            } else {
+                humanityValue.color = Color.red;
+                humanityDesc.color = Color.red;
+            }
         } else {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 LoadNextLine();
@@ -164,5 +187,48 @@ public class Menu : MonoBehaviour {
     public void ResumeApp() {
         state = MenuState.Active;
         SetMenu();
+    }
+    
+        private void AddDialogues() {
+        _introDialogue.Add(new Dialogue("NARRATOR", 
+            "A swashbuckling adventurer whose thirst for treasure knows no bounds enters " +
+            "an ancient crypt in search of the rumored Argon Chalice."));
+        _introDialogue.Add(new Dialogue("NARRATOR",
+            "Will this be a tale of tragedy about an adventurer who perished to the denizens " +
+            "of the mysterious crypt and its enigmatic puzzles? Or will it be a story of awe and fortune?"));
+        _firstPuzzleDialogue.Add(new Dialogue("NARRATOR",
+            "In order our beloved adventurer to make their way through the crypt, they must " +
+            "solve a series of brain obliterating puzzles to reach and unlock the chamber gates!"));
+        _firstEnemyDialogue.Add(new Dialogue("NARRATOR", 
+            "However puzzles are not the only dangers of the crypt for monsters corrupted by " +
+            "the Argon Chalice's energies also guard the gates. Does our dear adventurer even stand " +
+            "a chance against these dreadful otherworldly amalgamations?"));
+        _actualStartDialogue.Add(new Dialogue("NARRATOR", 
+            "Our adventurer's true journey will begin beyond those gates. The ever shifting " +
+            "chambers of the crypt will lead our adventurer into unforeseeable challenges, " +
+            "unbelievable monsters, and mindblowingly mindblowing puzzles."));
+        
+        _goodEndDialogue.Add(new Dialogue("NARRATOR",
+            "Our adventurer has obtained the Argon Chalice and defeated the manifestations of its " +
+            "corrupt energies. No matter the hardships that our adventurer has endured, their humanity " +
+            "still remains whole and pure despite the ravenous dark energies of the Chalice."));
+        _goodEndDialogue.Add(new Dialogue("NARRATOR",
+            "With the legendary Argon Chalice in hand, our adventurer leaves the dungeon and " +
+            "returns home with a priceless treasure that not even the richest nobles can imagine " +
+            "possessing. The tale of our fearless adventurer and their triumphs will be forever " +
+            "recorded in the archives of history."));
+        _badEndDialogue.Add(new Dialogue("NARRATOR",
+            "Although our adventurer has obtained the Argon Chalice and defeated the manifestations " +
+            "of its corrupt energies, their humanity had been lost to the Chalice. With no human soul left, " +
+            "the energy of the Argon Chalice claimed its new host."));
+        _badEndDialogue.Add(new Dialogue("NARRATOR",
+            "And so, our adventurer's tale meets a tragic end as they become nothing more than one " +
+            "of the many victims of the Argon Chalice."));
+        _dialogueList.Add(_introDialogue);
+        _dialogueList.Add(_firstPuzzleDialogue);
+        _dialogueList.Add(_firstEnemyDialogue);
+        _dialogueList.Add(_actualStartDialogue);
+        _dialogueList.Add(_goodEndDialogue);
+        _dialogueList.Add(_badEndDialogue);
     }
 }

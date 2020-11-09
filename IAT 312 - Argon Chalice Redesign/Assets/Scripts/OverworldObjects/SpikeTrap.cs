@@ -8,6 +8,9 @@ using UnityEngine.Assertions;
 using UnityEngine.Serialization;
 
 public class SpikeTrap : ResettableObject {
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip spikesUpSound;
+    [SerializeField] private AudioClip spikesDownSound;
     [SerializeField] private Sprite activeSpike;
     [SerializeField] private Sprite inActiveSpike;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -102,6 +105,12 @@ public class SpikeTrap : ResettableObject {
         isCooledDown = false;
         yield return new WaitForSeconds(intervalDelay);
         isActive = !isActive;
+        if (isActive) {
+            audioSource.clip = spikesUpSound;
+        } else {
+            audioSource.clip = spikesDownSound;
+        }
+        audioSource.Play();
         _activateTrapCoroutine = null;
         StartCoroutine(CooldownCoroutine());
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 public class Portal : MonoBehaviour {
+    [SerializeField] protected AudioSource audioSource;
     [SerializeField] protected GameObject linkedPortal;
     protected Vector3 linkedPosition;
     void Start() {

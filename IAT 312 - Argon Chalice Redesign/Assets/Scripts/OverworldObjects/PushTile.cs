@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PushTile : MonoBehaviour {
+    [SerializeField] private AudioSource audioSource;
     private Vector3 _playerStartPos;
     private bool _isPushing = false;
     private const float PullDuration = 0.15f;
@@ -33,6 +34,7 @@ public class PushTile : MonoBehaviour {
         if (!other.CompareTag("PlayerCharacter")) return;
         _playerStartPos = other.transform.position;
         other.GetComponent<CharacterBehavior>().state = CharacterBehavior.State.Pulled;
+        audioSource.Play();
         _isPushing = true;
         _time = 0;
     }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Puddle : ResettableObject {
+    [SerializeField] private AudioSource audioSource;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite puddleWithRock;
     [SerializeField] private Sprite puddleWithout;
@@ -20,6 +21,7 @@ public class Puddle : ResettableObject {
         hasRock = true;
         boxCollider2D.enabled = false;
         triggerBoxCollider2D.enabled = false;
+        audioSource.Play();
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
