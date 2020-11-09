@@ -11,7 +11,8 @@ public class BossSpear : MonoBehaviour {
 
     private BattlePlayer _player;
 
-    private float _baseDamage;
+    public float baseDamage;
+    public float speed;
 
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private SpriteRenderer _sr;
@@ -22,7 +23,7 @@ public class BossSpear : MonoBehaviour {
         Vector3 initForce = new Vector3(Random.Range(1.5f, 3f), Random.Range(-3f, 3f), 0);
         _rb.velocity = initForce;
 
-        _baseDamage = Random.Range(10, 20);
+        baseDamage = Random.Range(10, 20);
 
         StartCoroutine(MoveToPlayerDelay());
     }
@@ -42,7 +43,7 @@ public class BossSpear : MonoBehaviour {
 
     void MoveToPlayer(Vector3 playerPos, Vector3 spearPos) {
         Vector3 vectorToPlayer = (playerPos - spearPos).normalized;
-        _rb.velocity = vectorToPlayer * 22.5f;
+        _rb.velocity = vectorToPlayer * speed;
     }
 
     void RotateToPlayer(Vector3 playerPos, Vector3 spearPos) {
@@ -54,7 +55,7 @@ public class BossSpear : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col) {
         if (col.CompareTag("Player") && !_hitPlayer) {
-            _player.InflictDamage(_baseDamage);
+            _player.InflictDamage(baseDamage);
             _hitPlayer = true;
         }
     }

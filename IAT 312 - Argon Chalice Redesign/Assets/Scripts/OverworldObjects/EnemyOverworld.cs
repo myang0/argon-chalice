@@ -16,10 +16,21 @@ public class EnemyOverworld : MonoBehaviour {
     public int pillarAttackRepeat;
     public float ballAttackRepeatDelay;
     public float pillarAttackRepeatDelay;
+
+    public int spearRepeats;
+    public float spearSpeed;
+    public float spearDelay;
+
+    public int spikeRepeats;
+    public float spikeSpeed;
+    public float spikeDelay;
+
+    public int numAttacks;
     
     public bool isCompleted = false;
     public bool isBattleReady = true;
     private bool _isPlayerNear = false;
+
     // Start is called before the first frame update
     void Start()
     {
