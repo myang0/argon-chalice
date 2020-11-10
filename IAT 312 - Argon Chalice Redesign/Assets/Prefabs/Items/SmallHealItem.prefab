@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: f864b1252655b8b40a98f53df388f4a0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 455606660ee570d429beca9b7ec20da2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,8 +95,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be1e7999647beac4cac2a3a4ab956f2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPickedUp: 0
   healValue: 20
-  name: Cookie
+  name: Apple
 --- !u!61 &4268095113398689522
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -114,7 +115,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 1.5}
+    oldSize: {x: 1.28, y: 1.28}
     newSize: {x: 1.5, y: 1.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

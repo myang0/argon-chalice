@@ -57,8 +57,9 @@ public class CharacterBehavior : ResettableObject {
     public void OnTrapCollision() {
         if (!_isInvulnerable) {
             TakeDamage(10);
+            StartCoroutine(ActivateInvulnerability());
+            // _currentCoroutine = StartCoroutine(ActivateInvulnerability());
         }
-        _currentCoroutine = StartCoroutine(ActivateInvulnerability());
     }
 
     private void TakeDamage(float damage) {
@@ -71,7 +72,9 @@ public class CharacterBehavior : ResettableObject {
 
     private IEnumerator ActivateInvulnerability() {
         _isInvulnerable = true;
-        yield return new WaitForSeconds(0.1f);
+        sprite.color = Color.red;
+        yield return new WaitForSeconds(0.25f);
+        sprite.color = Color.white;
         _isInvulnerable = false;
         _currentCoroutine = null;
     }

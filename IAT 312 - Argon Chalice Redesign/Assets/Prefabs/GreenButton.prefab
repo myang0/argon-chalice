@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 38746dda85f8d1146bee9bdeed58ae4a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5981427e48e29fc4b88a11e648b08118, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -109,7 +109,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.5}
+  m_Size: {x: 1.4, y: 1.5}
   m_EdgeRadius: 0
 --- !u!50 &9189611340941487273
 Rigidbody2D:
@@ -144,8 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d071d9ef13709d642bbaf75f250aa715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unpushedSprite: {fileID: 21300000, guid: 38746dda85f8d1146bee9bdeed58ae4a, type: 3}
-  pushedSprite: {fileID: 21300000, guid: bee4c335dc3b6c44a8c5745500d7097e, type: 3}
+  unpushedSprite: {fileID: 21300000, guid: 5981427e48e29fc4b88a11e648b08118, type: 3}
+  pushedSprite: {fileID: 21300000, guid: 11bddfc0520082b4097154ce8edb9a3d, type: 3}
   spriteRenderer: {fileID: 4918997866255510841}
   audioSource: {fileID: 1466051859698354522}
   pressedSound: {fileID: 0}

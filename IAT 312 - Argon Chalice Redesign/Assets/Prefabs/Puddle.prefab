@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 94d37687478d4244fa8b59f2d8d91d73, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5e6c291cbb6b0a941883c7e40508418c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -125,8 +125,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 6312710705321526904}
   spriteRenderer: {fileID: 8980640174181100550}
-  puddleWithRock: {fileID: 21300000, guid: ddc3a3ffdecd4ee4a810d2cd331ed583, type: 3}
-  puddleWithout: {fileID: 21300000, guid: 94d37687478d4244fa8b59f2d8d91d73, type: 3}
+  puddleWithRock: {fileID: 21300000, guid: 08d403e5606052644ba54a7a13e67a2c, type: 3}
+  puddleWithout: {fileID: 21300000, guid: 5e6c291cbb6b0a941883c7e40508418c, type: 3}
   boxCollider2D: {fileID: 8980640174181100551}
   triggerBoxCollider2D: {fileID: 8980640174181100551}
   hasRock: 0
