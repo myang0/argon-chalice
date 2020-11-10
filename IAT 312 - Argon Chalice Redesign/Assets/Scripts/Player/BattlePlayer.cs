@@ -6,6 +6,7 @@ public class BattlePlayer : MonoBehaviour
 {
     private BattleSystem battleSys;
     private EventText eText;
+    [SerializeField] private GameObject _dmgPopup;
 
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite jumpSprite;
@@ -115,9 +116,13 @@ public class BattlePlayer : MonoBehaviour
     }
 
     public void InflictDamage(float dmg) {
-        dmg = isBlocking ? 0 : dmg;
+        dmg = isBlocking ? 0 : Mathf.Floor(dmg);
 
-        health -= Mathf.Floor(dmg);
+        GameObject dpObject = Instantiate(_dmgPopup, transform.position, Quaternion.identity);
+        DamagePopup dp = dpObject.GetComponent<DamagePopup>();
+        dp.SetText(dmg.ToString());
+
+        health -= dmg;
         hpBar.SetVal(health);
         SetDeathScreen();
     }

@@ -32,7 +32,7 @@ public class MinigameHammer : MonoBehaviour {
 
         transform.position = new Vector3(pos.x + xOffset, pos.y + yOffset, pos.z);
 
-        x += 0.075f;
+        x += 0.025f;
     }
 
     void OnTriggerEnter2D(Collider2D col) {

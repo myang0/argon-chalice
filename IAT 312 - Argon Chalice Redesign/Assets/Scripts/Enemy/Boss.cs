@@ -6,6 +6,8 @@ public class Boss : MonoBehaviour
 {
     private BattleSystem battleSys;
     private EventText eText;
+    [SerializeField] private GameObject _dmgPopup;
+
     [SerializeField] private GenericBar hpBar;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject ballProjectile;
@@ -73,6 +75,10 @@ public class Boss : MonoBehaviour
         eText.gameObject.SetActive(true);
         GameObject.FindWithTag("Player").GetComponent<BattlePlayer>()._isAttacking = true;
         eText.SetText(string.Format("Enemy took {0} damage!", damage));
+
+        GameObject dpObject = Instantiate(_dmgPopup, transform.position, Quaternion.identity);
+        DamagePopup dp = dpObject.GetComponent<DamagePopup>();
+        dp.SetText(damage.ToString());
 
         float shakeMag = (damage / 200f) * 2f;
         StartCoroutine(Shake(0.15f, shakeMag));
