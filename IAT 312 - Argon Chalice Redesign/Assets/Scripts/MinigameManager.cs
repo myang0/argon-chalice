@@ -265,10 +265,10 @@ public class MinigameManager : MonoBehaviour
         float dmg;
         if (_player.hasRage) {
             float fracLost = Mathf.Abs(_player.health - _player.maxHealth) / _player.maxHealth;
-            dmg = Mathf.Floor(damage + ((1 + fracLost) * damage));
+            dmg = Mathf.Floor(damage + (fracLost * damage));
         } else {
             dmg = damage;
-        }
+        }  
         
         boss.InflictDamage(dmg);
     }
@@ -284,9 +284,9 @@ public class MinigameManager : MonoBehaviour
     }
 
     IEnumerator ClickWave() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 8; i++) {
             Instantiate(clickHammer, transform.position, Quaternion.identity);
-            yield return new WaitForSeconds(0.325f);
+            yield return new WaitForSeconds(0.615f);
         }
 
         yield return new WaitForSeconds(5f);

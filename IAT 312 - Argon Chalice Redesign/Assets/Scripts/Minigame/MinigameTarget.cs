@@ -7,6 +7,8 @@ public class MinigameTarget : MonoBehaviour
     private MinigameManager _mgm;
     private Rigidbody2D _rb;
 
+    [SerializeField] private GameObject _particles;
+
     private (float fst, float snd) _xBounds;
 
     void Start() {
@@ -14,7 +16,7 @@ public class MinigameTarget : MonoBehaviour
 
         _rb = GetComponent<Rigidbody2D>();
 
-        _rb.velocity = new Vector3(Random.Range(10, 20), 0, 0);
+        _rb.velocity = new Vector3(Random.Range(7.5f, 15f), 0, 0);
     }
 
     void Update() {
@@ -38,6 +40,8 @@ public class MinigameTarget : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col) {
         if (col.CompareTag("Bullet")) {
             _mgm.HitTarget();
+
+            Instantiate(_particles, transform.position, Quaternion.identity);
 
             Destroy(gameObject);
             Destroy(col.gameObject);

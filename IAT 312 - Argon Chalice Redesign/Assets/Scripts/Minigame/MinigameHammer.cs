@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MinigameHammer : MonoBehaviour {
+    private AudioSource _audio;
+
     private MinigameManager mgm;
 
     private float rotationSpeed;
@@ -14,6 +16,8 @@ public class MinigameHammer : MonoBehaviour {
     void Start() {
         mgm = GameObject.FindGameObjectWithTag("MinigameManager").GetComponent<MinigameManager>();
 
+        _audio = GetComponent<AudioSource>();
+
         rotationSpeed = Random.Range(0.75f, 1.25f);
         pos = transform.position;
     }
@@ -22,6 +26,7 @@ public class MinigameHammer : MonoBehaviour {
         transform.Rotate(0, 0, rotationSpeed);
 
         if (Input.GetMouseButtonDown(0) && isInZone) {
+            _audio.Play();
             mgm.ClickSuccess();
         }
     }
@@ -32,7 +37,7 @@ public class MinigameHammer : MonoBehaviour {
 
         transform.position = new Vector3(pos.x + xOffset, pos.y + yOffset, pos.z);
 
-        x += 0.075f;
+        x += 0.025f;
     }
 
     void OnTriggerEnter2D(Collider2D col) {

@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BossSpear : MonoBehaviour {
+    [SerializeField] private AudioClip _a1;
+    [SerializeField] private AudioClip _a2;
+
+    private AudioSource _audio;
+    // private AudioSource _audio2;
+
     private float _rotation = 1;
     private float _alpha = 0;
 
@@ -24,6 +30,10 @@ public class BossSpear : MonoBehaviour {
         _rb.velocity = initForce;
 
         baseDamage = Random.Range(10, 20);
+        
+        _audio = GetComponent<AudioSource>();
+
+        _audio.PlayOneShot(_a1);
 
         StartCoroutine(MoveToPlayerDelay());
     }
@@ -65,6 +75,8 @@ public class BossSpear : MonoBehaviour {
 
         Vector3 playerPos = _player.transform.position;
         Vector3 spearPos = transform.position;
+
+        _audio.PlayOneShot(_a2);
 
         _isMovingToPlayer = true;
         MoveToPlayer(playerPos, spearPos);

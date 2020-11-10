@@ -30,6 +30,8 @@ public class BattlePlayer : MonoBehaviour
     public float health;
     public bool canRevive = false;
 
+    [SerializeField] private GameObject _dmgPopup;
+
     [SerializeField] private GameObject shieldSprite;
     private bool isBlocking = false;
     private bool isBlockRecharging = false;
@@ -115,9 +117,13 @@ public class BattlePlayer : MonoBehaviour
     }
 
     public void InflictDamage(float dmg) {
-        dmg = isBlocking ? 0 : dmg;
+        dmg = isBlocking ? 0 : Mathf.Floor(dmg);
 
-        health -= Mathf.Floor(dmg);
+        GameObject dpObject = Instantiate(_dmgPopup, transform.position, Quaternion.identity);
+        DamagePopup dp = dpObject.GetComponent<DamagePopup>();
+        dp.SetText(dmg.ToString());
+
+        health -= dmg;
         hpBar.SetVal(health);
         SetDeathScreen();
     }
