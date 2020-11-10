@@ -190,7 +190,7 @@ public class Boss : MonoBehaviour
         // TODO: remove hardcoding
         float xPos = 2;
         for (int j = 0; j < 12; j++) {
-            Vector3 pos = new Vector3(xPos, 1.2f, 0);
+            Vector3 pos = new Vector3(xPos, 0.25f, 0);
             Instantiate(_spikeAttack, pos, Quaternion.identity);
             xPos -= 1;
 

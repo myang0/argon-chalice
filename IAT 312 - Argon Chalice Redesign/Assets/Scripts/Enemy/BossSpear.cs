@@ -49,8 +49,8 @@ public class BossSpear : MonoBehaviour {
     void RotateToPlayer(Vector3 playerPos, Vector3 spearPos) {
         Vector3 vectorToPlayer = (playerPos - spearPos).normalized;
         float angle = Mathf.Atan2(vectorToPlayer.y, vectorToPlayer.x) * Mathf.Rad2Deg;
-        Quaternion transformRotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-        transform.rotation = transformRotation;
+
+        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, angle + 180);
     }
 
     void OnTriggerEnter2D(Collider2D col) {
