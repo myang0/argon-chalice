@@ -6,6 +6,7 @@ public class Boss : MonoBehaviour
 {
     private BattleSystem battleSys;
     private EventText eText;
+    [SerializeField] private GenericBar hpBar;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject ballProjectile;
     [SerializeField] private GameObject pillarAttack;
@@ -55,6 +56,8 @@ public class Boss : MonoBehaviour
         _numAttacks = _gameManager.currentEnemy.numAttacks;
         battleSys = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();
         eText = GameObject.FindGameObjectWithTag("EventText").GetComponent<EventText>();
+        hpBar.SetMax(health);
+        hpBar.SetVal(health);
     }
 
     void Update()
@@ -72,7 +75,7 @@ public class Boss : MonoBehaviour
         eText.SetText(string.Format("Enemy took {0} damage!", damage));
 
         health -= damage;
-
+        hpBar.SetVal(health);
         if (health <= 0) {
             RewardChance();
             StartCoroutine(WinDelay());

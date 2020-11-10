@@ -9,6 +9,7 @@
         <e p="ChestUnlockTimer.cs" t="Include" />
         <e p="DeathScreen.cs" t="Include" />
         <e p="GameManager.cs" t="Include" />
+        <e p="HumanityDisplay.cs" t="Include" />
         <e p="IntroSceneMenu.cs" t="Include" />
         <e p="Menu.cs" t="Include" />
         <e p="Scripts" t="Include">
@@ -30,8 +31,10 @@
           </e>
           <e p="Minigame" t="Include">
             <e p="MinigameBar.cs" t="Include" />
+            <e p="MinigameBullet.cs" t="Include" />
             <e p="MinigameHammer.cs" t="Include" />
             <e p="MinigameStar.cs" t="Include" />
+            <e p="MinigameTarget.cs" t="Include" />
           </e>
           <e p="MinigameManager.cs" t="Include" />
           <e p="OverworldObjects" t="Include">
@@ -60,6 +63,7 @@
             <e p="SpikeTrap.cs" t="Include" />
             <e p="ToggleableWall.cs" t="Include" />
           </e>
+          <e p="ParticleDestroy.cs" t="Include" />
           <e p="Player" t="Include">
             <e p="BattlePlayer.cs" t="Include" />
           </e>

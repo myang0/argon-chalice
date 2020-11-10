@@ -20,7 +20,7 @@ public class BattleSystem : MonoBehaviour
         boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
         eText = GameObject.FindGameObjectWithTag("EventText").GetComponent<EventText>();
         uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
-
+        actionPanel = GameObject.FindGameObjectWithTag("ActionPanel");
         StartPlayerPhase();
     }
 
@@ -29,6 +29,7 @@ public class BattleSystem : MonoBehaviour
             state = BattleState.PLAYER_PHASE;
             uiManager.ActivateButtons();
             eText.SetText("What will the Adventurer do?");
+            actionPanel.SetActive(true);
         }
     }
 
