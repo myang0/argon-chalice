@@ -6,6 +6,8 @@ public class Boss : MonoBehaviour
 {
     private BattleSystem battleSys;
     private EventText eText;
+    [SerializeField] private GameObject _dmgPopup;
+
     [SerializeField] private GenericBar hpBar;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject ballProjectile;
@@ -73,6 +75,13 @@ public class Boss : MonoBehaviour
         eText.gameObject.SetActive(true);
         GameObject.FindWithTag("Player").GetComponent<BattlePlayer>()._isAttacking = true;
         eText.SetText(string.Format("Enemy took {0} damage!", damage));
+
+        GameObject dpObject = Instantiate(_dmgPopup, transform.position, Quaternion.identity);
+        DamagePopup dp = dpObject.GetComponent<DamagePopup>();
+        dp.SetText(damage.ToString());
+
+        float shakeMag = (damage / 200f) * 2f;
+        StartCoroutine(Shake(0.15f, shakeMag));
 
         health -= damage;
         hpBar.SetVal(health);
@@ -196,5 +205,24 @@ public class Boss : MonoBehaviour
 
             yield return new WaitForSeconds(_spikeSpeed);
         }
+    }
+
+    IEnumerator Shake(float duration, float magnitude) {
+        Vector3 origPos = transform.localPosition;
+
+        float elapsed = 0.0f;
+
+        while (elapsed < duration) {
+            float x = Random.Range(-1f, 1f) * magnitude;
+            float y = Random.Range(-1f, 1f) * magnitude;
+
+            transform.localPosition = new Vector3(x, y, origPos.z);
+
+            elapsed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        transform.localPosition = origPos;
     }
 }

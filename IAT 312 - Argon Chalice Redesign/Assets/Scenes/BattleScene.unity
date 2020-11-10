@@ -2987,6 +2987,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880439076}
   m_CullTransparentMesh: 0
+--- !u!1 &884673724
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 884673725}
+  m_Layer: 0
+  m_Name: BossContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &884673725
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884673724}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.75, y: 1.5, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_Children:
+  - {fileID: 925685591}
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &911167536
 GameObject:
   m_ObjectHideFlags: 0
@@ -3202,12 +3233,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 925685589}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.75, y: 1.5, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 884673725}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &925685592
 MonoBehaviour:
@@ -3221,6 +3252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a7b6f1207342f41a7a998ed27ef5e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dmgPopup: {fileID: 2046165521989261930, guid: eee1d797f3d1d1b4ab86a71abbbe3bd2,
+    type: 3}
   hpBar: {fileID: 911167538}
   spriteRenderer: {fileID: 925685590}
   ballProjectile: {fileID: 1023997051974721358, guid: de8799781bda78e409ce725e06ace22c,
@@ -7547,6 +7580,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b3756639b3cc1143ae2d39d7c35529e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dmgPopup: {fileID: 2046165521989261930, guid: eee1d797f3d1d1b4ab86a71abbbe3bd2,
+    type: 3}
   spriteRenderer: {fileID: 1932830243}
   jumpSprite: {fileID: 21300000, guid: 9cc0672f47d92d44c9c921da5005d1cb, type: 3}
   attackSprite: {fileID: 21300000, guid: 4947a6f39d67a04419fc3d9dd9c56572, type: 3}
