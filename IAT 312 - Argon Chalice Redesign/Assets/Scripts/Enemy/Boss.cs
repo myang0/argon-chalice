@@ -16,20 +16,43 @@ public class Boss : MonoBehaviour
     private int _pillarAttackRepeat;
     private float _ballAttackRepeatDelay;
     private float _pillarAttackRepeatDelay;
+
+    private int _spikeRepeats;
+    private float _spikeSpeed;
+    private float _spikeDelay;
+
+    private int _spearRepeats;
+    private float _spearSpeed;
+    private float _spearDelay;
+
     private GameManager _gameManager = null;
+
+    private int _numAttacks;
 
     void Start() {
         _gameManager = GameManager.GetInstance();
         spriteRenderer.sprite = _gameManager.currentEnemy.battleSprite;
         health = _gameManager.currentEnemy.maxHealth;
+
         ballProjectile.GetComponent<BossBallProjectile>().maxDamage = _gameManager.currentEnemy.ballDamageMax;
         ballProjectile.GetComponent<BossBallProjectile>().minDamage = _gameManager.currentEnemy.ballDamageMin;
         pillarAttack.GetComponent<BossFirePillar>().maxDamage = _gameManager.currentEnemy.pillarDamageMax;
         pillarAttack.GetComponent<BossFirePillar>().minDamage = _gameManager.currentEnemy.pillarDamageMin;
+
         _ballAttackRepeat = _gameManager.currentEnemy.ballAttackRepeat;
         _pillarAttackRepeat = _gameManager.currentEnemy.pillarAttackRepeat;
         _ballAttackRepeatDelay = _gameManager.currentEnemy.ballAttackRepeatDelay;
         _pillarAttackRepeatDelay = _gameManager.currentEnemy.pillarAttackRepeatDelay;
+
+        _spearRepeats = _gameManager.currentEnemy.spearRepeats;
+        _spearSpeed = _gameManager.currentEnemy.spearSpeed;
+        _spearDelay = _gameManager.currentEnemy.spearDelay;
+
+        _spikeRepeats = _gameManager.currentEnemy.spikeRepeats;
+        _spikeSpeed = _gameManager.currentEnemy.spikeSpeed;
+        _spikeDelay = _gameManager.currentEnemy.spikeDelay;
+
+        _numAttacks = _gameManager.currentEnemy.numAttacks;
         battleSys = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();
         eText = GameObject.FindGameObjectWithTag("EventText").GetComponent<EventText>();
     }
@@ -48,13 +71,11 @@ public class Boss : MonoBehaviour
         GameObject.FindWithTag("Player").GetComponent<BattlePlayer>()._isAttacking = true;
         eText.SetText(string.Format("Enemy took {0} damage!", damage));
 
-        Debug.Log(string.Format("Enemy took {0} damage!", damage));
         health -= damage;
 
         if (health <= 0) {
             RewardChance();
             StartCoroutine(WinDelay());
-            // battleSys.PlayerWin();
         }
     }
 
@@ -99,17 +120,22 @@ public class Boss : MonoBehaviour
 
     public void EnemyPhaseAction() {
         // TODO: add more attacks and actions
-        int randomAttack = Random.Range(0, 4);
+        int randomAttack = Random.Range(0, _numAttacks);
 
         if (randomAttack == 0) {
             StartCoroutine(ProjectileWave());
         } else if (randomAttack == 1) {
             StartCoroutine(PillarWave());
         } else if (randomAttack == 2) {
-            StartCoroutine(SpearWave());
+            StartCoroutine(SpikeRepeat());
         } else {
-            StartCoroutine(SpikeWave());
+            StartCoroutine(SpearWave());
         }
+
+        // StartCoroutine(ProjectileWave());
+        // StartCoroutine(PillarWave());
+        // StartCoroutine(SpearWave());
+        // StartCoroutine(SpikeRepeat());
     }
 
     IEnumerator ProjectileWave() {
@@ -136,30 +162,36 @@ public class Boss : MonoBehaviour
     }
 
     IEnumerator SpearWave() {
-        // TODO: remove hardcoding
-        for (int i = 0; i < 5; i++) {
-            Instantiate(_spearAttack, transform.position, Quaternion.identity);
-            yield return new WaitForSeconds(0.75f + Random.Range(0f, 0.5f));
+        for (int i = 0; i < _spearRepeats; i++) {
+            GameObject sObject = Instantiate(_spearAttack, transform.position, Quaternion.identity);
+            sObject.GetComponent<BossSpear>().speed = _spearSpeed;
+
+            yield return new WaitForSeconds(_spearDelay + Random.Range(0, 0.25f));
         }
 
         yield return new WaitForSeconds(2);
         battleSys.StartPlayerPhase();
     }
 
-    IEnumerator SpikeWave() {
-        // TODO: remove hardcoding
-        for (int i = 0; i < 3; i++) {
-            float xPos = 2;
-            for (int j = 0; j < 12; j++) {
-                Vector3 pos = new Vector3(xPos, 1.2f, 0);
-                Instantiate(_spikeAttack, pos, Quaternion.identity);
-                xPos -= 1f;
-
-                yield return new WaitForSeconds(0.1f);
-            }
+    IEnumerator SpikeRepeat() {
+        for (int i = 0; i < _spikeRepeats; i++) {
+            yield return new WaitForSeconds(_spikeDelay);
+            StartCoroutine(SpikeWave());
         }
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2f);
         battleSys.StartPlayerPhase();
+    }
+
+    IEnumerator SpikeWave() {
+        // TODO: remove hardcoding
+        float xPos = 2;
+        for (int j = 0; j < 12; j++) {
+            Vector3 pos = new Vector3(xPos, 1.2f, 0);
+            Instantiate(_spikeAttack, pos, Quaternion.identity);
+            xPos -= 1;
+
+            yield return new WaitForSeconds(_spikeSpeed);
+        }
     }
 }

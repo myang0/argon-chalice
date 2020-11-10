@@ -41,6 +41,10 @@ TagManager:
   - MinigameHammer
   - Menu
   - ExtraLife
+  - InstructionText
+  - InstructionPanel
+  - Target
+  - Bullet
   layers:
   - Default
   - TransparentFX

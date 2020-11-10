@@ -11,6 +11,8 @@ public class BossBallProjectile : MonoBehaviour
     public float minDamage;
     private float damage;
 
+    [SerializeField] private GameObject _particles;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,8 @@ public class BossBallProjectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col) {
         if (col.CompareTag("Player")) {
+            Instantiate(_particles, transform.position, Quaternion.identity);
+
             col.GetComponent<BattlePlayer>().InflictDamage(damage);
             Destroy(gameObject);
         }

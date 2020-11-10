@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MinigameManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class MinigameManager : MonoBehaviour
 
     public Vector3 size;
     private Vector3 pos;
+    private Vector3 _bottomPos;
     private Vector2 halfSize;
     private (float fst, float snd) xBounds;
     private (float fst, float snd) yBounds;
@@ -31,6 +33,17 @@ public class MinigameManager : MonoBehaviour
     private float maxClicks = 12;
     private float numClicks = 0;
 
+    [SerializeField] private GameObject _target;
+    [SerializeField] private GameObject _bullet;
+    [SerializeField] private float _maxShootDamage;
+    [SerializeField] private float _numTargets;
+    private bool _isShooting = false;
+    private bool _canShoot = true;
+    private float _numHitTargets = 0;
+
+    [SerializeField] private GameObject _iPanel;
+    [SerializeField] private Text _iText;
+
     private BattleSystem battleSys;
 
     void Start() {
@@ -44,11 +57,18 @@ public class MinigameManager : MonoBehaviour
         xBounds = (pos.x - halfSize.x, pos.x + halfSize.x);
         yBounds = (pos.y - halfSize.y, pos.y + halfSize.y);
 
+        _bottomPos = new Vector3(pos.x, yBounds.fst, pos.z);
+
         battleSys = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();
     }
 
     void Update() {
         if (isBarMinigameActive && Input.GetMouseButtonDown(0)) EndBarMinigame();
+
+        if (Input.GetMouseButtonDown(0) && _isShooting && _canShoot) {
+            ShootBullet();
+            StartCoroutine(ShootCooldown());
+        }
     }
 
     void OnDrawGizmosSelected() {
@@ -56,6 +76,8 @@ public class MinigameManager : MonoBehaviour
     }
 
     public void StartStarMinigame() {
+        _iPanel.SetActive(true);
+        _iText.text = "Click the stars!";
         minigameBg.SetActive(true);
         targetZone.SetActive(false);
         StartCoroutine(StarWave());
@@ -86,6 +108,7 @@ public class MinigameManager : MonoBehaviour
     }
 
     private void EndStarMinigame() {
+        _iPanel.SetActive(false);
         minigameBg.SetActive(false);
         DestroyAllStars();
         float dmg = Mathf.Floor((numHitStars / maxStars) * maxStarDamage);
@@ -96,6 +119,8 @@ public class MinigameManager : MonoBehaviour
     }
 
     public void StartBarMinigame() {
+        _iPanel.SetActive(true);
+        _iText.text = "Time your click!";
         minigameBg.SetActive(true);
         barMinigameBg.SetActive(true);
         targetZone.SetActive(false);
@@ -110,6 +135,7 @@ public class MinigameManager : MonoBehaviour
     }
 
     private void EndBarMinigame() {
+        _iPanel.SetActive(false);
         minigameBg.SetActive(false);
         MinigameBar bar = GameObject.FindGameObjectWithTag("MinigameBar").GetComponent<MinigameBar>();
         float dist = bar.GetDistance();
@@ -125,6 +151,8 @@ public class MinigameManager : MonoBehaviour
     }
 
     public void StartClickMinigame() {
+        _iPanel.SetActive(true);
+        _iText.text = "Time your clicks!";
         minigameBg.SetActive(true);
         targetZone.SetActive(true);
 
@@ -136,6 +164,7 @@ public class MinigameManager : MonoBehaviour
     }
 
     private void EndClickMinigame() {
+        _iPanel.SetActive(false);
         minigameBg.SetActive(false);
         targetZone.SetActive(false);
 
@@ -149,6 +178,86 @@ public class MinigameManager : MonoBehaviour
         numClicks = 0;
 
         CalcDamage(dmg);
+        StartCoroutine(EnemyPhaseTransition());
+    }
+
+    public void StartShootMinigame() {
+        _iPanel.SetActive(true);
+        _iText.text = "Shoot the targets!";
+        minigameBg.SetActive(true);
+        targetZone.SetActive(false);
+
+        _isShooting = true;
+
+        StartCoroutine(TargetWave());
+    }
+
+    IEnumerator TargetWave() {
+        for (int i = 0; i < _numTargets; i++) {
+            SpawnTarget();
+        }
+
+        yield return new WaitForSeconds(5);
+        EndShootMinigame();
+    }
+
+    IEnumerator ShootCooldown() {
+        _canShoot = false;
+        yield return new WaitForSeconds(0.5f);
+        _canShoot = true;
+    }
+
+    private void SpawnTarget() {
+        Vector3 newPos = new Vector3(
+            pos.x + Random.Range(-halfSize.x, halfSize.x),
+            pos.y + Random.Range(0, halfSize.y),
+            0  
+        );
+
+        GameObject t = Instantiate(_target, newPos, Quaternion.identity);
+        MinigameTarget mt = t.GetComponent<MinigameTarget>();
+
+        mt.SetXBounds(xBounds);
+    }
+
+    private Quaternion GetAngleToMouse() {
+        Camera cam = Camera.main;
+        Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 vectorToMouse = (_bottomPos - mousePos).normalized;
+        float angle = Mathf.Atan2(vectorToMouse.y, vectorToMouse.x) * Mathf.Rad2Deg;
+        Quaternion angleToMouse = Quaternion.AngleAxis(angle + 90, Vector3.forward);
+        return angleToMouse;
+    }
+
+    private void ShootBullet() {
+        GameObject bObject = Instantiate(_bullet, _bottomPos, Quaternion.identity);
+
+        Rigidbody2D rb = bObject.GetComponent<Rigidbody2D>();
+        rb.velocity = GetAngleToMouse() * new Vector2(0, 25f);
+
+        MinigameBullet mb = bObject.GetComponent<MinigameBullet>();
+        mb.SetBounds(xBounds, yBounds);
+    }
+
+    public void HitTarget() {
+        _numHitTargets++;
+    }
+
+    private void EndShootMinigame() {
+        _iPanel.SetActive(false);
+        minigameBg.SetActive(false);
+
+        _isShooting = false;
+
+        foreach (GameObject t in GameObject.FindGameObjectsWithTag("Target")) {
+            Destroy(t);
+        }
+
+        float dmg = (_numHitTargets / _numTargets) * _maxShootDamage;
+        CalcDamage(dmg);
+
+        _numHitTargets = 0;
+
         StartCoroutine(EnemyPhaseTransition());
     }
 

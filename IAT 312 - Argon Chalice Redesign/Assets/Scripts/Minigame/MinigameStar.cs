@@ -11,6 +11,8 @@ public class MinigameStar : MonoBehaviour
 
     private (float fst, float snd) xBounds, yBounds;
 
+    [SerializeField] private GameObject _particles;
+
     void Start() {
         mgm = GameObject.FindGameObjectWithTag("MinigameManager").GetComponent<MinigameManager>();
 
@@ -37,6 +39,7 @@ public class MinigameStar : MonoBehaviour
     }
 
     void OnMouseDown() {
+        Instantiate(_particles, transform.position, Quaternion.identity);
         mgm.HitStar(gameObject);
     }
 }
