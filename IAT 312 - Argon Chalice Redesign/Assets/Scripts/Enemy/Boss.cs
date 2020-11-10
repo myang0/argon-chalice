@@ -71,13 +71,11 @@ public class Boss : MonoBehaviour
         GameObject.FindWithTag("Player").GetComponent<BattlePlayer>()._isAttacking = true;
         eText.SetText(string.Format("Enemy took {0} damage!", damage));
 
-        Debug.Log(string.Format("Enemy took {0} damage!", damage));
         health -= damage;
 
         if (health <= 0) {
             RewardChance();
             StartCoroutine(WinDelay());
-            // battleSys.PlayerWin();
         }
     }
 
