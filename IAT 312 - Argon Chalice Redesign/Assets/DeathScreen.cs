@@ -47,7 +47,7 @@ public class DeathScreen : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         switch (state) {
             case State.Heartbeat:
@@ -151,7 +151,7 @@ public class DeathScreen : MonoBehaviour {
 
     private void EndRed() {
         if (!(_opacityValue > 0f)) return;
-        _opacityValue -= 0.001f;
+        _opacityValue -= 0.005f;
         if (_opacityValue < 0f) {
             _opacityValue = 0f;
             state = State.Disabled;
@@ -166,7 +166,7 @@ public class DeathScreen : MonoBehaviour {
     private void StartRed() {
         float max = 0.85f;
         if (!(_opacityValue < max)) return;
-        _opacityValue += 0.001f;
+        _opacityValue += 0.005f;
         if (_opacityValue > max) {
             _opacityValue = max;
             state = State.Suspended;
@@ -175,12 +175,12 @@ public class DeathScreen : MonoBehaviour {
 
     private void HeartbeatEffect() {
         if (_opacityRising) {
-            _opacityValue += 0.002f;
+            _opacityValue += 0.004f;
             if (_opacityValue > 0.4f) {
                 _opacityRising = false;
             }
         } else {
-            _opacityValue -= 0.002f;
+            _opacityValue -= 0.004f;
             if (_opacityValue < 0f) {
                 _opacityRising = true;
             }
