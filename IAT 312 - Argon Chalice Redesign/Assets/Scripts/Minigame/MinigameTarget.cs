@@ -7,6 +7,9 @@ public class MinigameTarget : MonoBehaviour
     private MinigameManager _mgm;
     private Rigidbody2D _rb;
 
+    [SerializeField] private GameObject _particles;
+    [SerializeField] private GameObject _breakFx;
+
     private (float fst, float snd) _xBounds;
 
     void Start() {
@@ -38,6 +41,9 @@ public class MinigameTarget : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col) {
         if (col.CompareTag("Bullet")) {
             _mgm.HitTarget();
+
+            Instantiate(_breakFx);
+            Instantiate(_particles, transform.position, Quaternion.identity);
 
             Destroy(gameObject);
             Destroy(col.gameObject);

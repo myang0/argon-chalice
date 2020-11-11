@@ -8,6 +8,10 @@ public class Boss : MonoBehaviour
     private EventText eText;
     [SerializeField] private GameObject _dmgPopup;
 
+    [SerializeField] private AudioClip _normDmg;
+    [SerializeField] private AudioClip _bigDmg;
+    private AudioSource _audio;
+
     [SerializeField] private GenericBar hpBar;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject ballProjectile;
@@ -60,6 +64,8 @@ public class Boss : MonoBehaviour
         eText = GameObject.FindGameObjectWithTag("EventText").GetComponent<EventText>();
         hpBar.SetMax(health);
         hpBar.SetVal(health);
+
+        _audio = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -72,6 +78,9 @@ public class Boss : MonoBehaviour
     }
 
     public void InflictDamage(float damage) {
+        _audio.clip = (damage < 80) ? _normDmg : _bigDmg;
+        _audio.Play();
+
         eText.gameObject.SetActive(true);
         GameObject.FindWithTag("Player").GetComponent<BattlePlayer>()._isAttacking = true;
         eText.SetText(string.Format("Enemy took {0} damage!", damage));

@@ -7,6 +7,12 @@ public enum BattleState { PLAYER_PHASE, DIALOGUE, ENEMY_PHASE, PLAYER_WIN, PLAYE
 public class BattleSystem : MonoBehaviour
 {
     public BattleState state;
+
+    [SerializeField] private AudioClip _battleMusic;
+    [SerializeField] private AudioClip _bossMusic;
+    [SerializeField] private AudioClip _finalBossMusic;
+
+    private AudioSource _audio;
     
     private EventText eText;
     private Boss boss;
@@ -17,6 +23,10 @@ public class BattleSystem : MonoBehaviour
 
     void Start()
     {   
+        _audio = GetComponent<AudioSource>();
+        _audio.clip = _bossMusic;
+        _audio.Play();
+
         boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
         eText = GameObject.FindGameObjectWithTag("EventText").GetComponent<EventText>();
         uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
@@ -61,6 +71,8 @@ public class BattleSystem : MonoBehaviour
     private IEnumerator EndBattle() {
         yield return new WaitForSeconds(1.5f);
         BattlePlayer player = GameObject.FindWithTag("Player").GetComponent<BattlePlayer>();
+
+        _audio.Stop();
 
         GameManager.GetInstance().health = player.health;
         GameManager.GetInstance().hasRage = player.hasRage;

@@ -5,6 +5,8 @@ using UnityEngine;
 public class MinigameHammer : MonoBehaviour {
     private MinigameManager mgm;
 
+    private AudioSource _audio;
+
     private float rotationSpeed;
     private float x = 0;
     private bool isInZone = false;
@@ -14,6 +16,8 @@ public class MinigameHammer : MonoBehaviour {
     void Start() {
         mgm = GameObject.FindGameObjectWithTag("MinigameManager").GetComponent<MinigameManager>();
 
+        _audio = GetComponent<AudioSource>();
+
         rotationSpeed = Random.Range(0.75f, 1.25f);
         pos = transform.position;
     }
@@ -22,6 +26,7 @@ public class MinigameHammer : MonoBehaviour {
         transform.Rotate(0, 0, rotationSpeed);
 
         if (Input.GetMouseButtonDown(0) && isInZone) {
+            _audio.Play();
             mgm.ClickSuccess();
         }
     }

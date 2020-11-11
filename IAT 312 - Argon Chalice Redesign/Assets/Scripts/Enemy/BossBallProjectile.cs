@@ -5,18 +5,23 @@ using UnityEngine;
 public class BossBallProjectile : MonoBehaviour
 {
     private Animator anim;
+    private AudioSource _audio;
 
     private string[] animStates = {"normalMovement", "stutterMovement", "highMovement", "bossBallLoop"};
     public float maxDamage;
     public float minDamage;
     private float damage;
 
+    [SerializeField] private GameObject _destroyFx;
     [SerializeField] private GameObject _particles;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+
+        _audio = GetComponent<AudioSource>();
+        _audio.Play();
 
         int randIndex = Random.Range(0, animStates.Length);
         anim.Play(animStates[randIndex]);
@@ -30,6 +35,7 @@ public class BossBallProjectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col) {
         if (col.CompareTag("Player")) {
+            Instantiate(_destroyFx);
             Instantiate(_particles, transform.position, Quaternion.identity);
 
             col.GetComponent<BattlePlayer>().InflictDamage(damage);

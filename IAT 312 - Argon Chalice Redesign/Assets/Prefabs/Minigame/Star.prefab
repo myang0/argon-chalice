@@ -145,3 +145,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particles: {fileID: 2943000469714091118, guid: 38d63b38936ee9142b919969ba3ec4eb,
     type: 3}
+  _breakFx: {fileID: 7242832964376872133, guid: bd622e2f6ae02db4bb8519aadd3ddd05,
+    type: 3}

@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BossSpear : MonoBehaviour {
+    [SerializeField] private AudioClip _appear;
+    [SerializeField] private AudioClip _launch;
+
+    private AudioSource _audio;
+
     private float _rotation = 1;
     private float _alpha = 0;
 
@@ -19,6 +24,9 @@ public class BossSpear : MonoBehaviour {
 
     void Start() {
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<BattlePlayer>();
+
+        _audio = GetComponent<AudioSource>();
+        _audio.PlayOneShot(_appear);
 
         Vector3 initForce = new Vector3(Random.Range(1.5f, 3f), Random.Range(-3f, 3f), 0);
         _rb.velocity = initForce;
@@ -65,6 +73,8 @@ public class BossSpear : MonoBehaviour {
 
         Vector3 playerPos = _player.transform.position;
         Vector3 spearPos = transform.position;
+
+        _audio.PlayOneShot(_launch);
 
         _isMovingToPlayer = true;
         MoveToPlayer(playerPos, spearPos);

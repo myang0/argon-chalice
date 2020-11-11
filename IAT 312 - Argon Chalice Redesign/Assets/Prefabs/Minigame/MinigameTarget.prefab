@@ -133,3 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a5d2846a0fbc1742b0427a1be32aaf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _particles: {fileID: 6837871955775658351, guid: 078c64254cf734142abb689c5a503f72,
+    type: 3}
+  _breakFx: {fileID: 5098000203859844936, guid: 33ca7bc3bf5dfcc459cc38f882690e37,
+    type: 3}
