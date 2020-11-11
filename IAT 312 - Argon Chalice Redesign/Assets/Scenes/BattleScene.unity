@@ -3268,6 +3268,8 @@ MonoBehaviour:
   _spikeAttack: {fileID: 7413599342790230051, guid: d9f3a3dc79a20644c86b8c23e2db9e3a,
     type: 3}
   health: 100
+  isBoss: 0
+  isFinalBoss: 0
 --- !u!82 &925685593
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7459,7 +7461,7 @@ MonoBehaviour:
   state: 0
   _battleMusic: {fileID: 8300000, guid: fd4f164a895083447baccc665d669793, type: 3}
   _bossMusic: {fileID: 8300000, guid: 05c14a85f7603b34690ffa2e4c6f6db0, type: 3}
-  _finalBossMusic: {fileID: 8300000, guid: 7c2059dc1b7210e439804fd4067e083e, type: 3}
+  _finalBossMusic: {fileID: 8300000, guid: 231da4db67b402541840355bf04e0d2e, type: 3}
 --- !u!82 &1899023611
 AudioSource:
   m_ObjectHideFlags: 0
