@@ -8,6 +8,11 @@ public class BattlePlayer : MonoBehaviour
     private EventText eText;
     [SerializeField] private GameObject _dmgPopup;
 
+    [SerializeField] private AudioClip _hurt;
+    [SerializeField] private AudioClip _heal;
+
+    private AudioSource _audio;
+
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite jumpSprite;
     [SerializeField] private Sprite attackSprite;
@@ -41,6 +46,8 @@ public class BattlePlayer : MonoBehaviour
         battleSys = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();
         boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
         eText = GameObject.FindGameObjectWithTag("EventText").GetComponent<EventText>();
+
+        _audio = GetComponent<AudioSource>();
 
         maxHealth = GameManager.GetInstance().maxHealth;
         health = GameManager.GetInstance().health;
@@ -118,6 +125,11 @@ public class BattlePlayer : MonoBehaviour
     public void InflictDamage(float dmg) {
         dmg = isBlocking ? 0 : Mathf.Floor(dmg);
 
+        if (dmg > 0) {
+            _audio.clip = _hurt;
+            _audio.Play();
+        }
+
         GameObject dpObject = Instantiate(_dmgPopup, transform.position, Quaternion.identity);
         DamagePopup dp = dpObject.GetComponent<DamagePopup>();
         dp.SetText(dmg.ToString());
@@ -128,6 +140,9 @@ public class BattlePlayer : MonoBehaviour
     }
 
     public void Heal(float healValue) {
+        _audio.clip = _heal;
+        _audio.Play();
+
         health += healValue;
         hpBar.SetVal(health);
         GameManager.GetInstance().humanityValue += (int) (healValue / 2);

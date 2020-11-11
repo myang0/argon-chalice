@@ -31,6 +31,9 @@ public class EnemyOverworld : MonoBehaviour {
     public bool isBattleReady = true;
     private bool _isPlayerNear = false;
 
+    public bool isBoss = false;
+    public bool isFinalBoss = false;
+
     // Start is called before the first frame update
     void Start()
     {
