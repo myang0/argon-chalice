@@ -32,6 +32,9 @@ public class Boss : MonoBehaviour
     private float _spearSpeed;
     private float _spearDelay;
 
+    public bool isBoss;
+    public bool isFinalBoss;
+
     private GameManager _gameManager = null;
 
     private int _numAttacks;

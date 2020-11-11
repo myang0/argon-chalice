@@ -24,7 +24,16 @@ public class BattleSystem : MonoBehaviour
     void Start()
     {   
         _audio = GetComponent<AudioSource>();
-        _audio.clip = _bossMusic;
+
+        GameManager gm  = GameManager.GetInstance();
+        if (gm.currentEnemy.isBoss) {
+            _audio.clip = _bossMusic;
+        } else if (gm.currentEnemy.isFinalBoss) {
+            _audio.clip = _finalBossMusic;
+        } else {
+            _audio.clip = _battleMusic;
+        }
+        
         _audio.Play();
 
         boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
