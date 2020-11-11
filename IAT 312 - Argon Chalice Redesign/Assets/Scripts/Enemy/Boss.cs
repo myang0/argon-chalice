@@ -98,31 +98,38 @@ public class Boss : MonoBehaviour
         health -= damage;
         hpBar.SetVal(health);
         if (health <= 0) {
-            RewardChance();
-            StartCoroutine(WinDelay());
+            battleSys.state = BattleState.PLAYER_WIN;
+            StartCoroutine(Reward());
         }
     }
 
-    private void RewardChance() {
+    private IEnumerator Reward() {
+        yield return new WaitForSeconds(2f);
+        if (!RewardChance()) {
+            StartCoroutine(WinDelay());
+        }
+    }
+    
+    private bool RewardChance() {
         int giveRewardChance = Random.Range(0, 2);
-        if (giveRewardChance != 0) return;
+        if (giveRewardChance != 0) return false;
 
         BattlePlayer player = GameObject.FindWithTag("Player").GetComponent<BattlePlayer>();
         int rewardIndex = Random.Range(0, 3);
         string rewardName;
 
         if (rewardIndex == 0) {
-            if (player.hoverEnabled) return;
+            if (player.hoverEnabled) return false;
 
             player.hoverEnabled = true;
             rewardName = "Hover Feather! Left click while in the air to fall slower.";
         } else if (rewardIndex == 1) {
-            if (player.hasRage) return;
+            if (player.hasRage) return false;
 
             player.hasRage = true;
             rewardName = "Rage Bandanna! Deal more damage the lower your health is.";
         } else {
-            if (player.canRevive) return;
+            if (player.canRevive) return false;
 
             player.canRevive = true;
             rewardName = "Ankh Charm! You can now cheat death one time.";
@@ -130,15 +137,16 @@ public class Boss : MonoBehaviour
 
         eText.SetText(string.Format("The enemy dropped the {0} You add it to your inventory.", rewardName));
         StartCoroutine(ItemDelay());
+        return true;
     }
 
     private IEnumerator ItemDelay() {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3.5f);
         battleSys.PlayerWin();
     } 
 
     private IEnumerator WinDelay() {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
         battleSys.PlayerWin();
     }
 

@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattlePlayer : MonoBehaviour
-{
+public class BattlePlayer : MonoBehaviour {
     private BattleSystem battleSys;
     private EventText eText;
     [SerializeField] private GameObject _dmgPopup;
@@ -17,6 +16,7 @@ public class BattlePlayer : MonoBehaviour
     [SerializeField] private Sprite jumpSprite;
     [SerializeField] private Sprite attackSprite;
     [SerializeField] private Sprite standSprite;
+    [SerializeField] private Sprite blockSprite;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private BoxCollider2D bc;
 
@@ -117,6 +117,8 @@ public class BattlePlayer : MonoBehaviour
     private void UpdateSprite() {
         if (_isAttacking) {
             spriteRenderer.sprite = attackSprite;
+        } else if (isBlocking){
+            spriteRenderer.sprite = blockSprite;
         } else {
             spriteRenderer.sprite = IsGrounded() ? standSprite : jumpSprite;
         }
@@ -185,12 +187,12 @@ public class BattlePlayer : MonoBehaviour
     }
 
     IEnumerator Block() {
+        isBlockRecharging = true;
         isBlocking = true;
         shieldSprite.SetActive(true);
         yield return new WaitForSeconds(0.15f);
 
         isBlocking = false;
-        isBlockRecharging = true;
         shieldSprite.SetActive(false);
         yield return new WaitForSeconds(0.8f);
 

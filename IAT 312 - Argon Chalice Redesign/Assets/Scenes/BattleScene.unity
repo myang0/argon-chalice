@@ -771,7 +771,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 09e277c330055764ea5ff829583b3905, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 845133849132d0d448b4381306e920a8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -790,8 +790,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 188679942}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.033, y: -0.053, z: 0}
+  m_LocalScale: {x: 0.20605642, y: 0.20682548, z: 0.70479965}
   m_Children: []
   m_Father: {fileID: 1932830244}
   m_RootOrder: 0
@@ -5239,8 +5239,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -660, y: -482.5}
-  m_SizeDelta: {x: -1830, y: -985}
+  m_AnchoredPosition: {x: -652.5, y: -482.5}
+  m_SizeDelta: {x: -1815, y: -985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1430791278
 MonoBehaviour:
@@ -5268,7 +5268,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 82
-    m_Alignment: 3
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -7676,7 +7676,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 2.048, y: 2.048}
-    newSize: {x: 1.4628571, y: 1.4628571}
+    newSize: {x: 2.048, y: 2.048}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -7744,12 +7744,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 15c446130f3d74b4089497ea36e25d56, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 25fad86d27bc646439af07bf1d68b0de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.4628571, y: 1.4628571}
+  m_Size: {x: 2.048, y: 2.048}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -7787,9 +7787,10 @@ MonoBehaviour:
   _hurt: {fileID: 8300000, guid: 23ecdacc27bd8db4fad0ad2556867dfa, type: 3}
   _heal: {fileID: 8300000, guid: d71ec699008115740b424bf0198d5b4f, type: 3}
   spriteRenderer: {fileID: 1932830243}
-  jumpSprite: {fileID: 21300000, guid: 9cc0672f47d92d44c9c921da5005d1cb, type: 3}
-  attackSprite: {fileID: 21300000, guid: 4947a6f39d67a04419fc3d9dd9c56572, type: 3}
-  standSprite: {fileID: 21300000, guid: 15c446130f3d74b4089497ea36e25d56, type: 3}
+  jumpSprite: {fileID: 21300000, guid: 37a94491b28e09e40ad9d2df266a177e, type: 3}
+  attackSprite: {fileID: 21300000, guid: be6c84a01cca3b546baf2bd8e2b074c5, type: 3}
+  standSprite: {fileID: 21300000, guid: 25fad86d27bc646439af07bf1d68b0de, type: 3}
+  blockSprite: {fileID: 21300000, guid: daebb8672557b694d8dd810e0f44cac9, type: 3}
   rb: {fileID: 1932830242}
   bc: {fileID: 1932830241}
   floorLayerMask:
