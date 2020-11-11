@@ -19,6 +19,11 @@ public class OverWorldManager : MonoBehaviour
     [SerializeField] private List<GameObject> disableList = new List<GameObject>();
     [SerializeField] public List<BaseChamber> chambers = new List<BaseChamber>();
     [SerializeField] public EnemyOverworld boss;
+    public AudioSource audioSource;
+    [SerializeField] private AudioClip tutorialBgm;
+    [SerializeField] private AudioClip stageOneBgm;
+    [SerializeField] private AudioClip stageTwoBgm;
+    [SerializeField] private AudioClip stageThreeBgm;
     public int stageCount = 0;
     public int stageNumber = 0;
     public bool isBossStage = false;
@@ -55,6 +60,8 @@ public class OverWorldManager : MonoBehaviour
         foreach (Transform t in stageThreeSpawns) {
             Assert.IsNotNull(t, "Stage Three spawnpoints List, spawnpoint is null");
         }
+        audioSource.clip = tutorialBgm;
+        audioSource.Play();
     }
 
     // Update is called once per frame
@@ -116,18 +123,24 @@ public class OverWorldManager : MonoBehaviour
                     int random = Random.Range(0, stageTwoSpawns.Count);
                     spawnPoint = stageTwoSpawns[random];
                     stageTwoSpawns.RemoveAt(random);
+                    PlayIfNewStage(stageTwoBgm);
                     break;
                 }
                 case 3: {
                     int random = Random.Range(0, stageThreeSpawns.Count);
                     spawnPoint = stageThreeSpawns[random];
                     stageThreeSpawns.RemoveAt(random);
+                    PlayIfNewStage(stageThreeBgm);
                     break;
                 }
             }
 
             isBossStage = false;
             stageCount++;
+            // if (stageCount == -1) stageCount = 0;
+            // if (stageCount == 0) stageCount = 1;
+            // if (stageCount == 1) stageCount = 2;
+            // if (stageCount == 2) stageCount = 3;
         } else {
             switch (stage) {
                 case 0: {
@@ -136,6 +149,7 @@ public class OverWorldManager : MonoBehaviour
                     stageOneSpawns.RemoveAt(random);
                     stageNumber = 1;
                     stageCount = 0;
+                    PlayIfNewStage(stageOneBgm);
                     break;
                 }
                 case 1: {
@@ -161,6 +175,15 @@ public class OverWorldManager : MonoBehaviour
             }
         }
         Assert.IsNotNull(spawnPoint, "OverWorldManager: Next spawnpoint is null!");
+        Debug.Log("STAGE: " + stageNumber + "---" + "CHAMBER: " + stageCount);
         return new Vector3(spawnPoint.position.x, spawnPoint.position.y, -5);
+    }
+
+    private void PlayIfNewStage(AudioClip clip) {
+        if (stageCount == -1 || (stageCount == 0 && stageNumber == 1)) {
+            audioSource.Stop();
+            audioSource.clip = clip;
+            audioSource.Play();
+        }
     }
 }

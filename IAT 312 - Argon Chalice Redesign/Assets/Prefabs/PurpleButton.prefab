@@ -100,8 +100,10 @@ MonoBehaviour:
   pushedSprite: {fileID: 21300000, guid: 974b7096007da7140b2b38a7d7d9bfc9, type: 3}
   spriteRenderer: {fileID: 6735621676088968312}
   audioSource: {fileID: 5126316296166620383}
-  pressedSound: {fileID: 0}
-  unPressedSound: {fileID: 0}
+  pressedSound: {fileID: 8300000, guid: a5349911276efb44db74bc6d7d7fde9a, type: 3}
+  unPressedSound: {fileID: 8300000, guid: a5349911276efb44db74bc6d7d7fde9a, type: 3}
+  tickSound: {fileID: 8300000, guid: bcd28714376184242893e0eb804fe873, type: 3}
+  tockSound: {fileID: 8300000, guid: 1ec1a6d828b38fc48bc0ec9b4a6bc37d, type: 3}
   delay: 3
 --- !u!61 &6735621676088968310
 BoxCollider2D:
@@ -139,7 +141,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: a5349911276efb44db74bc6d7d7fde9a, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

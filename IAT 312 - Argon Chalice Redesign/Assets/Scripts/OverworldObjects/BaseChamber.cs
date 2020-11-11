@@ -12,6 +12,9 @@ using UnityEngine.UIElements;
 public class BaseChamber : MonoBehaviour
 {
     [SerializeField] protected List<BasicButton> buttons = new List<BasicButton>();
+    [SerializeField] protected AudioSource audioSource;
+    [SerializeField] protected AudioClip openSound;
+    [SerializeField] protected AudioClip closeSound;
     [SerializeField] protected List<GateArea> gates = new List<GateArea>();
     [SerializeField] protected Tilemap gateTileMap;
     [SerializeField] protected ChamberBoundary chamberBoundary;
@@ -77,6 +80,7 @@ public class BaseChamber : MonoBehaviour
             if (gate.GetIsPlayerNearby() && Input.GetKeyDown(KeyCode.E) && GetChamberComplete()
                 && GameObject.FindWithTag("OverworldManager").GetComponent<OverWorldManager>()._overworldIsActive) {
                 ProceedChamber();
+                return;
             }
         }
     }
@@ -108,6 +112,17 @@ public class BaseChamber : MonoBehaviour
     }
 
     protected virtual void SetGate() {
+        bool before = gateTileMap.gameObject.activeInHierarchy;
         gateTileMap.gameObject.SetActive(!GetChamberComplete());
+        bool after = gateTileMap.gameObject.activeInHierarchy;
+        if (before != after) {
+            if (!after) {
+                audioSource.clip = openSound;
+                audioSource.Play();
+            } else {
+                audioSource.clip = closeSound;
+                audioSource.Play();
+            }
+        }
     }
 }
