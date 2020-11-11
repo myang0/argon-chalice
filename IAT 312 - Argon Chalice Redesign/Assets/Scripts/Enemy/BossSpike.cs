@@ -11,7 +11,12 @@ public class BossSpike : MonoBehaviour
     private SpriteRenderer _sr;
     [SerializeField] private GameObject spawnParticles;
 
+    private AudioSource _audio;
+
     void Start() {
+        _audio = GetComponent<AudioSource>();
+        _audio.Play();
+
         _damage =  Random.Range(5, 15);
         _sr = GetComponent<SpriteRenderer>();
 

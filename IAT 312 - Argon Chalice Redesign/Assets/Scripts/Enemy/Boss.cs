@@ -85,7 +85,9 @@ public class Boss : MonoBehaviour
         _audio.Play();
 
         eText.gameObject.SetActive(true);
-        GameObject.FindWithTag("Player").GetComponent<BattlePlayer>()._isAttacking = true;
+
+        BattlePlayer p = GameObject.FindWithTag("Player").GetComponent<BattlePlayer>();
+        StartCoroutine(p.ItemDelay());
         eText.SetText(string.Format("Enemy took {0} damage!", damage));
 
         GameObject dpObject = Instantiate(_dmgPopup, transform.position, Quaternion.identity);

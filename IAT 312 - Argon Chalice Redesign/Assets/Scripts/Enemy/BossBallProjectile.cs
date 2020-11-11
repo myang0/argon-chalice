@@ -12,6 +12,9 @@ public class BossBallProjectile : MonoBehaviour
     public float minDamage;
     private float damage;
 
+    private SpriteRenderer _sr;
+    private float _alpha = 0;
+
     [SerializeField] private GameObject _destroyFx;
     [SerializeField] private GameObject _particles;
 
@@ -20,6 +23,8 @@ public class BossBallProjectile : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
+        _sr = GetComponent<SpriteRenderer>();
+
         _audio = GetComponent<AudioSource>();
         _audio.Play();
 
@@ -27,6 +32,13 @@ public class BossBallProjectile : MonoBehaviour
         anim.Play(animStates[randIndex]);
 
         damage = Random.Range(minDamage, maxDamage);
+    }
+
+    void Update() {
+        if (_alpha < 1f) {
+            _sr.color = new Color(1, 1, 1, _alpha);
+            _alpha += 0.01f;
+        }
     }
 
     void FixedUpdate() {
