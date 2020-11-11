@@ -125,7 +125,7 @@ public class MinigameManager : MonoBehaviour
     public void StartBarMinigame() {
         _iPanel.SetActive(true);
         _iText.text = "Time your click!";
-        minigameBg.SetActive(true);
+        minigameBg.SetActive(false);
         barMinigameBg.SetActive(true);
         targetZone.SetActive(false);
 
