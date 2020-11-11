@@ -7,5 +7,6 @@ public class GreenBasicButton : BasicButton {
     private void OnTriggerEnter2D(Collider2D other) {
         if (isPushed) return;
         isPushed = true;
+        audioSource.Play();
     }
 }

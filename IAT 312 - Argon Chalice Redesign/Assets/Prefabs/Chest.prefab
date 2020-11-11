@@ -53,7 +53,7 @@ MonoBehaviour:
   chestOpenedSprite: {fileID: 21300000, guid: 15d4d5a6ba501b04ab4ee5b37991d3a6, type: 3}
   spriteRenderer: {fileID: 4430722260490745576}
   chamber: {fileID: 0}
-  audio: {fileID: 0}
+  audio: {fileID: 2938097932738503350}
   isUnlocked: 0
   isOpened: 0
   isPlayerNearby: 0
@@ -176,7 +176,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 9b3c3150e15a87a4f8c91e44627e521f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

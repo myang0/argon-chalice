@@ -100,11 +100,11 @@ MonoBehaviour:
   pushedSprite: {fileID: 21300000, guid: c5042281e20b9e9489791b9437730988, type: 3}
   spriteRenderer: {fileID: 6539747719011530431}
   audioSource: {fileID: 3329808378807208969}
-  pressedSound: {fileID: 0}
+  pressedSound: {fileID: 8300000, guid: a5349911276efb44db74bc6d7d7fde9a, type: 3}
   activeUnpushedSprite: {fileID: 21300000, guid: d55111f11f02e5349b97b80c588725a3,
     type: 3}
   activePushedSprite: {fileID: 21300000, guid: 2e29e95ea601f5a41af61e1eb33773b1, type: 3}
-  unPressedSound: {fileID: 0}
+  unPressedSound: {fileID: 8300000, guid: a5349911276efb44db74bc6d7d7fde9a, type: 3}
 --- !u!61 &6539747719011530430
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -141,7 +141,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: a5349911276efb44db74bc6d7d7fde9a, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
