@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseItem : MonoBehaviour
-{
+public class BaseItem : MonoBehaviour {
+    public AudioSource audioSource;
     private Inventory inventory;
     private SpriteRenderer sr;
 
@@ -29,7 +29,7 @@ public class BaseItem : MonoBehaviour
         inventory.AddItem(this);
         sr.enabled = false;
         isPickedUp = true;
-
+        audioSource.Play();
         GameObject.FindGameObjectWithTag("PlayerCharacter").GetComponent<CharacterBehavior>().DeactivateInteractionButton();
     }
 

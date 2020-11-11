@@ -44,6 +44,7 @@ public class EnemyOverworld : MonoBehaviour {
             if (_isPlayerNear && isBattleReady && Input.GetKeyDown(KeyCode.E)) {
                 isBattleReady = false;
                 _isPlayerNear = false;
+                GameObject.FindGameObjectWithTag("OverworldManager").GetComponent<OverWorldManager>().audioSource.Pause();
                 GameManager.GetInstance().StartBattle(this);
             }
         }
@@ -63,6 +64,7 @@ public class EnemyOverworld : MonoBehaviour {
 
     public void BattleComplete() {
         isCompleted = true;
+        GameObject.FindGameObjectWithTag("OverworldManager").GetComponent<OverWorldManager>().audioSource.UnPause();
         this.gameObject.SetActive(false);
     }
 }
