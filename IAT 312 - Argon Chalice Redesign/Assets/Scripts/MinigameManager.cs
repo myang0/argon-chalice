@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class MinigameManager : MonoBehaviour
 {
+    private AudioSource _audio;
+
     [SerializeField] private GameObject minigameBg;
     private Boss boss;
 
@@ -47,6 +49,8 @@ public class MinigameManager : MonoBehaviour
     private BattleSystem battleSys;
 
     void Start() {
+        _audio = GetComponent<AudioSource>();
+
         pos = transform.position;
 
         boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
@@ -230,6 +234,8 @@ public class MinigameManager : MonoBehaviour
     }
 
     private void ShootBullet() {
+        _audio.Play();
+
         GameObject bObject = Instantiate(_bullet, _bottomPos, Quaternion.identity);
 
         Rigidbody2D rb = bObject.GetComponent<Rigidbody2D>();

@@ -202,4 +202,12 @@ public class BattlePlayer : MonoBehaviour
 
         battleSys.StartEnemyPhase();
     }
+
+    public IEnumerator ItemDelay() {
+        _isAttacking = true;
+
+        yield return new WaitForSeconds(1);
+
+        _isAttacking = false;
+    }
 }
